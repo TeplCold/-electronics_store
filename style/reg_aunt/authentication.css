@@ -1,0 +1,37 @@
+/* .error {
+    font: italic 14px sans-serif;
+    background-color: red;
+    margin-left: 5px;
+}
+  */
+
+.pass-show {
+    background: url(/assets/reg_aunt/open_eye.png) no-repeat;
+    width: 18px;
+    height: 11px;
+}
+
+.pass-hide {
+    background: url(/assets/reg_aunt/eye_closed.png) no-repeat;
+    width: 20px;
+    height: 10px;
+}
+
+#imput-email-pass span {
+    width: 25px;
+    height: 25px;
+    margin-top: 5px;
+    position: absolute;
+}
+
+.auth-loading {
+    display: none;
+}
+
+#message-auth {
+    display: none;
+}
+
+li {
+    list-style-type: none;
+}
