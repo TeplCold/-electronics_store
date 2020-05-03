@@ -27,7 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    if (strlen($surname) < 3 or strlen($surname) > 20) $error[] = "Укажите фамилию от 3 до 20 символов!";
    if (strlen($name) < 3 or strlen($name) > 15) $error[] = "Укажите имя 3 от 15 символов!";
    if (strlen($patronymic) < 3 or strlen($patronymic) > 25) $error[] = "Укажите отчество от 3 до 25 символов!";
-
+   //preg_match сверяет веденные данные с шаблоном
+   //trim удаляет пробелы в начале и в конце
    if (!preg_match("/^(?:[a-z0-9]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i", trim($email))) {
       $error[] = "Укажите корректный email!";
    } else {
@@ -40,9 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    if (count($error)) {
       echo implode('<br />', $error);
    } else {
-      // $pass   = md5($pass);
-      // $pass   = strrev($pass);
-      // $pass   = "9nm2rv8q" . $pass . "2yo6z";
+      $pass   = sha1($pass);//шифруем пароль методом sha1 
+      $pass   = strrev($pass);//переварачиваем пароль
+      $pass   = "9nm2rv8q" . $pass . "2yotykytk6z";
 
       $ip = $_SERVER['REMOTE_ADDR'];
 

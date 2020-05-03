@@ -2,7 +2,7 @@
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") //проверяем как обратились к файлу если методом POST то:
 {
-   include("db_connect.php"); //подключение к бд 
+   include("../db_connect.php"); //подключение к бд 
    include("functions.php");  //функция очистки строк 
 
    $email = clear_string($_POST['reg_email']); //помешаем в email глобальный массив $_POST и reg_email - поле куда вводим email

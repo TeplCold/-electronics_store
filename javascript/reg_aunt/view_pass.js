@@ -73,7 +73,7 @@ $("#button-auth").click(function () { //если нажата кнопка
             data: "login=" + auth_login + "&pass=" + auth_pass + "&rememberme=" + auth_rememberme, //указываем какие данные будем отправлять
             dataType: "html", //тип данных 
             cache: false, //чтобы не кэшировать данные 
-            success: function (data) { //data -то что ответил обработчик 
+            success: function (data) { //data - то что ответил обработчик 
 
                 if (data == 'yes_auth') {
                     location.reload();
