@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../../javascript/jquery.validate.js"></script>
     <script type="text/javascript" src="../../javascript/reg_aunt/reg_validation.js"></script>
 
+    <script defer type="text/javascript" src="../../javascript/reg_aunt/genpass.js"></script>
     <!-- подключение авторизации -->
     <script defer type="text/javascript" src="../../javascript/reg_aunt/view_pass.js"></script>
     <link href="../../style/reg_aunt/authentication.css" rel="stylesheet">
