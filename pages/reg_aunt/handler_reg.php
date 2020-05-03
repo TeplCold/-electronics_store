@@ -41,8 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    if (count($error)) {
       echo implode('<br />', $error);
    } else {
-      $pass   = sha1($pass);//шифруем пароль методом sha1 
-      $pass   = strrev($pass);//переварачиваем пароль
+
+      $pass   = sha1($pass);
+      $pass   = strrev($pass); //переварачиваем пароль
       $pass   = "9nm2rv8q" . $pass . "2yotykytk6z";
 
       $ip = $_SERVER['REMOTE_ADDR'];

@@ -1,14 +1,15 @@
 <?php
+session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") //проверяем как обратились к файлу
 {
-    include("db_connect.php"); //подключение к бд 
+    include("../db_connect.php"); //подключение к бд 
     include("functions.php"); //подключаем фукцию очистки сторк 
 
-    $login = clear_string($_POST['login']); //помешаем в login глобальный массив $_POST и reg_login - поле куда вводим логин
+    $login = clear_string($_POST["login"]); //помешаем в login глобальный массив $_POST и reg_login - поле куда вводим логин
 
-    // $pass  = md5($pass);
-    // $pass  = strrev($pass);
-    // $pass  = "9nm2rv8q" . $pass . "2yo6z";
+    $pass   = sha1(clear_string($_POST["pass"]));
+    $pass   = strrev($pass); //переварачиваем пароль
+    $pass   = "9nm2rv8q" . $pass . "2yotykytk6z";
 
     if ($_POST["rememberme"] == "yes") //если выбран чекбокс 
     {
@@ -19,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") //проверяем как обрат
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_array($result);
-        session_start();
+
         $_SESSION['auth'] = 'yes_auth'; //добавляем в сесию то что пользователь авторизирован
         $_SESSION['auth_login'] = $row["login"];
         $_SESSION['auth_pass'] = $row["pass"]; // в сессию сохраняем пароль пользователя

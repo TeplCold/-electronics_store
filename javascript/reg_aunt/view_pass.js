@@ -37,20 +37,20 @@ $("#button-auth").click(function () { //если нажата кнопка
     var auth_pass = $("#auth_pass").val(); //помещаем auth_pass в переменную
 
 
-    if (auth_login == "") {
-        $("#auth_login").css("borderColor", "#FDB6B6");
+    if (auth_login == "" || auth_login.length > 15) {
+        $("#auth_login").css("borderColor", "#DF0101");
         send_login = 'no';
     } else {
-        $("#auth_login").css("borderColor", "#DBDBDB");
+        $("#auth_login").css("borderColor", "#82FA58");
         send_login = 'yes';
     }
 
 
-    if (auth_pass == "") {
-        $("#auth_pass").css("borderColor", "#FDB6B6");
+    if (auth_pass == "" || auth_pass.length > 20) {
+        $("#auth_pass").css("borderColor", "#DF0101");
         send_pass = 'no';
     } else {
-        $("#auth_pass").css("borderColor", "#DBDBDB");
+        $("#auth_pass").css("borderColor", "#82FA58");
         send_pass = 'yes';
     }
 
@@ -69,7 +69,7 @@ $("#button-auth").click(function () { //если нажата кнопка
 
         $.ajax({ //отправляем данные обработчику 
             type: "POST", //каким методом будем обрабатывать занчения 
-            url: "/pages/auth.php", //к какому обработчику отправляем данные 
+            url: "../../pages/reg_aunt/auth.php", //к какому обработчику отправляем данные 
             data: "login=" + auth_login + "&pass=" + auth_pass + "&rememberme=" + auth_rememberme, //указываем какие данные будем отправлять
             dataType: "html", //тип данных 
             cache: false, //чтобы не кэшировать данные 
