@@ -1,3 +1,4 @@
+<?php include("pages/db_connect.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +16,35 @@
 
     <?php include("pages/header_footer/header.php") ?>
 
-    Главная
+
+
+
+    новинки
+    <!-- 
+    <?php
+    $result =  mysqli_query($link, "SELECT * FROM  `products` WHERE `new_items` = 1");
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_array($result);
+        do {
+
+            if ($row["image"] != "" && file_exists("assets/products/" . $row["image"])) {
+                $img_path = 'assets/products/' . $row["image"]; //фото есть 
+            } else {
+                $img_path = "assets/products/no_photo.jpg"; //фото нету
+            }
+
+
+            echo ('
+                        <li>
+                        <img src="' . $img_path . '" /> 
+                     ' . $row["title"] . '
+                     ' . $row["price"] . '₽
+                        </li>
+                        ');
+        } while ($row = mysqli_fetch_array($result));
+    }
+    ?> -->
+
 </body>
 
 </html>

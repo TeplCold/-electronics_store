@@ -35,3 +35,8 @@
 li {
     list-style-type: none;
 }
+
+/* востановление пароля */
+#block-remind {
+    display: none;
+}
