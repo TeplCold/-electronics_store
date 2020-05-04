@@ -1,0 +1,102 @@
+particlesJS('particles-js', {
+    "particles": {
+        "number": {
+            "value": 200,
+            "density": {
+                "enable": true,
+                "value_area": 800
+            }
+        },
+        "color": {
+            "value": "#ffffff"
+        },
+        "shape": {
+            "type": "star",
+            "stroke": {
+                "width": 2,
+                "color": "#FFFFFF"
+            },
+            "polygon": {
+                "nb_sides": 5
+            },
+            "image": {
+                "width": 100,
+                "height": 100
+            }
+        },
+        "opacity": {
+            "value": 0.5,
+            "random": false,
+            "anim": {
+                "enable": false,
+                "speed": 20,
+                "opacity_min": 1,
+                "sync": false
+            }
+        },
+        "size": {
+            "value": 3,
+            "random": true,
+            "anim": {
+                "enable": false,
+                "speed": 1,
+                "size_min": 0.1,
+                "sync": false
+            }
+        },
+        "line_linked": {
+            "enable": true,
+            "distance": 100,
+            "color": "#ffffff",
+            "opacity": 0.5,
+            "width": 0.3
+        },
+        "move": {
+            "enable": true,
+            "speed": 3.5,
+            "direction": "none",
+            "random": false,
+            "straight": false,
+            "out_mode": "out",
+            "attract": {
+                "enable": false,
+                "rotateX": 600,
+                "rotateY": 1200
+            }
+        }
+    },
+    "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+            "onhover": {
+                "enable": true,
+                "mode": "grab"
+            },
+            "onclick": {
+                "enable": true,
+                "mode": "repulse"
+            },
+            "resize": true
+        },
+        "modes": {
+            "grab": {
+                "distance": 200,
+                "line_linked": {
+                    "opacity": 1
+                }
+            },
+            "repulse": {
+                "distance": 200
+            }
+        }
+    },
+    "retina_detect": true,
+    "config_demo": {
+        "hide_card": false,
+        "background_color": "#b61924",
+        "background_image": "",
+        "background_position": "50% 50%",
+        "background_repeat": "no-repeat",
+        "background_size": "cover"
+    }
+});
