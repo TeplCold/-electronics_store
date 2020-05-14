@@ -126,33 +126,37 @@ switch ($sorting) {
     <?php
 
     if ($page != 1) {
-        $pstr_prev = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page - 1) . '">    <   </a></li>';
+        $pstr_prev = '<li class="page-item"><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . '&page=' . ($page - 1) . '">    <   </a></li>';
     }
     if ($page != $total) {
-        $pstr_next = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page + 1) . '">    >   </a></li>';
+        $pstr_next = '<li class="page-item"><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . '&page=' . ($page + 1) . '">    >   </a></li>';
     }
 
-    if ($page - 4 > 0) $page4left = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page - 4) . '">' . ($page - 4) . '</a></li>';
-    if ($page - 3 > 0) $page3left = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page - 3) . '">' . ($page - 3) . '</a></li>';
-    if ($page - 2 > 0) $page2left = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page - 2) . '">' . ($page - 2) . '</a></li>';
-    if ($page - 1 > 0) $page1left = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page - 1) . '">' . ($page - 1) . '</a></li>';
-    if ($page + 4 <= $total) $page4right = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page + 4) . '">' . ($page + 4) . '</a></li>';
-    if ($page + 3 <= $total) $page3right = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page + 3) . '">' . ($page + 3) . '</a></li>';
-    if ($page + 2 <= $total) $page2right = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page + 2) . '">' . ($page + 2) . '</a></li>';
-    if ($page + 1 <= $total) $page1right = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page + 1) . '">' . ($page + 1) . '</a></li>';
+    // Формируем ссылки со страницами
+
+    if ($page - 4 > 0) $page4left = '<li class="page-item"><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . '&page' . ($page - 4) . '">' . ($page - 4) . '</a></li>';
+    if ($page - 3 > 0) $page3left = '<li class="page-item"><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . '&page' . ($page - 3) . '">' . ($page - 3) . '</a></li>';
+    if ($page - 2 > 0) $page2left = '<li class="page-item"><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . '&page' . ($page - 2) . '">' . ($page - 2) . '</a></li>';
+    if ($page - 1 > 0) $page1left = '<li class="page-item"><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . '&page' . ($page - 1) . '">' . ($page - 1) . '</a></li>';
+    if ($page + 4 <= $total) $page4right = '<li class="page-item"><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . '&page=' . ($page + 4) . '">' . ($page + 4) . '</a></li>';
+    if ($page + 3 <= $total) $page3right = '<li class="page-item"><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . '&page=' . ($page + 3) . '">' . ($page + 3) . '</a></li>';
+    if ($page + 2 <= $total) $page2right = '<li class="page-item"><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . '&page=' . ($page + 2) . '">' . ($page + 2) . '</a></li>';
+    if ($page + 1 <= $total) $page1right = '<li class="page-item"><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . '&page=' . ($page + 1) . '">' . ($page + 1) . '</a></li>';
+
+
 
     if ($page + 5 == $total) {
-        $strtotal1 = '<li><a class="page-link" href="product_list.php?page=' . $total . '">' . $total . '</a></li>';
+        $strtotal1 = '<li><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . 'page=' . $total . '">' . $total . '</a></li>';
     } elseif ($page + 4 < $total) {
-        $strtotal1 = '<li class="page-item"><a class="page-link">...</a></li><li><a class="page-link" href="product_list.php?page=' . $total . '">' . $total . '</a></li>';
+        $strtotal1 = '<li class="page-item"><a class="page-link">...</a></li><li><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . 'page=' . $total . '">' . $total . '</a></li>';
     } else {
         $strtotal1 = "";
     }
 
     if ($page == 6) {
-        $strtotal2 = '<li><a class="page-link" href="product_list.php?page=' . 1 . '">' . 1 . '</a></li>';
+        $strtotal2 = '<li><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . 'page=' . 1 . '">' . 1 . '</a></li>';
     } elseif ($page - 4 > 1) {
-        $strtotal2 = '<li><a class="page-link" href="product_list.php?page=' . 1 . '">' . 1 . '</a></li> <li class="page-item"><a class="page-link">...</a></li>';
+        $strtotal2 = '<li><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . 'page=' . 1 . '">' . 1 . '</a></li> <li class="page-item"><a class="page-link">...</a></li>';
     } else {
         $strtotal2 = "";
     }
@@ -163,7 +167,7 @@ switch ($sorting) {
     <ul class="pagination">
     ';
         echo $pstr_prev . $strtotal2  . $page4left . $page3left . $page2left . $page1left .
-            "<li class='page-item active' ><a class='page-link' href='product_list.php?page=" . $page . "'>" . $page . "</a></li>" . $page1right . $page2right . $page3right . $page4right  . $strtotal1 . $pstr_next;
+            "<li class='page-item active' ><p class='page-link' href='product_list.php?page=" . $page . "'>" . $page . "</p></li>" . $page1right . $page2right . $page3right . $page4right  . $strtotal1 . $pstr_next;
         echo '
     </ul>
     </nav>
