@@ -10,7 +10,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Каталог</a>
+                <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/product_list.php"> Каталог</a>
             </li>
 
             <li class="nav-item  ">

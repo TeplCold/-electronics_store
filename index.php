@@ -11,8 +11,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-
-    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/home/home.css">
 
 </head>
 
@@ -20,32 +19,42 @@
 
     <?php include("pages/header_footer/header.php") ?>
 
-    <div class=""></div>
-    новинки
-    <!-- 
-    <?php
-    $result =  mysqli_query($link, "SELECT * FROM  `products` WHERE `new_items` = 1");
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_array($result);
-        do {
-
-            if ($row["image"] != "" && file_exists("assets/products/" . $row["image"])) {
-                $img_path = 'assets/products/' . $row["image"]; //фото есть 
-            } else {
-                $img_path = "assets/products/no_photo.jpg"; //фото нету
-            }
 
 
-            echo ('
+    <div class="container_cards">
+        <div class="section_name"> новинки </div>
+        <ul class="cards">
+            <?php
+            $result =  mysqli_query($link, "SELECT * FROM  `products` WHERE `new_items` = 1");
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_array($result);
+                do {
+                    if ($row["image"] != "" && file_exists("assets/products/" . $row["image"])) {
+                        $img_path = 'assets/products/' . $row["image"]; //фото есть 
+                    } else {
+                        $img_path = "assets/products/no_photo.jpg"; //фото нету
+                    }
+                    echo ('
+
                         <li>
+                        <div class = "card_image">
                         <img src="' . $img_path . '" /> 
-                     ' . $row["title"] . '
-                     ' . $row["price"] . '₽
+                        </div>
+                        
+                        <div> ' . $row["title"] . ' </div>
+                        
+                        <div>' . $row["price"] . '₽ </div>
+                        
                         </li>
+               
+                   
                         ');
-        } while ($row = mysqli_fetch_array($result));
-    }
-    ?> -->
+                } while ($row = mysqli_fetch_array($result));
+            }
+            ?>
+        </ul>
+    </div>
+
 
 
     <script type="text/javascript" src="javascript/particles.min.js"></script>

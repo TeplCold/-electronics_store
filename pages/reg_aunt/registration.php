@@ -9,6 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
     <script type="text/javascript" src="../../javascript/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="../../javascript/jquery.form.js"></script>
     <script type="text/javascript" src="../../javascript/jquery.validate.js"></script>
@@ -20,6 +24,10 @@
     <link href="../../style/reg_aunt/authentication.css" rel="stylesheet">
     <!-- ------- -->
 
+    <link rel="stylesheet" type="text/css" href="../../style/style.css">
+
+</head>
+
 <body>
 
     <?php include("../header_footer/header.php") ?>
@@ -27,26 +35,26 @@
     <!-- Аторизация  -->
     <div id="block-body">
         <div id="block-top-auth">
-            <form method="post"> 
-            <div id="imput-email-pass">
+            <form method="post">
+                <div id="imput-email-pass">
 
-                <p id="message-auth">Неверный логин или пароль</p>
+                    <p id="message-auth">Неверный логин или пароль</p>
 
-                <div><input type="text" name="auth_login" id="auth_login" placeholder="Логин или Email" /> </div>
+                    <div><input type="text" name="auth_login" id="auth_login" placeholder="Логин или Email" /> </div>
 
-                <div>
-                    <input type="password" name="auth_pass" id="auth_pass" placeholder="Пароль">
-                    <span id="button-pass-show-hide" class="pass-show"></span>
+                    <div>
+                        <input type="password" name="auth_pass" id="auth_pass" placeholder="Пароль">
+                        <span id="button-pass-show-hide" class="pass-show"></span>
+                    </div>
+
+                    <div id="list-auth">
+                        <div><input type="checkbox" name="rememberme" id="rememberme"><label for="rememberme">Запомнить меня</label> </div>
+                        <div><a id="remindpass" href="#">Забыли пароль?</a></div>
+                    </div>
+                    <div id="button-auth"><a>Вход</a></div>
+                    <div class="auth-loading"><img src="../../assets/reg_aunt/loading.gif"></div>
+
                 </div>
-
-                <div id="list-auth">
-                    <div><input type="checkbox" name="rememberme" id="rememberme"><label for="rememberme">Запомнить меня</label> </div>
-                    <div><a id="remindpass" href="#">Забыли пароль?</a></div>
-                </div>
-                <div id="button-auth"><a>Вход</a></div>
-                <div class="auth-loading"><img src="../../assets/reg_aunt/loading.gif"></div>
-
-            </div>
             </form>
 
             <div id="block-remind">
@@ -106,6 +114,13 @@
         </form>
     </div>
 
+
+    <script type="text/javascript" src="../../javascript/particles.min.js"></script>
+    <script type="text/javascript" src="../../javascript/particles.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
 </html>
