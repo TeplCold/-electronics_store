@@ -27,11 +27,6 @@ switch ($sorting) {
 }
 ?>
 
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +43,6 @@ switch ($sorting) {
 
     <script type="text/javascript" src="../../javascript/jquery-3.4.1.js"></script>
     <script defer type="text/javascript" src="../javascript/product_list.js"></script>
-
 
 </head>
 
@@ -70,19 +64,37 @@ switch ($sorting) {
         </li>
     </ul>
 
-
-
-
-
-
-
-
-
-
-    <div class="container_cards">
+    <div class="container_cards container-fluid">
         <ul class="cards">
             <?php
-            $result =  mysqli_query($link, "SELECT * FROM  `products` ORDER BY $sorting");
+
+            $num = 2; //вывод товара 
+            $page = (int) $_GET['page']; //значение страници              
+
+            $count = mysqli_query($link, "SELECT COUNT(*) FROM products WHERE visible = '1'");
+            $temp = mysqli_fetch_array($count);
+
+            if ($temp[0] > 0) {
+                $tempcount = $temp[0];
+
+                // находим общее число страниц 
+                $total = (($tempcount - 1) / $num) + 1;
+                $total =  intval($total);
+                $page = intval($page);
+
+                if (empty($page) or $page < 0) {
+                    $page = 1;
+                }
+                if ($page > $total) {
+                    $page = $total;
+                }
+                // вычисляем с какого номера начинать следует выводить товар
+                $start = $page * $num - $num;
+                $qury_start_num = " LIMIT $start, $num";
+            }
+
+            $result = mysqli_query($link, "SELECT * FROM products WHERE visible='1' ORDER BY $sorting $qury_start_num ");
+
             if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_array($result);
                 do {
@@ -111,8 +123,53 @@ switch ($sorting) {
             ?>
         </ul>
     </div>
+    <?php
 
+    if ($page != 1) {
+        $pstr_prev = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page - 1) . '">    <   </a></li>';
+    }
+    if ($page != $total) {
+        $pstr_next = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page + 1) . '">    >   </a></li>';
+    }
 
+    if ($page - 4 > 0) $page4left = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page - 4) . '">' . ($page - 4) . '</a></li>';
+    if ($page - 3 > 0) $page3left = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page - 3) . '">' . ($page - 3) . '</a></li>';
+    if ($page - 2 > 0) $page2left = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page - 2) . '">' . ($page - 2) . '</a></li>';
+    if ($page - 1 > 0) $page1left = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page - 1) . '">' . ($page - 1) . '</a></li>';
+    if ($page + 4 <= $total) $page4right = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page + 4) . '">' . ($page + 4) . '</a></li>';
+    if ($page + 3 <= $total) $page3right = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page + 3) . '">' . ($page + 3) . '</a></li>';
+    if ($page + 2 <= $total) $page2right = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page + 2) . '">' . ($page + 2) . '</a></li>';
+    if ($page + 1 <= $total) $page1right = '<li class="page-item"><a class="page-link" href="product_list.php?page=' . ($page + 1) . '">' . ($page + 1) . '</a></li>';
+
+    if ($page + 5 == $total) {
+        $strtotal1 = '<li><a class="page-link" href="product_list.php?page=' . $total . '">' . $total . '</a></li>';
+    } elseif ($page + 4 < $total) {
+        $strtotal1 = '<li class="page-item"><a class="page-link">...</a></li><li><a class="page-link" href="product_list.php?page=' . $total . '">' . $total . '</a></li>';
+    } else {
+        $strtotal1 = "";
+    }
+
+    if ($page == 6) {
+        $strtotal2 = '<li><a class="page-link" href="product_list.php?page=' . 1 . '">' . 1 . '</a></li>';
+    } elseif ($page - 4 > 1) {
+        $strtotal2 = '<li><a class="page-link" href="product_list.php?page=' . 1 . '">' . 1 . '</a></li> <li class="page-item"><a class="page-link">...</a></li>';
+    } else {
+        $strtotal2 = "";
+    }
+
+    if ($total > 1) {
+        echo '
+    <nav aria-label="Page navigation example">
+    <ul class="pagination">
+    ';
+        echo $pstr_prev . $strtotal2  . $page4left . $page3left . $page2left . $page1left .
+            "<li class='page-item active' ><a class='page-link' href='product_list.php?page=" . $page . "'>" . $page . "</a></li>" . $page1right . $page2right . $page3right . $page4right  . $strtotal1 . $pstr_next;
+        echo '
+    </ul>
+    </nav>
+    ';
+    }
+    ?>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

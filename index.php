@@ -25,7 +25,7 @@
         <div class="section_name"> новинки </div>
         <ul class="cards">
             <?php
-            $result =  mysqli_query($link, "SELECT * FROM  `products` WHERE `new_items` = 1");
+            $result =  mysqli_query($link, "SELECT * FROM  `products` WHERE visible = '1' ORDER BY`datatime` DESC");
             if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_array($result);
                 do {

@@ -35,20 +35,6 @@
 
 
 
-
-
-
-
-
-
-
-.section_name {
-    color: rgb(228, 24, 24);
-    font-size: 25px;
-    text-align: center;
-    border: 2px solid rgb(0, 4, 237);
-}
-
 .cards>li {
     text-align: center;
     border: 2px solid rgb(15, 248, 6);
