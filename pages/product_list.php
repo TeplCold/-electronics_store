@@ -163,7 +163,7 @@ switch ($sorting) {
 
     if ($total > 1) {
         echo '
-    <nav aria-label="Page navigation example">
+    <nav class="container_pagination" aria-label="Page navigation example">
     <ul class="pagination">
     ';
         echo $pstr_prev . $strtotal2  . $page4left . $page3left . $page2left . $page1left .
