@@ -2,29 +2,29 @@ $("#button-auth").click(function () { //если нажата кнопка
     var auth_login = $("#auth_login").val(); //помещаем auth_login в переменную
     var auth_pass = $("#auth_pass").val(); //помещаем auth_pass в переменную
 
-    if (auth_login == "" || auth_login.length > 15) {
-        $("#auth_login").css("borderColor", "#DF0101");
-        send_login = 'no';
-    } else {
-        $("#auth_login").css("borderColor", "#82FA58");
-        send_login = 'yes';
+    if (auth_login == "" || auth_login.length > 15) { //если поле пустое или >15
+        $("#auth_login").css("borderColor", "#DF0101"); //красим рамку в красный цвет 
+        send_login = 'no'; //помещаем no в send_login
+    } else { //если все нормально
+        $("#auth_login").css("borderColor", "#82FA58"); //красим рамку в стандарнтый цвет
+        send_login = 'yes'; //помещаем yes в send_login
     }
 
-    if (auth_pass == "" || auth_pass.length > 20) {
-        $("#auth_pass").css("borderColor", "#DF0101");
-        send_pass = 'no';
-    } else {
-        $("#auth_pass").css("borderColor", "#82FA58");
-        send_pass = 'yes';
+    if (auth_pass == "" || auth_pass.length > 20) { //если поле пустое или >20
+        $("#auth_pass").css("borderColor", "#DF0101"); //красим рамку в красный цвет 
+        send_pass = 'no'; //помещаем no в send_pass
+    } else { //если все нормально
+        $("#auth_pass").css("borderColor", "#82FA58"); //красим рамку в стандарнтый цвет
+        send_pass = 'yes'; //помещаем yes в send_pass
     }
 
     if ($("#rememberme").prop('checked')) { //.prop проверить состояние checked
-        auth_rememberme = 'yes';
-    } else {
-        auth_rememberme = 'no';
+        auth_rememberme = 'yes'; //если нажал помещаем yes в auth_rememberme
+    } else { //если не нажат 
+        auth_rememberme = 'no'; //помещаем no в auth_rememberme 
     }
 
-    if (send_login == 'yes' && send_pass == 'yes') {
+    if (send_login == 'yes' && send_pass == 'yes') { //если все введено корректно то
         $("#button-auth").hide(); //убрать кнопку
         $(".auth-loading").show(); //загрузчик показать
 
@@ -36,13 +36,12 @@ $("#button-auth").click(function () { //если нажата кнопка
             cache: false, //чтобы не кэшировать данные 
             success: function (data) { //data - то что ответил обработчик 
 
-                if (data == 'yes_auth') {
-                    location.reload()
-                } else {
-                    $("#message-auth").slideDown(400);
-                    $(".auth-loading").hide();
-                    $("#button-auth").show();
-
+                if (data == 'yes_auth') { //если ответил yes_auth - авторизирован
+                    location.reload() //обновить страницу 
+                } else { //если не авторизирован
+                    $("#message-auth").slideDown(400); //показать сообщение
+                    $(".auth-loading").hide(); //убрать загрузчик 
+                    $("#button-auth").show(); //убрать кнопку
                 }
             }
         });
