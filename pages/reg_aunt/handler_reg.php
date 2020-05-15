@@ -10,8 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    $error = array();
 
-
-
    //помешаем в login глобальный массив $_POST и reg_login - поле куда вводим логин
    $login  = clear_string($_POST['reg_login']); //подключаем функцию очистки строк
    $login  = mb_strtolower($login, 'UTF-8'); //Приведение строки к нижнему регистру
@@ -53,7 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    if (mb_strlen($name, 'utf-8') < 3 or mb_strlen($name, 'utf-8') > 15) $error[] = "Укажите имя 3 от 15 символов!";
    if (mb_strlen($patronymic, 'utf-8') < 3 or mb_strlen($patronymic, 'utf-8') > 25) $error[] = "Укажите отчество от 3 до 25 символов!";
 
-
    //preg_match сверяет веденные данные с шаблоном
    //trim удаляет пробелы в начале и в конце
    if (!preg_match("/^(?:[a-z0-9]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i", trim($email))) $error[] = "Укажите корректный email!";
@@ -68,11 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo implode('<br />', $error);
    } else {
 
-
-
-      // $pass   = sha1($pass); //шифруем пароль
-      // $pass   = strrev($pass); //переварачиваем пароль
-      // $pass   = "9nm2rv8q" . $pass . "2yotykytk6z";
+      $pass   = sha1($pass); //шифруем пароль
+      $pass   = strrev($pass); //переварачиваем пароль
+      $pass   = "9nm2rv8q" . $pass . "2yotykytk6z";
 
       $ip = $_SERVER['REMOTE_ADDR'];
 
