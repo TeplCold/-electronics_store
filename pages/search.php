@@ -2,8 +2,7 @@
 include("db_connect.php");
 include("reg_aunt/functions.php");
 
-
-$search = $_GET["q"];
+$search =  clear_string($_GET['q']);
 
 $sorting = '';
 if (isset($_GET['sort'])) {
@@ -34,7 +33,7 @@ switch ($sorting) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
 
@@ -57,66 +56,66 @@ switch ($sorting) {
 
 <body id="particles-js">
 
-    <?php include("header_footer/header.php") ?>
+    <?php include("header_footer/header.php");
 
-    <ul id="options-list">
-        Сортировать:
 
-        <li> <a id="select-sort"><?php echo $sort_name; ?></a>
-            <ul id="sorting-list">
-                <li><a href="search.php?sort=id-ASC">без сортировки</a></li>
-                <li><a href="search.php?sort=price-desc">Цена (по убыванию)</a></li>
-                <li><a href="search.php?sort=price-asc">Цена (по возрастанию)</a></li>
-                <li><a href="search.php?sort=title">от А до Я</a></li>
+    $num = 1; //вывод товара 
+    $page = (int) $_GET['page']; //значение страници              
+
+    $count = mysqli_query($link, "SELECT COUNT(*) FROM products WHERE title LIKE '%$search%' AND visible = '1'");
+    $temp = mysqli_fetch_array($count);
+
+    if ($temp[0] > 0) {
+        $tempcount = $temp[0];
+
+        // находим общее число страниц 
+        $total = (($tempcount - 1) / $num) + 1;
+        $total =  intval($total);
+        $page = intval($page);
+
+        if (empty($page) or $page < 0) {
+            $page = 1;
+        }
+        if ($page > $total) {
+            $page = $total;
+        }
+        // вычисляем с какого номера начинать следует выводить товар
+        $start = $page * $num - $num;
+        $qury_start_num = " LIMIT $start, $num";
+    }
+
+
+    if (mb_strlen($search, 'utf-8') >= 2 && mb_strlen($search, 'utf-8') < 64) {
+
+        if ($temp[0] > 0) { ?>
+
+            <ul id="options-list">
+                Сортировать:
+                <li> <a id="select-sort"><?php echo $sort_name; ?></a>
+                    <ul id="sorting-list">
+                        <li><a href="search.php?sort=id-ASC">без сортировки</a></li>
+                        <li><a href="search.php?sort=price-desc">Цена (по убыванию)</a></li>
+                        <li><a href="search.php?sort=price-asc">Цена (по возрастанию)</a></li>
+                        <li><a href="search.php?sort=title">от А до Я</a></li>
+                    </ul>
+                </li>
             </ul>
-        </li>
-    </ul>
 
+            <?php $result = mysqli_query($link, "SELECT * FROM products WHERE title LIKE '%$search%' AND visible='1' ORDER BY $sorting $qury_start_num "); ?>
 
+            <div class="container_cards container-fluid">
+                <ul class="cards">
 
-    <div class="container_cards container-fluid">
-        <ul class="cards">
             <?php
-            $num = 1; //вывод товара 
-            $page = (int) $_GET['page']; //значение страници              
-
-            $count = mysqli_query($link, "SELECT COUNT(*) FROM products WHERE title LIKE '%$search%' AND visible = '1'");
-            $temp = mysqli_fetch_array($count);
-
-            if ($temp[0] > 0) {
-                $tempcount = $temp[0];
-
-                // находим общее число страниц 
-                $total = (($tempcount - 1) / $num) + 1;
-                $total =  intval($total);
-                $page = intval($page);
-
-                if (empty($page) or $page < 0) {
-                    $page = 1;
-                }
-                if ($page > $total) {
-                    $page = $total;
-                }
-                // вычисляем с какого номера начинать следует выводить товар
-                $start = $page * $num - $num;
-                $qury_start_num = " LIMIT $start, $num";
-            }
-
-
-            if (strlen($search) >= 2 && strlen($search) < 64) {
-
-                if ($temp[0] > 0) {
-                    $result = mysqli_query($link, "SELECT * FROM products WHERE title LIKE '%$search%' AND visible='1' ORDER BY $sorting $qury_start_num ");
-
-                    if (mysqli_num_rows($result) > 0) {
-                        $row = mysqli_fetch_array($result);
-                        do {
-                            if ($row["image"] != "" && file_exists("../assets/products/" . $row["image"])) {
-                                $img_path = '../assets/products/' . $row["image"]; //фото есть 
-                            } else {
-                                $img_path = "../assets/products/no_photo.jpg"; //фото нету
-                            }
-                            echo ('
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_array($result);
+                do {
+                    if ($row["image"] != "" && file_exists("../assets/products/" . $row["image"])) {
+                        $img_path = '../assets/products/' . $row["image"]; //фото есть 
+                    } else {
+                        $img_path = "../assets/products/no_photo.jpg"; //фото нету
+                    }
+                    echo ('
 
                         <li>
                         <div class = "card_image">
@@ -131,72 +130,76 @@ switch ($sorting) {
                
                    
                         ');
-                        } while ($row = mysqli_fetch_array($result));
+                } while ($row = mysqli_fetch_array($result));
+            }
+        } else {
+            echo "<p>Ничего не найдено!</p>";
+        }
+    } else {
+        echo "<p>Поисковое значение должно быть от 2 до 64 символов!</p>";
+    }
+            ?>
+                </ul>
+            </div>
+
+
+
+            <?php
+            if (mb_strlen($search, 'utf-8') >= 2 && mb_strlen($search, 'utf-8') < 64) {
+
+                if ($temp[0] > 0) {
+
+                    if ($page != 1) {
+                        $pstr_prev = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page - 1) . '">    <   </a></li>';
                     }
-                } else {
-                    echo "<p>Ничего не найдено!</p>";
+                    if ($page != $total) {
+                        $pstr_next = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page + 1) . '">    >   </a></li>';
+                    }
+
+                    // Формируем ссылки со страницами
+                    if ($page - 4 > 0) $page4left = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page - 4) . '">' . ($page - 4) . '</a></li>';
+                    if ($page - 3 > 0) $page3left = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page - 3) . '">' . ($page - 3) . '</a></li>';
+                    if ($page - 2 > 0) $page2left = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page - 2) . '">' . ($page - 2) . '</a></li>';
+                    if ($page - 1 > 0) $page1left = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page - 1) . '">' . ($page - 1) . '</a></li>';
+                    if ($page + 4 <= $total) $page4right = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page + 4) . '">' . ($page + 4) . '</a></li>';
+                    if ($page + 3 <= $total) $page3right = '<li class="page-item"><a class="page-link" href="search.php??sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page + 3) . '">' . ($page + 3) . '</a></li>';
+                    if ($page + 2 <= $total) $page2right = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page + 2) . '">' . ($page + 2) . '</a></li>';
+                    if ($page + 1 <= $total) $page1right = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page + 1) . '">' . ($page + 1) . '</a></li>';
+
+                    if ($page + 5 == $total) {
+                        $strtotal1 = '<li><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . $total . '">' . $total . '</a></li>';
+                    } elseif ($page + 4 < $total) {
+                        $strtotal1 = '<li class="page-item"><a class="page-link">...</a></li><li><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . $total . '">' . $total . '</a></li>';
+                    } else {
+                        $strtotal1 = "";
+                    }
+
+                    if ($page == 6) {
+                        $strtotal2 = '<li><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $$search . '&page=' . 1 . '">' . 1 . '</a></li>';
+                    } elseif ($page - 4 > 1) {
+                        $strtotal2 = '<li><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . 1 . '">' . 1 . '</a></li> <li class="page-item"><a class="page-link">...</a></li>';
+                    } else {
+                        $strtotal2 = "";
+                    }
+
+                    if ($total > 1) {
+                        echo '
+                            <nav class="container_pagination" aria-label="Page navigation example">
+                            <ul class="pagination">
+                            ';
+                        echo $pstr_prev . $strtotal2  . $page4left . $page3left . $page2left . $page1left .
+                            "<li class='page-item active' ><p class='page-link' href='search.php?page=" . $page . "'>" . $page . "</p></li>" . $page1right . $page2right . $page3right . $page4right  . $strtotal1 . $pstr_next;
+                        echo '
+                        </ul>
+                        </nav>
+                         ';
+                    }
                 }
-            } else {
-                echo "<p>Поисковое значение должно быть от 2 до 64 символов!</p>";
             }
             ?>
-        </ul>
-    </div>
 
-
-    <?php
-    if ($page != 1) {
-        $pstr_prev = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page - 1) . '">    <   </a></li>';
-    }
-    if ($page != $total) {
-        $pstr_next = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page + 1) . '">    >   </a></li>';
-    }
-
-    // Формируем ссылки со страницами
-
-    if ($page - 4 > 0) $page4left = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page - 4) . '">' . ($page - 4) . '</a></li>';
-    if ($page - 3 > 0) $page3left = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page - 3) . '">' . ($page - 3) . '</a></li>';
-    if ($page - 2 > 0) $page2left = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page - 2) . '">' . ($page - 2) . '</a></li>';
-    if ($page - 1 > 0) $page1left = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page - 1) . '">' . ($page - 1) . '</a></li>';
-    if ($page + 4 <= $total) $page4right = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page + 4) . '">' . ($page + 4) . '</a></li>';
-    if ($page + 3 <= $total) $page3right = '<li class="page-item"><a class="page-link" href="search.php??sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page + 3) . '">' . ($page + 3) . '</a></li>';
-    if ($page + 2 <= $total) $page2right = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page + 2) . '">' . ($page + 2) . '</a></li>';
-    if ($page + 1 <= $total) $page1right = '<li class="page-item"><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . ($page + 1) . '">' . ($page + 1) . '</a></li>';
-
-
-
-    if ($page + 5 == $total) {
-        $strtotal1 = '<li><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . $total . '">' . $total . '</a></li>';
-    } elseif ($page + 4 < $total) {
-        $strtotal1 = '<li class="page-item"><a class="page-link">...</a></li><li><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . $total . '">' . $total . '</a></li>';
-    } else {
-        $strtotal1 = "";
-    }
-
-    if ($page == 6) {
-        $strtotal2 = '<li><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $$search . '&page=' . 1 . '">' . 1 . '</a></li>';
-    } elseif ($page - 4 > 1) {
-        $strtotal2 = '<li><a class="page-link" href="search.php?sort=' . $_GET["sort"] . '&q=' . $search . '&page=' . 1 . '">' . 1 . '</a></li> <li class="page-item"><a class="page-link">...</a></li>';
-    } else {
-        $strtotal2 = "";
-    }
-
-    if ($total > 1) {
-        echo '
-    <nav class="container_pagination" aria-label="Page navigation example">
-    <ul class="pagination">
-    ';
-        echo $pstr_prev . $strtotal2  . $page4left . $page3left . $page2left . $page1left .
-            "<li class='page-item active' ><p class='page-link' href='search.php?page=" . $page . "'>" . $page . "</p></li>" . $page1right . $page2right . $page3right . $page4right  . $strtotal1 . $pstr_next;
-        echo '
-    </ul>
-    </nav>
-    ';
-    }
-    ?>
-
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
 </html>
