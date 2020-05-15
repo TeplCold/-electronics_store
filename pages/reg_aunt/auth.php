@@ -1,20 +1,25 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") //проверяем как обратились к файлу
 {
     include("../db_connect.php"); //подключение к бд 
     include("functions.php"); //подключаем фукцию очистки сторк 
 
-    $login = clear_string($_POST["login"]); //помешаем в login глобальный массив $_POST и reg_login - поле куда вводим логин
+    $login = $_POST['login']; //помешаем в login глобальный массив $_POST и reg_login - поле куда вводим логин
+    $pass = $_POST["pass"];
 
-    $pass   = sha1(clear_string($_POST["pass"]));
-    $pass   = strrev($pass); //переварачиваем пароль
-    $pass   = "9nm2rv8q" . $pass . "2yotykytk6z";
+    // echo $login; //ответ ajax 
+    // echo $pass; //ответ ajax 
+    //$pass   = sha1(clear_string($_POST["pass"]));
+    //$pass   = strrev($pass); //переварачиваем пароль
+    //$pass   = "9nm2rv8q" . $pass . "2yotykytk6z";
 
-    if ($_POST["rememberme"] == "yes") //если выбран чекбокс 
-    {
-        setcookie('rememberme', $login . '+' . $pass, time() + 3600 * 24 * 31, "/");
-    }
+    // if ($_POST["rememberme"] == "yes") //если выбран чекбокс 
+    // {
+    //     setcookie('rememberme', $login . '+' . $pass, time() + 3600 * 24 * 31, "/");
+    // }
 
     $result = mysqli_query($link, "SELECT * FROM users WHERE (login = '$login' OR email = '$login')AND pass = '$pass'");
 

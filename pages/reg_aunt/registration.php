@@ -1,6 +1,6 @@
-<?php session_start() ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <title>Вход/Регистрация</title>
@@ -38,6 +38,9 @@
             <form method="post">
                 <div id="imput-email-pass">
 
+                    Вы - <?php echo $_SESSION['auth_name']; ?>
+
+
                     <p id="message-auth">Неверный логин или пароль</p>
 
                     <div><input type="text" name="auth_login" id="auth_login" placeholder="Логин или Email" /> </div>
@@ -56,6 +59,10 @@
 
                 </div>
             </form>
+
+
+
+
 
             <div id="block-remind">
                 <h3>Востановление пароля</h3>
@@ -113,10 +120,6 @@
             <input type="submit" name="reg_submit" id="form_submit" value="Зарегистрироваться" />
         </form>
     </div>
-
-
-    <script type="text/javascript" src="../../javascript/particles.min.js"></script>
-    <script type="text/javascript" src="../../javascript/particles.js"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
