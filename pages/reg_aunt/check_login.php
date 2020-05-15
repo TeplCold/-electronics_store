@@ -1,11 +1,12 @@
 <?php
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") //проверяем как обратились к файлу
 {
    include("../db_connect.php"); //подключение к бд 
    include("functions.php");  //функция очистки строк 
 
-   $login = clear_string($_POST['reg_login']); //помешаем в login глобальный массив $_POST и reg_login - поле куда вводим логин
+   //$login = clear_string($_POST['reg_login']); //помешаем в login глобальный массив $_POST и reg_login - поле куда вводим логин
+   $login = mb_strtolower(mysqli_real_escape_string($link, clear_string($_POST['reg_login'], 'utf-8'))); //помешаем в login глобальный массив $_POST и reg_login - поле куда вводим логин
+
    $result =  mysqli_query($link, "SELECT login FROM users WHERE login = '$login'"); //отправляем в БД запрос
    if (mysqli_num_rows($result) > 0) // если есть логин то возвращаем:
    {
@@ -14,4 +15,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") //проверяем как обрат
       echo 'true'; //(логин не существует)
    }
 }
-?>
