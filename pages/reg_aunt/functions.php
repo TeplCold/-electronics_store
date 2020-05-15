@@ -7,11 +7,9 @@ function clear_string($cl_str)
     return $cl_str;      //возвращаем очищенную строку     
 }
 
-
 function fungenpass()
 {
     $number = 10; //длина пароля 
-
     //массив символов которые должны быть в генерации пароля 
     $arr = array(
         'a', 'b', 'c', 'd', 'e', 'f',
@@ -25,22 +23,15 @@ function fungenpass()
         'M', 'N', 'O', 'P', 'R', 'S',
         'T', 'U', 'V', 'X', 'Y', 'Z'
     );
-
     // Генерируем пароль
-
     $pass = "";
-
     for ($i = 0; $i < $number; $i++) {
-
         // Вычисляем случайный индекс массива
-
         $index = rand(0, count($arr) - 1);
-
         $pass .= $arr[$index];
     }
     return $pass;
 }
-
 
 function send_mail($from, $to, $subject, $body)
 {
@@ -50,8 +41,6 @@ function send_mail($from, $to, $subject, $body)
     $headers .= "From: <" . $from . "> \n";
     $headers .= "Reply-To: <" . $from . "> \n";
     $headers .= "Content-Type: text/html; charset=$charset \n";
-
     $subject = '=?' . $charset . '?B?' . base64_encode($subject) . '?=';
-
     mail($to, $subject, $body, $headers);
 }
