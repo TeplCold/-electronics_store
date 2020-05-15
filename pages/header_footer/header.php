@@ -36,8 +36,6 @@
             </div>
         </ul>
 
-
-
         <!-- форма поиска -->
         <div id="block-search">
             <form method="GET" action="/pages/search.php?q=">

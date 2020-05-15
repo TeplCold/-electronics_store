@@ -1,4 +1,6 @@
 <?php include("pages/db_connect.php");
+include("pages/reg_aunt/functions.php");
+include("pages/reg_aunt/auth_cooke.php");
 session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">

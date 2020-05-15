@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php include("../db_connect.php");
+include("functions.php");
+include("auth_cooke.php");
+session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="ru">

@@ -1,6 +1,7 @@
 <?php include("db_connect.php");
 session_start();
 include("reg_aunt/functions.php");
+include("reg_aunt/auth_cooke.php");
 
 $search =  clear_string($_GET['q']);
 
