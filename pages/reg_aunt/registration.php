@@ -37,6 +37,11 @@
 
     <!-- Аторизация  -->
     <div id="block-body">
+        <?php
+        if ($_SESSION['auth'] == 'yes_auth') {
+            echo 'Вы успешно вошли под учетной записью - ' . $_SESSION['auth_name'];
+        }
+        ?>
         <div id="block-top-auth">
             <form method="post">
                 <div id="imput-email-pass">
