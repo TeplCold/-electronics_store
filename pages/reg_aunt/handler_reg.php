@@ -23,12 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    $surname  = mb_strtolower($surname, 'UTF-8'); //Приведение строки к нижнему регистру
    $surname = mb_convert_case($surname, MB_CASE_TITLE, "UTF-8"); //Преобразует первый символ строки в верхний регистр
 
-   $name   = clear_string($_POST['reg_surname']);
+   $name   = clear_string($_POST['reg_name']);
    $name   = mysqli_real_escape_string($link, $name); //Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и Control-Z.
    $name   = mb_strtolower($name, 'UTF-8'); //Приведение строки к нижнему регистру
    $name  = mb_convert_case($name, MB_CASE_TITLE, "UTF-8"); //Преобразует первый символ строки в верхний регистр
 
-   $patronymic   = clear_string($_POST['reg_surname']);
+   $patronymic   = clear_string($_POST['reg_patronymic']);
    $patronymic   = mysqli_real_escape_string($link, $patronymic); //Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и Control-Z.
    $patronymic   = mb_strtolower($patronymic, 'UTF-8'); //Приведение строки к нижнему регистру
    $patronymic  = mb_convert_case($patronymic, MB_CASE_TITLE, "UTF-8"); //Преобразует первый символ строки в верхний регистр
@@ -84,5 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             '" . $ip . "'							
 						)");
       echo 'true';
+      // echo  $login;
+      // echo  $pass;
    }
 }
