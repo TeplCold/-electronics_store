@@ -6,8 +6,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    $error = array();
 
-
-
    $login = mb_strtolower(mysqli_real_escape_string($link, clear_string($_POST['reg_login'], 'utf-8')));
    $pass = mb_strtolower(mysqli_real_escape_string($link, clear_string($_POST['reg_pass'], 'utf-8')));
 
@@ -15,8 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    $name = mysqli_real_escape_string($link, clear_string($_POST['reg_name']));
    $patronymic = mysqli_real_escape_string($link, clear_string($_POST['reg_patronymic']));
    $email = mysqli_real_escape_string($link, clear_string($_POST['reg_email']));
-
-
 
    if (mb_strlen($login, 'utf-8') < 5 or mb_strlen($login, 'utf-8') > 15) {
       $error[] = "Логин должен быть от 5 до 15 символов!";
@@ -46,9 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    if (count($error)) {
       echo implode('<br />', $error);
    } else {
-      // $pass   = sha1($pass);
+
+
+
+      $pass   = sha1($pass); //шифруем пароль
       $pass   = strrev($pass); //переварачиваем пароль
-      // $pass   = "9nm2rv8q" . $pass . "2yotykytk6z";
+      $pass   = "9nm2rv8q" . $pass . "2yotykytk6z";
 
       $ip = $_SERVER['REMOTE_ADDR'];
 

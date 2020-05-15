@@ -22,11 +22,10 @@
             </li>
 
             <div class="registrationt ">
-                <?php if (isset($_SESSION['logged_user'])) : ?>
-                    Авторизованны!<br>
-                    Вы - <?php echo $_SESSION['logged_user']->login; ?>
+                <?php if (isset($_SESSION['auth_name'])) : ?>
+                    Вы - <?php echo $_SESSION['auth_name']; ?>
                     <br>
-                    <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>../pages/logout.php">Выйти</a>
+                    <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/reg_aunt/logout.php">Выйти </a>
 
                 <?php else : ?>
                     <li class="nav-item  ">
@@ -36,6 +35,7 @@
                 <?php endif; ?>
             </div>
         </ul>
+
 
 
         <!-- форма поиска -->

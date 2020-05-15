@@ -1,5 +1,5 @@
-<?php
-include("db_connect.php");
+<?php include("db_connect.php");
+session_start();
 include("reg_aunt/functions.php");
 
 $search =  clear_string($_GET['q']);

@@ -1,4 +1,6 @@
 <?php include("db_connect.php");
+session_start();
+
 $sorting = '';
 if (isset($_GET['sort'])) {
     $sorting = $_GET['sort'];
