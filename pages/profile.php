@@ -55,6 +55,18 @@ if ($_SESSION['auth'] == 'yes_auth') //выводим эту страницу т
             }
 
 
+            if ($_POST["info_email"] != "") {
+                if (!preg_match("/^(?:[a-z0-9]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i", trim($_POST["info_email"]))) $error[] = "Укажите корректный email!";
+                else {
+                    $result =  mysqli_query($link, "SELECT email FROM users WHERE email = '$email'");
+                    if ($_POST["info_email"] != $_SESSION['auth_email']) {
+                        if (mysqli_num_rows($result) > 0) {
+                            $error[] = "email занят!";
+                        }
+                    }
+                }
+            }
+
             if (strlen($_POST["info_surname"]) < 3 || strlen($_POST["info_surname"]) > 20) {
                 $error[] = 'Укажите фамилию от 3 до 20 символов!';
             }
@@ -67,14 +79,6 @@ if ($_SESSION['auth'] == 'yes_auth') //выводим эту страницу т
 
             if (strlen($_POST["info_patronymic"]) < 3 || strlen($_POST["info_patronymic"]) > 25) {
                 $error[] = 'Укажите отчество от 3 до 25 символов!';
-            }
-
-            if (!preg_match("/^(?:[a-z0-9]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i", trim($_POST["info_email"]))) $error[] = "Укажите корректный email!";
-            else {
-                $result =  mysqli_query($link, "SELECT email FROM users WHERE email = '$email'");
-                if (mysqli_num_rows($result) > 0) {
-                    $error[] = "email занят!";
-                }
             }
         }
 
