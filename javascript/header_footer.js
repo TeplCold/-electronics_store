@@ -10,7 +10,7 @@ $('#auth-user-info').toggle(
 $('#logout').click(function () {
     $.ajax({
         type: "POST",
-        url: "../include/pages/reg_aunt/logout.php",
+        url: "../pages/reg_aunt/logout.php",
         dataType: "html",
         cache: false,
         success: function (data) {

@@ -22,8 +22,6 @@ session_start(); ?>
 
     <?php include("pages/header_footer/header.php") ?>
 
-
-
     <div class="container_cards">
         <div class="section_name"> новинки </div>
         <ul class="cards">

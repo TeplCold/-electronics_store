@@ -26,30 +26,32 @@
                 <a class="nav-link disabled" href="#">Корзина</a>
             </li>
 
+            <?php if (isset($_SESSION['auth_name'])) : ?>
+                <div id="auth-user-info">
+                    <p id="auth-user-info"> Вы - <?php echo $_SESSION['auth_name']; ?></p>
+                </div>
 
-
-            <div id="auth-user-info"> <?php if (isset($_SESSION['auth_name'])) : ?> <p id="auth-user-info"> Вы - <?php echo $_SESSION['auth_name']; ?></p>
-            </div>
-
-        <?php else : ?>
-            <li class="nav-item  ">
-                Вы - Гость <br>
-                <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/reg_aunt/registration.php">ВХОД|РЕГИСТРАЦИЯ</a>
-            </li>
-        <?php endif; ?>
-
-
-        <div id="block-user">
-            <ul>
-                <li><a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>  /pages/profile.php"> Профиль</a></li>
-                <li>
-                    <p id="logout">Выход</p>
+            <?php else : ?>
+                <li class="nav-item  ">
+                    Вы - Гость <br>
+                    <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/reg_aunt/registration.php">ВХОД|РЕГИСТРАЦИЯ</a>
                 </li>
-            </ul>
-        </div>
+            <?php endif; ?>
+
+            <div id="block-user">
+                <ul>
+
+                    <li>
+                        <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>  /pages/profile.php"> Профиль</a>
+                    </li>
+
+                    <li>
+                        <p id="logout">Выход</p>
+                    </li>
+
+                </ul>
+            </div>
     </div>
-
-
 
     </ul>
 
