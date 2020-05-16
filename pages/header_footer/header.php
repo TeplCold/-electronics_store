@@ -55,13 +55,11 @@
 
     </ul>
 
-
-
     <!-- форма поиска -->
     <div id="block-search">
         <form method="GET" action="/pages/search.php?q=">
             <span></span>
-            <input type="text" id="input-search" name="q" placeholder="Поиск по сайту" value="<?php echo $search; ?>" />
+            <input type="text" id="input-search" name="q" placeholder="Поиск по сайту" onfocus="this.value=''" value="<?php echo $search; ?>" />
             <input type="submit" id="button-search" value="Поиск" />
         </form>
     </div>
