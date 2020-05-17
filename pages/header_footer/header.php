@@ -1,6 +1,10 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="../../style/header_footer/header_footer.css">
 
 <script defer type="text/javascript" src="../../javascript/header_footer.js"></script>
+<script defer type="text/javascript" src="../../javascript/cart.js"></script>
+<script type="text/javascript" src="../../javascript/jquery-3.4.1.js"></script>
+
 
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -22,9 +26,21 @@
                 <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/about_us.php"> О нас</a>
             </li>
 
+
+
+
+
+
             <li class="nav-item">
-                <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/cart.php?action=oneclick">Корзина</a>
+                <p id="block-basket_header_count"> <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/cart.php?action=oneclick"></a></p>
+                <p> <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/cart.php?action=oneclick">Корзина</a></p>
+                <p id="block-basket_header_prise"> <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/cart.php?action=oneclick"></a></p>
             </li>
+
+
+
+
+
 
             <?php if (isset($_SESSION['auth_name'])) : ?>
                 <div id="auth-user-info">

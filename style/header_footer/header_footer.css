@@ -7,3 +7,13 @@
     background-color: black;
     display: none;
 }
+
+.nav-item p {
+    margin: 0px;
+
+}
+
+.nav-item a {
+    margin: 0px;
+    padding: 0px;
+}

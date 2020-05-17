@@ -21,9 +21,36 @@ switch ($action) {
         $delete = mysqli_query($link, "DELETE FROM cart WHERE id_cart = '$id' AND ip_users = '{$_SERVER['REMOTE_ADDR']}'");
         break;
 }
+
+
+if (isset($_POST["submitdata"]) || isset($_POST["submitdata2"])) {
+
+    $_SESSION["order_delivery"] = $_POST["order_delivery"];
+    $_SESSION["order_fio"] = $_POST["order_fio"];
+    $_SESSION["order_name"] = $_POST["order_name"];
+    $_SESSION["order_patronymic"] = $_POST["order_patronymic"];
+    $_SESSION["order_email"] = $_POST["order_email"];
+    $_SESSION["order_phone"] = $_POST["order_phone"];
+    $_SESSION["order_address"] = $_POST["order_address"];
+    $_SESSION["order_note"] = $_POST["order_note"];
+    if (isset($_POST["submitdata"])) {
+        header("Location: cart.php?action=completion");
+    } elseif (isset($_POST["submitdata2"])) {
+        header("Location: cart.php?action=oneclick");
+    }
+}
+
+$result = mysqli_query($link, "SELECT * FROM cart,products WHERE cart.ip_users = '{$_SERVER['REMOTE_ADDR']}' AND products.id = cart.id_products_cart");
+
+if (mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_array($result);
+    do {
+        $int =  $int + ($row["price"] * $row["count_cart"]);
+    } while ($row = mysqli_fetch_array($result));
+    $itogpricecart = $int;
+}
+
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -42,7 +69,8 @@ switch ($action) {
 
     <link href="../style/cart/cart.css" rel="stylesheet" type="text/css" />
 
-    <script type="text/javascript" src="../../javascript/jquery-3.4.1.js"></script>
+
+    <script type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
 
 </head>
 
@@ -69,11 +97,12 @@ switch ($action) {
                         <li> <a> Завершение</a></li>
                     </ul>
                 </div>
+                <p>Шаг 1 из 3</p>
                 <a href="cart.php?action=clear">Очистить корзину</a>
             </div>
             ';
 
-            $result = mysqli_query($link, "SELECT * FROM cart,products WHERE cart.ip_users = '{$_SERVER['REMOTE_ADDR']}' AND products.id = cart.id_cart");
+            $result = mysqli_query($link, "SELECT * FROM cart,products WHERE cart.ip_users = '{$_SERVER['REMOTE_ADDR']}' AND products.id = cart.id_products_cart");
 
             if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_array($result);
@@ -83,7 +112,6 @@ switch ($action) {
                 <div id="name-card"> Товар</div>
                 <div id="name-qty">Кол-во</div>
                 <div id="name-prise">Цена</div>
-                <p>Шаг 1 из 3</p>
             </div>
             ';
 
@@ -162,7 +190,7 @@ switch ($action) {
             <div id="name-step">
     
                 <ul>
-                    <li> <a> Корзина товаров</a></li>
+                    <li> <a href="cart.php?action=oneclick"> Корзина товаров</a></li>
                     <li><span>&rarr;</span></li>
                     <li> <a class="active"> Оформление заказа</a></li>
                     <li><span>&rarr;</span></li>
@@ -200,87 +228,116 @@ switch ($action) {
             ';
 
 
-
-
-
-
-
-
             if ($_SESSION['auth'] != 'yes_auth') {
                 echo '
-            <li><label for="order_fio"><span>*</span>���</label><input type="text" name="order_fio" id="order_fio" value="' . $_SESSION["order_fio"] . '" /><span class="order_span_style" >������: ������ ���� ��������</span></li>
-            <li><label for="order_email"><span>*</span>E-mail</label><input type="text" name="order_email" id="order_email" value="' . $_SESSION["order_email"] . '" /><span class="order_span_style" >������: ivanov@mail.ru</span></li>
-            <li><label for="order_phone"><span>*</span>�������</label><input type="text" name="order_phone" id="order_phone" value="' . $_SESSION["order_phone"] . '" /><span class="order_span_style" >������: 8 950 100 12 34</span></li>
-            <li><label class="order_label_style" for="order_address"><span>*</span>�����<br /> ��������</label><input type="text" name="order_address" id="order_address" value="' . $_SESSION["order_address"] . '" /><span>������: �. ������,<br /> �� ����������� � 18, �� 58</span></li>
-            ';
-            }
-            echo '
-            <li><label class="order_label_style" for="order_note">����������</label><textarea name="order_note"  >' . $_SESSION["order_note"] . '</textarea><span>�������� ���������� � ������.<br />  ��������, ������� ����� ��� ������<br />  ������ ���������</span></li>
-            </ul>
-            <p align="right" ><input type="submit" name="submitdata" id="confirm-button-next" value="�����" /></p>
-            </form>
-            
-            
-             ';
+                <li><label for="order_fio">Фамилия</label><input type="text" name="order_fio" id="order_fio" value="' . $_SESSION["order_fio"] . '" />
 
+                <li><label for="order_name">Имя</label><input type="text" name="order_name" id="order_name" value="' . $_SESSION["order_name"] . '" />
+
+                <li><label for="order_patronymic">Отчество</label><input type="text" name="order_patronymic" id="order_patronymic" value="' . $_SESSION["order_patronymic"] . '" />
+
+                <li><label for="order_email">E-mail</label><input type="text" name="order_email" id="order_email" value="' . $_SESSION["order_email"] . '" />
+                ';
+            }
+
+            echo '
+
+            <li><label for="order_phone">Телефон</label><input type="text" name="order_phone" id="order_phone" value="' . $_SESSION["order_phone"] . '" />
+
+            <li><label class="order_label_style" for="order_address">Адрес доставки</label><input type="text" name="order_address" id="order_address" value="' . $_SESSION["order_address"] . '" />
+
+            <li><label class="order_label_style" for="order_note">Примечания</label><textarea name="order_note"  >' . $_SESSION["order_note"] . '</textarea></li>
+            </ul>
+
+            <p><input type="submit" name="submitdata2" value="Назад" /></p>
+            <p><input type="submit" name="submitdata" id="confirm-button-next" value="Далее" /></p>
+            </form>
+            ';
             break;
 
-
-
-
-
-
-
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         case 'completion':
             echo '
             <div id="block-step">
             <div id="name-step">
     
                 <ul>
-                    <li> <a> Корзина товаров</a></li>
+                    <li> <a href="cart.php?action=oneclick"> Корзина товаров</a></li>
                     <li><span>&rarr;</span></li>
-                    <li> <a> Оформление заказа</a></li>
+                    <li> <a href="cart.php?action=confirm"> Оформление заказа</a></li>
                     <li><span>&rarr;</span></li>
                     <li> <a class="active"> Завершение</a></li>
                 </ul>
     
             </div>
             <p>Шаг 3 из 3</p>
-            <a href="cart.php?action=clear">Очистить корзину</a>
+            <p>Проверьте информацию заказа:</p>
             </div>
             ';
+
+            if ($_SESSION['auth'] == 'yes_auth') {
+                echo '
+                <ul id="list-info" >
+                <li><strong>Способ доставки:</strong>' . $_SESSION['order_delivery'] . '</li>
+                <li><strong>Фамилия:</strong>' . $_SESSION['auth_surname'] . '</li>
+                <li><strong>Имя:</strong>' . $_SESSION['auth_name'] .  '</li>
+                <li><strong>Отчество:</strong>' . $_SESSION['auth_patronymic'] . '</li>
+                <li><strong>Email:</strong>' . $_SESSION['auth_email'] . '</li>
+                <li><strong>Телефон:</strong>' . $_SESSION['order_phone'] . '</li>
+                <li><strong>Примечания:</strong>' . $_SESSION['order_note'] . '</li>
+                ';
+            } else {
+                echo '
+                <ul id="list-info" >
+                <li><strong>Способ доставки:</strong>' . $_SESSION['order_delivery'] . '</li>
+                <li><strong>Фамилия:</strong>' . $_SESSION['order_fio'] . '</li>
+                <li><strong>Имя:</strong>' . $_SESSION['order_name'] .  '</li>
+                <li><strong>Отчество:</strong>' . $_SESSION['order_patronymic'] . '</li>
+                <li><strong>Email:</strong>' . $_SESSION['order_email'] . '</li>
+                <li><strong>Телефон:</strong>' . $_SESSION['order_phone'] . '</li>
+                <li><strong>Примечания:</strong>' . $_SESSION['order_note'] . '</li>
+            ';
+            }
+            echo '<p  class="button-next" ><a href="cart.php?action=confirm" >Назад</a></p> ';
+
+            echo '
+            <h2 class="itog-price">Итог: <strong>' . $itogpricecart . '</strong> ₽</h2>
+              <pclass="button-next" ><a href="" >Оплатить</a></pclass=> 
+             
+             ';
+
             break;
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         default:
             echo '
-        <div id="block-step">
-            <div id="name-step">
-                <ul>
-                    <li> <a class="active"> Корзина товаров</a></li>
-                    <li><span>&rarr;</span></li>
-                    <li> <a> Оформление заказа</a></li>
-                    <li><span>&rarr;</span></li>
-                    <li> <a> Завершение</a></li>
-                </ul>
+            <div id="block-step">
+                <div id="name-step">
+                    <ul>
+                        <li> <a class="active"> Корзина товаров</a></li>
+                        <li><span>&rarr;</span></li>
+                        <li> <a> Оформление заказа</a></li>
+                        <li><span>&rarr;</span></li>
+                        <li> <a> Завершение</a></li>
+                    </ul>
+                </div>
+                <p>Шаг 1 из 3</p>
+                <a href="cart.php?action=clear">Очистить корзину</a>
             </div>
-            <p>Шаг 1 из 3</p>
-            <a href="cart.php?action=clear">Очистить корзину</a>
-        </div>
-        ';
+            ';
 
-            $result = mysqli_query($link, "SELECT * FROM cart,products WHERE cart.ip_users = '{$_SERVER['REMOTE_ADDR']}' AND products.id = cart.id_cart");
+
+            $result = mysqli_query($link, "SELECT * FROM cart,products WHERE cart.ip_users = '{$_SERVER['REMOTE_ADDR']}' AND products.id = cart.id_products_cart");
 
             if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_array($result);
                 echo '
-
-        <div id="list-card">
-            <div id="name-card"> Товар</div>
-            <div id="name-qty">Кол-во</div>
-            <div id="name-prise">Цена</div>
-        </div>
-        ';
+                <div id="list-card">
+                    <div id="name-card"> Товар</div>
+                    <div id="name-qty">Кол-во</div>
+                    <div id="name-prise">Цена</div>
+                </div>
+                ';
 
                 do {
 
@@ -295,52 +352,52 @@ switch ($action) {
                     }
 
                     echo '
-                <div id="block-list-card">
+                    <div id="block-list-card">
 
-                    <div class="card">
-                        <img src="' . $img_path . '"/>
-                        <div> <a>' . $row["title"] . '</a> </div>
+                        <div class="card">
+                            <img src="' . $img_path . '"/>
+                            <div> <a>' . $row["title"] . '</a> </div>
+                        </div>
+                        
+
+                        <div class="count">
+                            <ul class="input-count">
+                        
+                                <li>
+                                <p class="count-minus">-</p>
+                                </li>
+                        
+                                <li>
+                                <p><input value="'  . $row["count_cart"] . '"/></p>
+                                </li>
+                        
+                                <li>
+                                <p class="count-plus">+</p>
+                                </li>
+                    
+                            </ul>
+                        </div>
+
+                        <div id="tovar" class="price-product">
+                            <h5>
+                                <span class="span-count" >1</span> 
+                                x 
+                                <span> ' . $row["price"] . '₽ </span>
+
+                            </h5><p>' . $int . '₽</p>
+
+                        </div>
+
+                        <div class="delete-cart"><a  href="cart.php?id=' . $row["id_cart"] . '&action=delete" >X</a></div>
+
                     </div>
-                    
-
-                    <div class="count">
-                        <ul class="input-count">
-                    
-                            <li>
-                            <p class="count-minus">-</p>
-                            </li>
-                    
-                            <li>
-                            <p><input value="'  . $row["count_cart"] . '"/></p>
-                            </li>
-                    
-                            <li>
-                            <p class="count-plus">+</p>
-                            </li>
-                
-                        </ul>
-                    </div>
-
-                    <div id="tovar" class="price-product">
-                        <h5>
-                            <span class="span-count" >1</span> 
-                            x 
-                            <span> ' . $row["price"] . '₽ </span>
-
-                        </h5><p>' . $int . '₽</p>
-
-                    </div>
-
-                    <div class="delete-cart"><a  href="cart.php?id=' . $row["id_cart"] . '&action=delete" >X</a></div>
-
-                </div>
-                ';
+                   ';
                 } while ($row = mysqli_fetch_array($result));
 
                 echo '
-            <h2 class="itog-price">Итого: <strong>' . $all_price . '</strong> ₽</h2>
-            <p  class="button-next" ><a href="cart.php?action=confirm" >Далее</a></p> 
-            ';
+                <h2 class="itog-price">Итого: <strong>' . $itogpricecart . '</strong> ₽</h2>
+                <p  class="button-next" ><a href="cart.php?action=confirm" >Далее</a></p> 
+                ';
             } else {
                 echo '<h3 id="clear-cart">Корзина пуста</h3>';
             }
