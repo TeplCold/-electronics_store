@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="../../style/header_footer.css">
+<link rel="stylesheet" type="text/css" href="../../style/header_footer/header_footer.css">
 
 <script defer type="text/javascript" src="../../javascript/header_footer.js"></script>
 
@@ -23,7 +23,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Корзина</a>
+                <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/cart.php?action=oneclick">Корзина</a>
             </li>
 
             <?php if (isset($_SESSION['auth_name'])) : ?>
