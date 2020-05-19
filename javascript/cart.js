@@ -162,3 +162,81 @@ function fun_group_price(intprice) {
     }
     return groupprice;
 }
+
+$(document).on('click', '.count-minus', function () {
+    var iid = $(this).attr("iid");
+    $.ajax({
+        type: "POST",
+        url: "../pages/cart_count/count-minus.php",
+        data: "id=" + iid,
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+            $("#input-id" + iid).val(data);
+            loadcart();
+            // переменная с ценой продукта
+            var priceproduct = $("#tovar" + iid + " > p").attr("price");
+            // цену умножаем на кол-во
+            result_total = Number(priceproduct) * Number(data); //Number переводим строку в цифорове значение
+            $("#tovar" + iid + " > p").html(fun_group_price(result_total) + " ₽");
+            $("#tovar" + iid + " > h5 > .span-count").html(data);
+            itog_price();
+        }
+    });
+});
+
+
+$(document).on('click', '.count-plus', function () {
+    var iid = $(this).attr("iid");
+    $.ajax({
+        type: "POST",
+        url: "../pages/cart_count/count-plus.php",
+        data: "id=" + iid,
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+            $("#input-id" + iid).val(data);
+            loadcart();
+            var priceproduct = $("#tovar" + iid + " > p").attr("price");
+            result_total = Number(priceproduct) * Number(data);
+            $("#tovar" + iid + " > p").html(fun_group_price(result_total) + " ₽");
+            $("#tovar" + iid + " > h5 > .span-count").html(data);
+            itog_price();
+        }
+    });
+});
+
+$('.count-input').keypress(function (e) {
+    if (e.keyCode == 13) { // определяем нажатие на кнопку Enter (13 код Enter)
+        var iid = $(this).attr("iid"); // в переменную помещаем id товара
+        var incount = $("#input-id" + iid).val(); // в переменную помещаем значение поля 
+        $.ajax({
+            type: "POST",
+            url: "../pages/cart_count/count-input.php",
+            data: "id=" + iid + "&count=" + incount,
+            dataType: "html",
+            cache: false,
+            success: function (data) {
+                $("#input-id" + iid).val(data);
+                loadcart();
+                var priceproduct = $("#tovar" + iid + " > p").attr("price");
+                result_total = Number(priceproduct) * Number(data);
+                $("#tovar" + iid + " > p").html(fun_group_price(result_total) + " ₽");
+                $("#tovar" + iid + " > h5 > .span-count").html(data);
+                itog_price();
+            }
+        });
+    }
+});
+
+function itog_price() {
+    $.ajax({
+        type: "POST",
+        url: "../pages/cart_count/itog_price.php",
+        dataType: "html",
+        cache: false,
+        success: function (data) {
+            $(".itog-price > strong").html(data);
+        }
+    });
+}

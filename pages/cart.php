@@ -2,6 +2,7 @@
 session_start();
 include("reg_aunt/functions.php");
 include("reg_aunt/auth_cooke.php");
+include("group_numerals.php");
 
 $id  = clear_string($_GET["id"]); //подключаем функцию очистки строк
 $id  = mb_strtolower($id, 'UTF-8'); //Приведение строки к нижнему регистру
@@ -135,32 +136,31 @@ if (mysqli_num_rows($result) > 0) {
                             <div> <a>' . $row["title"] . '</a> </div>
                         </div>
                         
-
                         <div class="count">
                             <ul class="input-count">
                         
                                 <li>
-                                <p class="count-minus">-</p>
+                                <p class="count-minus"  iid="' . $row["id_cart"] . '"> -</p>
                                 </li>
                         
                                 <li>
-                                <p><input value="'  . $row["count_cart"] . '"/></p>
+                                <p><input id="input-id' . $row["id_cart"] . '" class="count-input" maxlength="3" type="text" value="'  . $row["count_cart"] . '" iid="' . $row["id_cart"] . '"> </p>
                                 </li>
                         
                                 <li>
-                                <p class="count-plus">+</p>
+                                <p class="count-plus"  iid="' . $row["id_cart"] . '"> + </p>
                                 </li>
                     
                             </ul>
                         </div>
 
-                        <div id="tovar" class="price-product">
+                        <div  id="tovar' . $row["id_cart"] . '" class="price-product">
                             <h5>
                                 <span class="span-count" >1</span> 
                                 x 
-                                <span> ' . $row["price"] . '₽ </span>
+                                <span> ' .  group_numerals($row["price"]) . '₽ </span>
 
-                            </h5><p>' . $int . '₽</p>
+                            </h5><p price="' . $row["cart_price"] . '" >' . group_numerals($int) . '₽</p>
 
                         </div>
 
@@ -171,7 +171,7 @@ if (mysqli_num_rows($result) > 0) {
                 } while ($row = mysqli_fetch_array($result));
 
                 echo '
-                <h2 class="itog-price">Итого: <strong>' . $all_price . '</strong> ₽</h2>
+                <h2 class="itog-price">Итого: <strong>' . group_numerals($all_price) . '</strong>₽</h2>
                 <p  class="button-next" ><a href="cart.php?action=confirm" >Далее</a></p> 
                 ';
             } else {
@@ -299,10 +299,10 @@ if (mysqli_num_rows($result) > 0) {
                 <li><strong>Примечания:</strong>' . $_SESSION['order_note'] . '</li>
             ';
             }
-            echo '<p  class="button-next" ><a href="cart.php?action=confirm" >Назад</a></p> ';
 
             echo '
-            <h2 class="itog-price">Итог: <strong>' . $itogpricecart . '</strong> ₽</h2>
+            <h2 class="itog-price">Итог: <strong>' . group_numerals($itogpricecart) . '</strong>₽</h2>
+            <p  class="button-next" ><a href="cart.php?action=confirm" >Назад</a></p> 
               <pclass="button-next" ><a href="" >Оплатить</a></pclass=> 
              
              ';
@@ -311,33 +311,33 @@ if (mysqli_num_rows($result) > 0) {
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         default:
             echo '
-            <div id="block-step">
-                <div id="name-step">
-                    <ul>
-                        <li> <a class="active"> Корзина товаров</a></li>
-                        <li><span>&rarr;</span></li>
-                        <li> <a> Оформление заказа</a></li>
-                        <li><span>&rarr;</span></li>
-                        <li> <a> Завершение</a></li>
-                    </ul>
-                </div>
-                <p>Шаг 1 из 3</p>
-                <a href="cart.php?action=clear">Очистить корзину</a>
+        <div id="block-step">
+            <div id="name-step">
+                <ul>
+                    <li> <a class="active"> Корзина товаров</a></li>
+                    <li><span>&rarr;</span></li>
+                    <li> <a> Оформление заказа</a></li>
+                    <li><span>&rarr;</span></li>
+                    <li> <a> Завершение</a></li>
+                </ul>
             </div>
-            ';
-
+            <p>Шаг 1 из 3</p>
+            <a href="cart.php?action=clear">Очистить корзину</a>
+        </div>
+        ';
 
             $result = mysqli_query($link, "SELECT * FROM cart,products WHERE cart.ip_users = '{$_SERVER['REMOTE_ADDR']}' AND products.id = cart.id_products_cart");
 
             if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_array($result);
                 echo '
-                <div id="list-card">
-                    <div id="name-card"> Товар</div>
-                    <div id="name-qty">Кол-во</div>
-                    <div id="name-prise">Цена</div>
-                </div>
-                ';
+
+        <div id="list-card">
+            <div id="name-card"> Товар</div>
+            <div id="name-qty">Кол-во</div>
+            <div id="name-prise">Цена</div>
+        </div>
+        ';
 
                 do {
 
@@ -352,52 +352,57 @@ if (mysqli_num_rows($result) > 0) {
                     }
 
                     echo '
-                    <div id="block-list-card">
+                <div id="block-list-card">
 
-                        <div class="card">
-                            <img src="' . $img_path . '"/>
-                            <div> <a>' . $row["title"] . '</a> </div>
-                        </div>
-                        
-
-                        <div class="count">
-                            <ul class="input-count">
-                        
-                                <li>
-                                <p class="count-minus">-</p>
-                                </li>
-                        
-                                <li>
-                                <p><input value="'  . $row["count_cart"] . '"/></p>
-                                </li>
-                        
-                                <li>
-                                <p class="count-plus">+</p>
-                                </li>
+                    <div class="card">
+                        <img src="' . $img_path . '"/>
+                        <div> <a>' . $row["title"] . '</a> </div>
+                    </div>
                     
-                            </ul>
-                        </div>
 
-                        <div id="tovar" class="price-product">
-                            <h5>
-                                <span class="span-count" >1</span> 
-                                x 
-                                <span> ' . $row["price"] . '₽ </span>
 
-                            </h5><p>' . $int . '₽</p>
 
-                        </div>
 
-                        <div class="delete-cart"><a  href="cart.php?id=' . $row["id_cart"] . '&action=delete" >X</a></div>
+
+
+                    <div class="count">
+                        <ul class="input-count">
+                    
+                            <li>
+                            <p class="count-minus" iid="' . $row["id_cart"] . '"> -</p>
+                            </li>
+                    
+                            <li>
+                            <p><input id="input-id' . $row["id_cart"] . '"  value="'  . $row["count_cart"] . '" iid="' . $row["id_cart"] . '"> </p>
+                            </li>
+                    
+                            <li>
+                            <p class="count-plus" iid="' . $row["id_cart"] . '"> + </p>
+                            </li>
+                
+                        </ul>
+                    </div>
+
+                    <div  id="tovar' . $row["id_cart"] . '" class="price-product">
+                        <h5>
+                            <span class="span-count" >1</span> 
+                            x 
+                            <span> ' .  group_numerals($row["price"]) . '₽ </span>
+
+                        </h5><p price="' . $row["cart_price"] . '" >' . group_numerals($int) . '₽</p>
 
                     </div>
-                   ';
+
+                    <div class="delete-cart"><a  href="cart.php?id=' . $row["id_cart"] . '&action=delete" >X</a></div>
+
+                </div>
+                ';
                 } while ($row = mysqli_fetch_array($result));
 
                 echo '
-                <h2 class="itog-price">Итого: <strong>' . $itogpricecart . '</strong> ₽</h2>
-                <p  class="button-next" ><a href="cart.php?action=confirm" >Далее</a></p> 
-                ';
+            <h2 class="itog-price">Итого: <strong>' . group_numerals($all_price) . '</strong>₽</h2>
+            <p  class="button-next" ><a href="cart.php?action=confirm" >Далее</a></p> 
+            ';
             } else {
                 echo '<h3 id="clear-cart">Корзина пуста</h3>';
             }
