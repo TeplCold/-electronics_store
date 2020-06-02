@@ -2,7 +2,7 @@ $("#button-auth").click(function () { //если нажата кнопка
     var auth_login = $("#auth_login").val(); //помещаем auth_login в переменную
     var auth_pass = $("#auth_pass").val(); //помещаем auth_pass в переменную
 
-    if (auth_login == "" || auth_login.length > 15) { //если поле пустое или >15
+    if (auth_login.length < 5 || auth_login.length > 15) { //если поле пустое или >15
         $("#auth_login").css("borderColor", "#DF0101"); //красим рамку в красный цвет 
         send_login = 'no'; //помещаем no в send_login
     } else { //если все нормально
@@ -10,7 +10,7 @@ $("#button-auth").click(function () { //если нажата кнопка
         send_login = 'yes'; //помещаем yes в send_login
     }
 
-    if (auth_pass == "" || auth_pass.length > 20) { //если поле пустое или >20
+    if (auth_pass.length < 7 || auth_pass.length > 20) { //если поле пустое или >20
         $("#auth_pass").css("borderColor", "#DF0101"); //красим рамку в красный цвет 
         send_pass = 'no'; //помещаем no в send_pass
     } else { //если все нормально

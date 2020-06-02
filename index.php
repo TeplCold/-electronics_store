@@ -13,29 +13,13 @@ session_start(); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="style/home/home.css">
+
+    <script type="text/javascript" src="javascript/jquery-3.4.1.js"></script>
 </head>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<body id="particles-js">
+<body>
 
     <?php include("pages/header_footer/header.php") ?>
 
@@ -57,13 +41,16 @@ session_start(); ?>
                     echo ('
 
                         <li>
+
+                        <a href="/pages/content.php?id=' . $row["id"] . '">
                         <div class = "card_image">
                         <img src="' . $img_path . '" /> 
                         </div>
                         
                         <div> ' . $row["title"] . ' </div>
-                        
+                        <div> ' . $row["count"] . ' </div>
                         <div>' . group_numerals($row["price"]) . '₽ </div>
+                        </a>
                         
 
                       <a  class="add-card"  tid="' . $row["id"] . '" >в корзину</a>
