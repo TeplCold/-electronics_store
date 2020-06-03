@@ -1,8 +1,10 @@
-<?php include("pages/db_connect.php");
+<?php 
+include("pages/db_connect.php");
 include("pages/reg_aunt/functions.php");
 include("pages/group_numerals.php");
 include("pages/reg_aunt/auth_cooke.php");
-session_start(); ?>
+session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 

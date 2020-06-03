@@ -1,0 +1,10 @@
+.owl-carousel {
+    width: 200px !important;
+    height: 250px;
+    position: relative;
+
+}
+
+.owl-stage {
+    width: auto;
+}

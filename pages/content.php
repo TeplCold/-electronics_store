@@ -8,8 +8,7 @@ $id  = clear_string($_GET["id"]); //подключаем функцию очис
 $id  = mb_strtolower($id, 'UTF-8'); //Приведение строки к нижнему регистру
 $id = mysqli_real_escape_string($link, $id); //Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и Control-Z.
 
-
-
+//проверка чтобы не было накрутки просмторов товара при перезагрузке
 if ($id != $_SESSION['countid']) {
     $querycount = mysqli_query($link, "SELECT count FROM products WHERE id='$id'");
     $resultcount = mysqli_fetch_array($querycount);
@@ -21,8 +20,6 @@ if ($id != $_SESSION['countid']) {
 
 $_SESSION['countid'] = $id;
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -39,27 +36,25 @@ $_SESSION['countid'] = $id;
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!--  -->
-    <link rel="stylesheet" type="text/css" href="../style/product_list/product_list.css">
 
     <script type="text/javascript" src="../../javascript/jquery-3.4.1.js"></script>
 
 
-
-
+    <link rel="stylesheet" type="text/css" href="../style/content/content.css">
+    <!-- owlcarousel css style -->
+    <link rel="stylesheet" href="../owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="../owlcarousel/assets/owl.theme.default.min.css">
 
 </head>
 
 
 <body>
 
+
     <?php include("header_footer/header.php");
 
-
-
-
-
-    $result = mysqli_query($link, "SELECT * FROM products WHERE id ='$id' AND visible='1'");
-
+    echo ('<div class="owl-carousel owl-theme" id="carousel1" >');
+    $result = mysqli_query($link, "SELECT * FROM image_products WHERE products_id='$id'");
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_array($result);
         do {
@@ -69,46 +64,33 @@ $_SESSION['countid'] = $id;
                 $img_path = "../assets/products/no_photo.jpg"; //фото нету
             }
             echo ('
+                <div> <img src="' . $img_path . '" alt="Img"/> </div>
+                ');
+        } while ($row = mysqli_fetch_array($result));
+        echo ('</div>');
+    }
 
-
-            <div class = "card_image">
-            <img src="' . $img_path . '" /> 
-            </div>
-
+    $result = mysqli_query($link, "SELECT * FROM products WHERE id ='$id' AND visible='1'");
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_array($result);
+        do {
+            echo ('
             <div> ' . $row["title"] . ' </div>
-
-            <div> ' . $row["count"] . ' </div>
-
-                        
+            <div> ' . $row["count"] . ' </div>         
             <div>' . group_numerals($row["price"]) . '₽ </div>
-
             <a  class="add-card"  tid="' . $row["id"] . '" >в корзину</a>
-
             <div> ' . $row["min_description"] . ' </div>
-       
             ');
         } while ($row = mysqli_fetch_array($result));
     }
 
-
-
-
-
-
-
-
-
     ?>
 
 
+    <!-- -->
 
-
-
-
-
-
-
-
+    <script src="../owlcarousel/owl.carousel.min.js"></script>
+    <script src="../owlcarousel/connection_owlcarousel.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
