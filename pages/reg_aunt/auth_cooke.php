@@ -1,7 +1,7 @@
 <?php
 if ($_SESSION['auth'] != 'yes_auth' && $_COOKIE["rememberme"]) { //ксли пользователь не авторизирован и куки не существуют то
 
-    $str = $_COOKIE["rememberme"]; //принимаем значение rememberme в str
+    $str = $_COOKIE["rememberme"]; // принимаем значение rememberme в str
     $all_len = strlen($str); // определяем всю длину строки
     $login_len = strpos($str, '+'); // длина строки логина
     $login = clear_string(substr($str, 0, $login_len));  // обрезаем строку до + и получаем логин

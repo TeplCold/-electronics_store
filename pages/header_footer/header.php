@@ -7,33 +7,15 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item  ">
-                <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/../../index.php"> Главная</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/product_list.php"> Каталог</a>
-            </li>
-
-            <li class="nav-item  ">
-                <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/about_us.php"> О нас</a>
-            </li>
-
-
-
-
-
+            <li class="nav-item  "><a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/../../index.php"> Главная</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/product_list.php"> Каталог</a></li>
+            <li class="nav-item  "> <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/about_us.php"> О нас</a></li>
 
             <li class="nav-item">
                 <p id="block-basket_header_count"> <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/cart.php?action=oneclick"></a></p>
                 <p> <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/cart.php?action=oneclick">Корзина</a></p>
                 <p id="block-basket_header_prise"> <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/cart.php?action=oneclick"></a></p>
             </li>
-
-
-
-
-
 
             <?php if (isset($_SESSION['auth_name'])) : ?>
                 <div id="auth-user-info">
@@ -43,26 +25,20 @@
             <?php else : ?>
                 <li class="nav-item  ">
                     Вы - Гость <br>
-                    <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/reg_aunt/registration.php">ВХОД|РЕГИСТРАЦИЯ</a>
+                    <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/registration.php">ВХОД|РЕГИСТРАЦИЯ</a>
                 </li>
             <?php endif; ?>
 
             <div id="block-user">
                 <ul>
-
-                    <li>
-                        <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>  /pages/profile.php"> Профиль</a>
-                    </li>
-
+                    <li> <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>  /pages/profile.php"> Профиль</a></li>
                     <li>
                         <p id="logout">Выход</p>
                     </li>
-
                 </ul>
             </div>
+        </ul>
     </div>
-
-    </ul>
 
     <!-- форма поиска -->
     <div id="block-search">

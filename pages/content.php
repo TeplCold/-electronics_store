@@ -10,7 +10,6 @@ $id  = mb_strtolower($id, 'UTF-8'); //Приведение строки к ни�
 $id = mysqli_real_escape_string($link, $id); //Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и Control-Z.
 
 //проверка чтобы не было накрутки просмторов товара при перезагрузке
-
 if ($id != $_SESSION['countid']) {
     $querycount = mysqli_query($link, "SELECT count FROM products WHERE id='$id'");
     $resultcount = mysqli_fetch_array($querycount);
@@ -18,13 +17,20 @@ if ($id != $_SESSION['countid']) {
     $update = mysqli_query($link, "UPDATE products SET count='$newcount' WHERE id='$id'");
 }
 $_SESSION['countid'] = $id;
-
 ?>
 
 <!DOCTYPE html>
 <html lang="ru">
 
 <head>
+
+    <title>
+        <?php
+        $result = mysqli_query($link, "SELECT * FROM products WHERE id ='$id' AND visible='1'");
+        $row = mysqli_fetch_array($result);
+        echo  $row["title"];
+        ?>
+    </title>
 
     <link rel="shortcut icon" href="../assets/player.ico" type="image/iso">
     <meta charset="UTF-8">
@@ -43,8 +49,8 @@ $_SESSION['countid'] = $id;
 
 </head>
 
-
 <body>
+
     <?php include("header_footer/header.php");
 
     echo ('<div class="owl-carousel owl-theme" id="carousel1" >');
@@ -98,7 +104,6 @@ $_SESSION['countid'] = $id;
                 </div>
                 <p>На основе <?php echo $count_reviews; ?> оценок</p>
 
-
                 <?php
             }
 
@@ -131,7 +136,6 @@ $_SESSION['countid'] = $id;
                         <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                     ');
 
-
             $query_reviews = mysqli_query($link, "SELECT * FROM reviews_products WHERE products_id='$id' AND moderat='1' ORDER BY reviews_id DESC");
 
             if (mysqli_num_rows($query_reviews) > 0) {
@@ -140,14 +144,11 @@ $_SESSION['countid'] = $id;
 
                     $date = strtotime($row_reviews["date"]);
 
-
-
                     echo ' <div class="block-reviews" >
                        <h3>-----------------------------------------------------------------------------------------------------------------------------</h3>
                        <strong>' . $row_reviews["name"] . '</strong>, ' . date("d.m.Y", $date) . '
                        <br>
                        ';
-
 
                     $rating = round($row_reviews["rating"] / $query_reviews);
                 ?>
@@ -159,7 +160,6 @@ $_SESSION['countid'] = $id;
                         <span class="<?php if ($rating >= 4) echo 'active'; ?>"></span>
                         <span class="<?php if ($rating >= 5) echo 'active'; ?>"></span>
                     </div>
-
 
     <?php
                     echo '
@@ -188,18 +188,17 @@ $_SESSION['countid'] = $id;
                     </button>
                   </div>
                   <div class="modal-body">
-
                   <div class="rating-area">
-                  <input type="radio" id="star-5" name="rating" value="5">
-                  <label for="star-5" title="Оценка «5»"></label>	
-                  <input type="radio" id="star-4" name="rating" value="4">
-                  <label for="star-4" title="Оценка «4»"></label>    
-                  <input type="radio" id="star-3" name="rating" value="3">
-                  <label for="star-3" title="Оценка «3»"></label>  
-                  <input type="radio" id="star-2" name="rating" value="2">
-                  <label for="star-2" title="Оценка «2»"></label>    
-                  <input type="radio" id="star-1" name="rating" value="1">
-                  <label for="star-1" title="Оценка «1»"></label>
+                        <input type="radio" id="star-5" name="rating" value="5">
+                        <label for="star-5" title="Оценка «5»"></label>	
+                        <input type="radio" id="star-4" name="rating" value="4">
+                        <label for="star-4" title="Оценка «4»"></label>    
+                        <input type="radio" id="star-3" name="rating" value="3">
+                        <label for="star-3" title="Оценка «3»"></label>  
+                        <input type="radio" id="star-2" name="rating" value="2">
+                        <label for="star-2" title="Оценка «2»"></label>    
+                        <input type="radio" id="star-1" name="rating" value="1">
+                        <label for="star-1" title="Оценка «1»"></label>
                   </div>
             ';
 
@@ -220,11 +219,6 @@ $_SESSION['countid'] = $id;
                 <li><p><textarea placeholder="Комментарий" id="comment_review" ></textarea></p></li>     
                 </ul>');
             }
-
-
-
-
-
             echo ('
                   </div>
                   <div class="modal-footer">
@@ -239,18 +233,21 @@ $_SESSION['countid'] = $id;
         }
         while ($row = mysqli_fetch_array($result));
     }
-
     ?>
 
     <?php include("header_footer/footer.php") ?>
 
-    <script type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="../javascript/jquery-3.5.1.js"></script>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
+    <script defer type="text/javascript" src="../javascript/cart.js"></script>
+    <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
+    <script defer src="../javascript/content.js"></script>
+
+    <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
+    <script defer src="../bootstrap/js/bootstrap.min.js"></script>
     <!-------------------------------------------------------------------------->
-    <script src="../owlcarousel/owl.carousel.min.js"></script>
-    <script src="../owlcarousel/connection_owlcarousel.js"></script>
-    <script src="../javascript/content.js"></script>
+    <script defer src="../owlcarousel/owl.carousel.min.js"></script>
+    <script defer src="../owlcarousel/connection_owlcarousel.js"></script>
+
 </body>
 
 </html>

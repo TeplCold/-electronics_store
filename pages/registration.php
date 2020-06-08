@@ -1,33 +1,34 @@
-<?php session_start();
+<?php
+session_start();
 
 if ($_SESSION['auth'] != 'yes_auth') { //выводим эту страницу только когда пользователь не авторизирован
-
-    include("../db_connect.php");
-    include("functions.php");
-    include("auth_cooke.php");
-
+    include("db_connect.php");
+    include("reg_aunt/functions.php");
+    include("reg_aunt/auth_cooke.php");
 ?>
+
     <!DOCTYPE html>
     <html lang="ru">
 
     <head>
+
         <title>Вход/Регистрация</title>
-        <link rel="shortcut icon" href="../../assets/player.ico" type="image/iso">
+        <link rel="shortcut icon" href="../assets/player.ico" type="image/iso">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
 
         <!---------------------------------------------------------------------------->
-        <link rel="stylesheet" type="text/css" href="../../style/reg_aunt/authentication.css">
+        <link rel="stylesheet" type="text/css" href="../style/reg_aunt/authentication.css">
 
     </head>
 
     <body>
 
-        <?php include("../header_footer/header.php") ?>
+        <?php include("header_footer/header.php") ?>
 
         <!-- Аторизация  -->
         <div id="block-body">
@@ -50,7 +51,7 @@ if ($_SESSION['auth'] != 'yes_auth') { //выводим эту страницу 
                             <div><a id="remindpass" href="#">Забыли пароль?</a></div>
                         </div>
                         <div id="button-auth"><a>Вход</a></div>
-                        <div class="auth-loading"><img src="../../assets/reg_aunt/loading.gif"></div>
+                        <div class="auth-loading"><img src="../assets/reg_aunt/loading.gif"></div>
                     </div>
                 </form>
 
@@ -59,7 +60,7 @@ if ($_SESSION['auth'] != 'yes_auth') { //выводим эту страницу 
                     <p id="message-remind" class="message-remind-success"></p>
                     <input type="text" id="remind-email" placeholder="Ваш E-mail" />
                     <p id="button-remind"><a>Готово</a></p>
-                    <p class="auth-loading"><img src="../../assets/reg_aunt/loading.gif"></p>
+                    <p class="auth-loading"><img src="../assets/reg_aunt/loading.gif"></p>
                     <p id="prev-auth">Назад</p>
                 </div>
             </div>
@@ -67,7 +68,7 @@ if ($_SESSION['auth'] != 'yes_auth') { //выводим эту страницу 
 
         <!-- Регистрация -->
         <div id="block-content">
-            <form method="post" id="form_reg" action="handler_reg.php">
+            <form method="post" id="form_reg" action="reg_aunt/handler_reg.php">
                 <p id="reg_message"></p>
                 <div id="block-form-registration">
                     <div id="form-registration">
@@ -109,27 +110,27 @@ if ($_SESSION['auth'] != 'yes_auth') { //выводим эту страницу 
             </form>
         </div>
 
-        <?php include("../header_footer/footer.php") ?>
+        <?php include("header_footer/footer.php") ?>
+        <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
+        <script defer type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 
-        <script type="text/javascript" src="../../javascript/jquery-3.4.1.js"></script>
-        <!-- <script type="text/javascript" src="../../javascript/jquery-3.5.1.js"></script> -->
-        <script src="../../bootstrap/js/bootstrap.min.js"></script>
-        <!-------------------------------------------------------------------------->
-        <script defer type="text/javascript" src="../../javascript/jquery.form.js"></script>
-        <!--подключение валидации-->
-        <script defer type="text/javascript" src="../../javascript/jquery.validate.js"></script>
-        <script defer type="text/javascript" src="../../javascript/reg_aunt/reg_validation.js"></script>
+        <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
+        <script defer type="text/javascript" src="../javascript/jquery.form.js"></script>
+        <script defer type="text/javascript" src="../javascript/jquery.validate.js"></script>
+        <script defer type="text/javascript" src="../javascript/reg_aunt/reg_validation.js"></script>
         <!--подключение генерации пароля -->
-        <script defer type="text/javascript" src="../../javascript/reg_aunt/genpass.js"></script>
+        <script defer type="text/javascript" src="../javascript/reg_aunt/genpass.js"></script>
         <!-- подключение авторизации -->
-        <script defer type="text/javascript" src="../../javascript/reg_aunt/view_pass.js"></script>
-        <script defer type="text/javascript" src="../../javascript/reg_aunt/aut.js"></script>
-        <script defer type="text/javascript" src="../../javascript/reg_aunt/recover_pass.js"></script>
+        <script defer type="text/javascript" src="../javascript/reg_aunt/view_pass.js"></script>
+        <script defer type="text/javascript" src="../javascript/reg_aunt/aut.js"></script>
+        <script defer type="text/javascript" src="../javascript/reg_aunt/recover_pass.js"></script>
+        <script defer type="text/javascript" src="../javascript/cart.js"></script>
+        <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
 
     </body>
 
     </html>
 
 <?php } else {
-    header(("Location: ../../index.php"));
+    header(("Location: ../index.php"));
 } ?>

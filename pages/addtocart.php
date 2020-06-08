@@ -4,9 +4,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include("db_connect.php");
     include("reg_aunt/functions.php");
 
-    $id = clear_string($_POST["id"]); //подключаем функцию очистки строк
-    $id = mb_strtolower($id, 'UTF-8'); //Приведение строки к нижнему регистру
-    $id =  mysqli_real_escape_string($link, $id); //Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и Control-Z.
+    $id = clear_string($_POST["id"]); // подключаем функцию очистки строк
+    $id = mb_strtolower($id, 'UTF-8'); // Приведение строки к нижнему регистру
+    $id =  mysqli_real_escape_string($link, $id); // Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и Control-Z.
 
     $result = mysqli_query($link, "SELECT * FROM cart WHERE ip_users = '{$_SERVER['REMOTE_ADDR']}' AND id_products_cart = '$id'");
     if (mysqli_num_rows($result) > 0) {

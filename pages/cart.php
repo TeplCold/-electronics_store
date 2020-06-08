@@ -1,4 +1,5 @@
-<?php include("db_connect.php");
+<?php
+include("db_connect.php");
 session_start();
 include("reg_aunt/functions.php");
 include("reg_aunt/auth_cooke.php");
@@ -13,7 +14,6 @@ $action = mb_strtolower($action, 'UTF-8'); //Приведение строки �
 $action = mysqli_real_escape_string($link, $action); //Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и Control-Z.
 
 switch ($action) {
-
     case 'clear':
         $clear = mysqli_query($link, "DELETE FROM cart WHERE ip_users = '{$_SERVER['REMOTE_ADDR']}'");
         break;
@@ -50,7 +50,6 @@ if (mysqli_num_rows($result) > 0) {
     } while ($row = mysqli_fetch_array($result));
     $itogpricecart = $int;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -59,23 +58,19 @@ if (mysqli_num_rows($result) > 0) {
 <head>
 
     <title> Корзина </title>
-
     <link rel="shortcut icon" href="../assets/player.ico" type="image/iso">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
 
     <link href="../style/cart/cart.css" rel="stylesheet" type="text/css" />
 
-
-    <script type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
-
 </head>
 
-<body id="particles-js">
+<body>
 
     <?php include("header_footer/header.php");
 
@@ -86,7 +81,6 @@ if (mysqli_num_rows($result) > 0) {
     switch ($action) {
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         case 'oneclick':
-
             echo '
             <div id="block-step">
                 <div id="name-step">
@@ -115,12 +109,10 @@ if (mysqli_num_rows($result) > 0) {
                 <div id="name-prise">Цена</div>
             </div>
             ';
-
                 do {
 
                     $int = $row["price"] * $row["count_cart"];
                     $all_price = $all_price + $int; // подсчитываем итоговую цену
-
 
                     if ($row["image"] != "" && file_exists("../assets/products/" . $row["image"])) {
                         $img_path = '../assets/products/' . $row["image"]; //фото есть 
@@ -179,10 +171,6 @@ if (mysqli_num_rows($result) > 0) {
             }
             break;
 
-
-
-
-
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         case 'confirm':
             echo '
@@ -201,7 +189,6 @@ if (mysqli_num_rows($result) > 0) {
             </div>
             ';
 
-
             if ($_SESSION['order_delivery'] == "Почтой") $chck1 = "checked";
             if ($_SESSION['order_delivery'] == "Курьером") $chck2 = "checked";
             if ($_SESSION['order_delivery'] == "Самовывоз") $chck3 = "checked";
@@ -210,45 +197,42 @@ if (mysqli_num_rows($result) > 0) {
             <h3 class="title-h3" >Способ доставки:</h3>
             <form method="post">
             <ul id="info-radio">
-            <li>
-            <input type="radio" name="order_delivery" class="order_delivery" id="order_delivery1" value="Почтой" ' . $chck1 . '  />
-            <label class="label_delivery" for="order_delivery1">Почтой</label>
-            </li>
-            <li>
-            <input type="radio" name="order_delivery" class="order_delivery" id="order_delivery2" value="Курьером" ' . $chck2 . ' />
-            <label class="label_delivery" for="order_delivery2">Курьером</label>
-            </li>
-            <li>
-            <input type="radio" name="order_delivery" class="order_delivery" id="order_delivery3" value="Самовывоз" ' . $chck3 . ' />
-            <label class="label_delivery" for="order_delivery3">Самовывоз</label>
-            </li>
+                <li>
+                    <input type="radio" name="order_delivery" class="order_delivery" id="order_delivery1" value="Почтой" ' . $chck1 . '  />
+                    <label class="label_delivery" for="order_delivery1">Почтой</label>
+                </li>
+                <li>
+                    <input type="radio" name="order_delivery" class="order_delivery" id="order_delivery2" value="Курьером" ' . $chck2 . ' />
+                    <label class="label_delivery" for="order_delivery2">Курьером</label>
+                </li>
+                <li>
+                    <input type="radio" name="order_delivery" class="order_delivery" id="order_delivery3" value="Самовывоз" ' . $chck3 . ' />
+                    <label class="label_delivery" for="order_delivery3">Самовывоз</label>
+                </li>
             </ul>
             <h3 class="title-h3" >Информация для доставки:</h3>
             <ul id="info-order">
             ';
 
-
-            if ($_SESSION['auth'] != 'yes_auth') {
+            if ($_SESSION['auth'] == 'yes_auth') {
+                echo '
+                <li><label for="order_phone">Телефон</label><input type="text" name="order_phone" id="order_phone" value="' . $_SESSION["order_phone"] . '" />
+                <li><label class="order_label_style" for="order_address">Адрес доставки</label><input type="text" name="order_address" id="order_address" value="' . $_SESSION["order_address"] . '" />
+                <li><label class="order_label_style" for="order_note">Примечания</label><textarea name="order_note"  >' . $_SESSION["order_note"] . '</textarea></li>
+                ';
+            } else {
                 echo '
                 <li><label for="order_fio">Фамилия</label><input type="text" name="order_fio" id="order_fio" value="' . $_SESSION["order_fio"] . '" />
-
                 <li><label for="order_name">Имя</label><input type="text" name="order_name" id="order_name" value="' . $_SESSION["order_name"] . '" />
-
                 <li><label for="order_patronymic">Отчество</label><input type="text" name="order_patronymic" id="order_patronymic" value="' . $_SESSION["order_patronymic"] . '" />
-
                 <li><label for="order_email">E-mail</label><input type="text" name="order_email" id="order_email" value="' . $_SESSION["order_email"] . '" />
+                <li><label for="order_phone">Телефон</label><input type="text" name="order_phone" id="order_phone" value="' . $_SESSION["order_phone"] . '" />
+                <li><label class="order_label_style" for="order_address">Адрес доставки</label><input type="text" name="order_address" id="order_address" value="' . $_SESSION["order_address"] . '" />
+                <li><label class="order_label_style" for="order_note">Примечания</label><textarea name="order_note"  >' . $_SESSION["order_note"] . '</textarea></li>
                 ';
             }
-
             echo '
-
-            <li><label for="order_phone">Телефон</label><input type="text" name="order_phone" id="order_phone" value="' . $_SESSION["order_phone"] . '" />
-
-            <li><label class="order_label_style" for="order_address">Адрес доставки</label><input type="text" name="order_address" id="order_address" value="' . $_SESSION["order_address"] . '" />
-
-            <li><label class="order_label_style" for="order_note">Примечания</label><textarea name="order_note"  >' . $_SESSION["order_note"] . '</textarea></li>
-            </ul>
-
+            </ul> 
             <p><input type="submit" name="submitdata2" value="Назад" /></p>
             <p><input type="submit" name="submitdata" id="confirm-button-next" value="Далее" /></p>
             </form>
@@ -256,7 +240,6 @@ if (mysqli_num_rows($result) > 0) {
             break;
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
         case 'completion':
             echo '
             <div id="block-step">
@@ -285,8 +268,13 @@ if (mysqli_num_rows($result) > 0) {
                 <li><strong>Отчество:</strong>' . $_SESSION['auth_patronymic'] . '</li>
                 <li><strong>Email:</strong>' . $_SESSION['auth_email'] . '</li>
                 <li><strong>Телефон:</strong>' . $_SESSION['order_phone'] . '</li>
-                <li><strong>Примечания:</strong>' . $_SESSION['order_note'] . '</li>
+                <li><strong>Адрес доставки:</strong>' . $_SESSION['order_address'] . '</li>
                 ';
+                if ($_SESSION['order_note'] != "") {
+                    echo '
+                    <li><strong>Примечания:</strong>' . $_SESSION['order_note'] . '</li>
+                    ';
+                }
             } else {
                 echo '
                 <ul id="list-info" >
@@ -296,18 +284,22 @@ if (mysqli_num_rows($result) > 0) {
                 <li><strong>Отчество:</strong>' . $_SESSION['order_patronymic'] . '</li>
                 <li><strong>Email:</strong>' . $_SESSION['order_email'] . '</li>
                 <li><strong>Телефон:</strong>' . $_SESSION['order_phone'] . '</li>
+                <li><strong>Адрес доставки:</strong>' . $_SESSION['order_address'] . '</li>
+                ';
+                if ($_SESSION['order_note'] != "") {
+                    echo '
                 <li><strong>Примечания:</strong>' . $_SESSION['order_note'] . '</li>
-            ';
+                ';
+                }
             }
 
             echo '
             <h2 class="itog-price">Итог: <strong>' . group_numerals($itogpricecart) . '</strong>₽</h2>
             <p  class="button-next" ><a href="cart.php?action=confirm" >Назад</a></p> 
               <pclass="button-next" ><a href="" >Оплатить</a></pclass=> 
-             
              ';
-
             break;
+
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         default:
             echo '
@@ -338,12 +330,10 @@ if (mysqli_num_rows($result) > 0) {
             <div id="name-prise">Цена</div>
         </div>
         ';
-
                 do {
 
                     $int = $row["price"] * $row["count_cart"];
                     $all_price = $all_price + $int; // подсчитываем итоговую цену
-
 
                     if ($row["image"] != "" && file_exists("../assets/products/" . $row["image"])) {
                         $img_path = '../assets/products/' . $row["image"]; //фото есть 
@@ -359,25 +349,19 @@ if (mysqli_num_rows($result) > 0) {
                         <div> <a>' . $row["title"] . '</a> </div>
                     </div>
                     
-
-
-
-
-
-
                     <div class="count">
                         <ul class="input-count">
                     
                             <li>
-                            <p class="count-minus" iid="' . $row["id_cart"] . '"> -</p>
+                            <p class="count-minus"  iid="' . $row["id_cart"] . '"> -</p>
                             </li>
                     
                             <li>
-                            <p><input id="input-id' . $row["id_cart"] . '"  value="'  . $row["count_cart"] . '" iid="' . $row["id_cart"] . '"> </p>
+                            <p><input id="input-id' . $row["id_cart"] . '" class="count-input" maxlength="3" type="text" value="'  . $row["count_cart"] . '" iid="' . $row["id_cart"] . '"> </p>
                             </li>
                     
                             <li>
-                            <p class="count-plus" iid="' . $row["id_cart"] . '"> + </p>
+                            <p class="count-plus"  iid="' . $row["id_cart"] . '"> + </p>
                             </li>
                 
                         </ul>
@@ -408,15 +392,17 @@ if (mysqli_num_rows($result) > 0) {
             }
             break;
     }
-
     ?>
 
+    <?php include("header_footer/footer.php") ?>
 
+    <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
+    <script defer type="text/javascript" src="../javascript/cart.js"></script>
+    <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
 
+    <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
+    <script defer src="../bootstrap/js/bootstrap.min.js"></script>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
 </html>

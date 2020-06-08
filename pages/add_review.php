@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $id  = clear_string($_POST['id']); //подключаем функцию очистки строк
     $id  = mb_strtolower($id, 'UTF-8'); //Приведение строки к нижнему регистру
-    $id = mysqli_real_escape_string($link, $id); //Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и Control-Z.
+    $id = mysqli_real_escape_string($link, $id); //Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и  Control-Z.
 
     $name   = clear_string($_POST['name']);
     $name   = mysqli_real_escape_string($link, $name); //Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и Control-Z.

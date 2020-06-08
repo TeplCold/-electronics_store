@@ -1,9 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") //проверяем как обратились к файлу если методом POST то:
 {
-   // error_reporting(E_ALL);
-   // ini_set('display_errors', 1);
-
    include("../db_connect.php"); //подключение к бд 
    include("functions.php");  //функция очистки строк 
 
@@ -16,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") //проверяем как обрат
    $result =  mysqli_query($link, "SELECT email FROM users WHERE email = '$email'"); //отправляем в БД запрос
    if (mysqli_num_rows($result) > 0) // если есть email то возвращаем:
    {
-      echo 'false'; // лож (email существует)
+      echo 'false'; //лож (email существует)
    } else {
       echo 'true'; //(email не существует)
    }

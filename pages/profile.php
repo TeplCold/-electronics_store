@@ -54,7 +54,6 @@ if ($_SESSION['auth'] == 'yes_auth') //выводим эту страницу т
                 }
             }
 
-
             if ($_POST["info_email"] != "") {
                 if (!preg_match("/^(?:[a-z0-9]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/i", trim($_POST["info_email"]))) $error[] = "Укажите корректный email!";
                 else {
@@ -71,11 +70,9 @@ if ($_SESSION['auth'] == 'yes_auth') //выводим эту страницу т
                 $error[] = 'Укажите фамилию от 3 до 20 символов!';
             }
 
-
             if (strlen($_POST["info_name"]) < 3 || strlen($_POST["info_name"]) > 15) {
                 $error[] = 'Укажите имя от 3 до 15 символов!';
             }
-
 
             if (strlen($_POST["info_patronymic"]) < 3 || strlen($_POST["info_patronymic"]) > 25) {
                 $error[] = 'Укажите отчество от 3 до 25 символов!';
@@ -102,25 +99,18 @@ if ($_SESSION['auth'] == 'yes_auth') //выводим эту страницу т
 ?>
 
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="ru">
 
     <head>
+
         <title>Профиль</title>
         <link rel="shortcut icon" href="../assets/player.ico" type="image/iso">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        <!--подключение bootstrap-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <!--подключение jquery-->
-        <script type="text/javascript" src="../../javascript/jquery-3.4.1.js"></script>
-        <script type="text/javascript" src="../../javascript/jquery.form.js"></script>
-        <!--подключение валидации-->
-        <script type="text/javascript" src="../../javascript/jquery.validate.js"></script>
-        <script type="text/javascript" src="../../javascript/reg_aunt/reg_validation.js"></script>
-        <!--подключение генерации пароля -->
-        <script defer type="text/javascript" src="../../javascript/reg_aunt/genpass.js"></script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
 
     </head>
 
@@ -155,7 +145,6 @@ if ($_SESSION['auth'] == 'yes_auth') //выводим эту страницу т
                     <input type="text" name="info_patronymic" id="info_patronymic" value="<?php echo $_SESSION['auth_patronymic']; ?>" />
                 </li>
 
-
                 <li>
                     <label for="info_email">E-mail</label>
                     <input type="text" name="info_email" id="info_email" value="<?php echo $_SESSION['auth_email']; ?>" />
@@ -175,10 +164,20 @@ if ($_SESSION['auth'] == 'yes_auth') //выводим эту страницу т
             </ul>
 
             <p><input type="submit" id="form_submit" name="save_submit" value="Сохранить" /></p>
+
         </form>
 
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <?php include("header_footer/footer.php") ?>
+
+        <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
+        <script defer type="text/javascript" src="../javascript/cart.js"></script>
+        <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
+        <!--подключение генерации пароля -->
+        <script defer type="text/javascript" src="../javascript/reg_aunt/genpass.js"></script>
+
+        <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
+        <script defer src="../bootstrap/js/bootstrap.min.js"></script>
+
     </body>
 
     </html>

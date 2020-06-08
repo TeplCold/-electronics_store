@@ -33,19 +33,18 @@ switch ($sorting) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
+
     <title>Каталог</title>
     <link rel="shortcut icon" href="../assets/player.ico" type="image/iso">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-    <!---------------------------------------------------------------------------->
 
     <link rel="stylesheet" type="text/css" href="../style/product_list/product_list.css">
 
@@ -73,7 +72,7 @@ switch ($sorting) {
         <ul class="cards">
             <?php
 
-            $num = 2; //вывод товара 
+            $num = 5; //вывод товара 
             $page = (int) $_GET['page']; //значение страници              
 
             $count = mysqli_query($link, "SELECT COUNT(*) FROM products WHERE visible = '1'");
@@ -180,11 +179,14 @@ switch ($sorting) {
 
     <?php include("header_footer/footer.php") ?>
 
-    <script type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="../javascript/jquery-3.5.1.js"></script>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
-    <!-------------------------------------------------------------------------->
+    <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
+    <script defer type="text/javascript" src="../javascript/cart.js"></script>
     <script defer type="text/javascript" src="../javascript/product_list.js"></script>
+    <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
+
+    <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
+    <script defer src="../bootstrap/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

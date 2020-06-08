@@ -11,7 +11,6 @@ $("#genpass").click(function () {
   });
 });
 
-
 $("#genpass2").click(function () {
   $.ajax({
     type: "POST", //метод передачи

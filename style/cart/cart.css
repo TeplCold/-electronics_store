@@ -16,10 +16,6 @@
 
 }
 
-
-
-
-
 #block-list-card {
     border: 2px solid rgb(255, 217, 0);
     overflow: hidden;
@@ -42,7 +38,6 @@
     display: inline;
 }
 
-
 .card {
     padding: 0px;
     width: 180px;
@@ -53,9 +48,6 @@
 
     height: 120px;
 }
-
-
-
 
 .count {
     border: 2px solid rgb(24, 62, 0);

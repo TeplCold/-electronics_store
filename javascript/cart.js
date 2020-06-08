@@ -61,7 +61,7 @@ $('#confirm-button-next').click(function (e) { //нажатие кнопки д�
             send_order_email = '1'; //переменная для определения не допущена ли ошибка
         }
         // проверка номера
-        if (order_phone == "" || order_phone.length > 12) {
+        if (order_phone.length < 1 || order_phone.length > 12) {
             $("#order_phone").css("borderColor", "#FDB6B6"); //делаем рамку красным
             send_order_phone = '0'; //переменная для определения допущена ли ошибка
         } else {
@@ -70,7 +70,7 @@ $('#confirm-button-next').click(function (e) { //нажатие кнопки д�
         }
 
         // проверка адреса
-        if (order_address == "" || order_address.length > 150) {
+        if (order_address.length < 1 || order_address.length > 150) {
             $("#order_address").css("borderColor", "#FDB6B6"); //делаем рамку красным
             send_order_address = '0'; //переменная для определения допущена ли ошибка
         } else {
@@ -175,7 +175,6 @@ $(document).on('click', '.count-minus', function () {
         }
     });
 });
-
 
 $(document).on('click', '.count-plus', function () {
     var iid = $(this).attr("iid");

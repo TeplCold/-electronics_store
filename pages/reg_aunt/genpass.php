@@ -20,4 +20,4 @@ for ($i = 0; $i < $number; $i++) {
   $index = rand(0, count($arr) - 1);
   $pass .= $arr[$index];
 }
-echo $pass; //вывод пароля 
+echo $pass;  //вывод пароля 

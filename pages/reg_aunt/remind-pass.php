@@ -23,9 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Обнавления паролья на новый
             $update = mysqli_query($link, "UPDATE users SET pass='$pass' WHERE email='$email'");
 
-
             // Отправка нового пароля
-
             send_mail(
                 'george.tepl@bk.ru',
                 $email,

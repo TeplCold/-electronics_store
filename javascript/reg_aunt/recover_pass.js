@@ -6,7 +6,6 @@ $('#prev-auth').click(function () {
     $('#block-remind').fadeOut(200);
 });
 
-
 //забыл пароль
 $('#button-remind').click(function () {
 

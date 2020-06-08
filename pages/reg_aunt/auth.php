@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") //проверяем как обратились к файлу
 {
     include("../db_connect.php"); //подключение к бд 
@@ -21,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") //проверяем как обрат
     $pass   = sha1($pass); //шифруем пароль
     $pass   = strrev($pass); //переварачиваем пароль
     $pass   = "9nm2rv8q" . $pass . "2yotykytk6z";
-    // echo $pass; //ответ ajax 
+    //echo $pass; //ответ ajax 
 
     if ($_POST["rememberme"] == "yes") //если выбран чекбокс 
     {

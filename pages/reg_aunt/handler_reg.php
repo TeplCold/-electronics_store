@@ -68,7 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $pass   = sha1($pass); //шифруем пароль
       $pass   = strrev($pass); //переварачиваем пароль
       $pass   = "9nm2rv8q" . $pass . "2yotykytk6z";
-
       $ip = $_SERVER['REMOTE_ADDR'];
 
       mysqli_query($link, "	INSERT INTO users(login,pass,surname,name,patronymic,email,datetime,ip)
@@ -84,7 +83,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             '" . $ip . "'							
 						)");
       echo 'true';
-      // echo  $login;
-      // echo  $pass;
    }
 }

@@ -51,10 +51,6 @@ $(document).ready(function () {
         required: "Укажите пароль!",
         rangelength: "От 7 до 20 символов!"
       },
-      reg_pass2: {
-        required: "Повторите пароль!",
-        remote: "Пароли не совпадают!"
-      },
       reg_surname: {
         required: "Укажите фамилию!",
         rangelength: "От 3 до 20 символов!"
