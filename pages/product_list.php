@@ -1,4 +1,5 @@
-<?php include("db_connect.php");
+<?php
+include("db_connect.php");
 include("reg_aunt/functions.php");
 include("reg_aunt/auth_cooke.php");
 session_start();
@@ -41,12 +42,12 @@ switch ($sorting) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <!---------------------------------------------------------------------------->
 
     <link rel="stylesheet" type="text/css" href="../style/product_list/product_list.css">
-
-    <script type="text/javascript" src="../../javascript/jquery-3.4.1.js"></script>
-    <script defer type="text/javascript" src="../javascript/product_list.js"></script>
 
 </head>
 
@@ -147,8 +148,6 @@ switch ($sorting) {
     if ($page + 2 <= $total) $page2right = '<li class="page-item"><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . '&page=' . ($page + 2) . '">' . ($page + 2) . '</a></li>';
     if ($page + 1 <= $total) $page1right = '<li class="page-item"><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . '&page=' . ($page + 1) . '">' . ($page + 1) . '</a></li>';
 
-
-
     if ($page + 5 == $total) {
         $strtotal1 = '<li><a class="page-link" href="product_list.php?sort=' . $_GET["sort"] . '&page=' . $total . '">' . $total . '</a></li>';
     } elseif ($page + 4 < $total) {
@@ -179,8 +178,13 @@ switch ($sorting) {
     }
     ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <?php include("header_footer/footer.php") ?>
+
+    <script type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="../javascript/jquery-3.5.1.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <!-------------------------------------------------------------------------->
+    <script defer type="text/javascript" src="../javascript/product_list.js"></script>
 </body>
 
 </html>

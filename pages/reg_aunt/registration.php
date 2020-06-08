@@ -17,23 +17,10 @@ if ($_SESSION['auth'] != 'yes_auth') { //выводим эту страницу 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        <!--подключение bootstrap-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <!--подключение jquery-->
-        <script type="text/javascript" src="../../javascript/jquery-3.4.1.js"></script>
-        <script type="text/javascript" src="../../javascript/jquery.form.js"></script>
-        <!--подключение валидации-->
-        <script type="text/javascript" src="../../javascript/jquery.validate.js"></script>
-        <script type="text/javascript" src="../../javascript/reg_aunt/reg_validation.js"></script>
-        <!--подключение генерации пароля -->
-        <script defer type="text/javascript" src="../../javascript/reg_aunt/genpass.js"></script>
-        <!-- подключение авторизации -->
-        <script defer type="text/javascript" src="../../javascript/reg_aunt/view_pass.js"></script>
-        <script defer type="text/javascript" src="../../javascript/reg_aunt/aut.js"></script>
-        <script defer type="text/javascript" src="../../javascript/reg_aunt/recover_pass.js"></script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
 
-
-        <!-- подключение стилей -->
+        <!---------------------------------------------------------------------------->
         <link rel="stylesheet" type="text/css" href="../../style/reg_aunt/authentication.css">
 
     </head>
@@ -122,8 +109,22 @@ if ($_SESSION['auth'] != 'yes_auth') { //выводим эту страницу 
             </form>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <?php include("../header_footer/footer.php") ?>
+
+        <script type="text/javascript" src="../../javascript/jquery-3.4.1.js"></script>
+        <!-- <script type="text/javascript" src="../../javascript/jquery-3.5.1.js"></script> -->
+        <script src="../../bootstrap/js/bootstrap.min.js"></script>
+        <!-------------------------------------------------------------------------->
+        <script defer type="text/javascript" src="../../javascript/jquery.form.js"></script>
+        <!--подключение валидации-->
+        <script defer type="text/javascript" src="../../javascript/jquery.validate.js"></script>
+        <script defer type="text/javascript" src="../../javascript/reg_aunt/reg_validation.js"></script>
+        <!--подключение генерации пароля -->
+        <script defer type="text/javascript" src="../../javascript/reg_aunt/genpass.js"></script>
+        <!-- подключение авторизации -->
+        <script defer type="text/javascript" src="../../javascript/reg_aunt/view_pass.js"></script>
+        <script defer type="text/javascript" src="../../javascript/reg_aunt/aut.js"></script>
+        <script defer type="text/javascript" src="../../javascript/reg_aunt/recover_pass.js"></script>
 
     </body>
 

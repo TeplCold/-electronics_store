@@ -1,6 +1,4 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="../../style/header_footer/header_footer.css">
-
 <script defer type="text/javascript" src="../../javascript/header_footer.js"></script>
 <script defer type="text/javascript" src="../../javascript/cart.js"></script>
 

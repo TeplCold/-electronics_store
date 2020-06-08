@@ -20,6 +20,7 @@
     text-align: center;
     border: 2px solid rgb(15, 248, 6);
     float: left;
+    width: 190px;
     margin: 0px 15px;
     list-style-type: none;
 }
