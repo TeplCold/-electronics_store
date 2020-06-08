@@ -1,9 +1,4 @@
 <link rel="stylesheet" type="text/css" href="../../style/header_footer/header_footer.css">
-<script defer type="text/javascript" src="../../javascript/header_footer.js"></script>
-<script defer type="text/javascript" src="../../javascript/cart.js"></script>
-
-
-
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
