@@ -24,22 +24,74 @@ switch ($action) {
 }
 
 
-if (isset($_POST["submitdata"]) || isset($_POST["submitdata2"])) {
 
-    $_SESSION["order_delivery"] = $_POST["order_delivery"];
-    $_SESSION["order_fio"] = $_POST["order_fio"];
-    $_SESSION["order_name"] = $_POST["order_name"];
-    $_SESSION["order_patronymic"] = $_POST["order_patronymic"];
-    $_SESSION["order_email"] = $_POST["order_email"];
-    $_SESSION["order_phone"] = $_POST["order_phone"];
-    $_SESSION["order_address"] = $_POST["order_address"];
-    $_SESSION["order_note"] = $_POST["order_note"];
-    if (isset($_POST["submitdata"])) {
-        header("Location: cart.php?action=completion");
-    } elseif (isset($_POST["submitdata2"])) {
-        header("Location: cart.php?action=oneclick");
-    }
+if (isset($_POST["submitdata2"])) {
+    header("Location: cart.php?action=oneclick");
 }
+
+
+if (isset($_POST["submitdata"])) {
+
+    if ($_SESSION['auth'] == 'yes_auth') {
+        mysqli_query($link, "INSERT INTO orders(order_datetime,order_dostavka,order_fio,order_name,order_patronymic,order_address,order_phone,order_note,order_email)
+        VALUES(	
+            NOW(),
+            '" . $_POST["order_delivery"] . "',					
+			'" . $_SESSION['auth_surname'] . "',	
+            '" . $_SESSION['auth_name'] . "', 
+            '" . $_SESSION['auth_patronymic'] . "',
+            '" . $_SESSION['order_address'] . "',
+            '" . $_SESSION['order_phone'] . "',
+            '" . $_POST['order_note'] . "',
+            '" . $_SESSION['auth_email'] . "'                  
+            )");
+    } else {
+
+        $_SESSION["order_delivery"] = $_POST["order_delivery"];
+        $_SESSION["order_fio"] = $_POST["order_fio"];
+        $_SESSION["order_name"] = $_POST["order_name"];
+        $_SESSION["order_patronymic"] = $_POST["order_patronymic"];
+        $_SESSION["order_email"] = $_POST["order_email"];
+        $_SESSION["order_phone"] = $_POST["order_phone"];
+        $_SESSION["order_address"] = $_POST["order_address"];
+        $_SESSION["order_note"] = $_POST["order_note"];
+        if (isset($_POST["submitdata2"])) {
+            header("Location: cart.php?action=oneclick");
+        }
+
+        mysqli_query($link, "INSERT INTO orders(order_datetime,order_dostavka,order_fio,order_name,order_patronymic,order_address,order_phone,order_note,order_email)
+        VALUES(	
+        NOW(),
+        '" . clear_string($_POST["order_delivery"]) . "',					
+        '" . clear_string($_POST["order_fio"]) . "',
+        '" . clear_string($_POST["order_name"]) . "',
+        '" . clear_string($_POST["order_patronymic"]) . "',
+        '" . clear_string($_POST["order_address"]) . "',
+        '" . clear_string($_POST["order_phone"]) . "',
+        '" . clear_string($_POST["order_note"]) . "',
+        '" . clear_string($_POST["order_email"]) . "'                   
+        )");
+    }
+
+    $_SESSION["order_id"] = mysqli_insert_id($link);
+
+
+    $result = mysqli_query($link, "SELECT * FROM cart WHERE ip_users = '{$_SERVER['REMOTE_ADDR']}'");
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_array($result);
+        do {
+            mysqli_query($link, "INSERT INTO buy_products(buy_id_order,buy_id_product,buy_count_product)
+                    VALUES(	
+                        '" . $_SESSION["order_id"] . "',					
+                        '" . $row["id_products_cart"] . "',
+                        '" . $row["count_cart"] . "'                   
+                        )");
+        } while ($row = mysqli_fetch_array($result));
+    }
+    header("Location: cart.php?action=completion");
+}
+
+
 
 $result = mysqli_query($link, "SELECT * FROM cart,products WHERE cart.ip_users = '{$_SERVER['REMOTE_ADDR']}' AND products.id = cart.id_products_cart");
 
