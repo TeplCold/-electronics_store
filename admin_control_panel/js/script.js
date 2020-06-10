@@ -44,6 +44,29 @@ $(document).ready(function () {
         });
     });
 
+
+    $('.delete3').click(function () {
+
+        var rel = $(this).attr("rel");
+
+        $.confirm({
+            'message': 'После удаления восстановление будет невозможно!Вы уверенны что хотите удалить этого пользователя?',
+            'buttons': {
+                'Да': {
+                    'class': 'blue',
+                    'action': function () {
+                        location.href = rel;
+                    }
+                },
+                'Нет': {
+                    'class': 'gray',
+                    'action': function () {}
+                }
+            }
+        });
+
+    });
+
     var count_input = 1;
     //добавление
     $("#add-input").click(function () {
@@ -125,5 +148,11 @@ $(document).ready(function () {
                 }
             });
         }
+    });
+
+    $('.block-clients').click(function () {
+
+        $(this).find('ul').slideToggle(300);
+
     });
 });

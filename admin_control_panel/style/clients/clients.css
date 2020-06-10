@@ -1,0 +1,21 @@
+li {
+    list-style-type: none;
+}
+
+ul {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+
+#list-links-sort {
+    position: absolute;
+    display: none;
+}
+
+
+
+.block-clients>ul {
+    display: none;
+    margin-bottom: 15px;
+}
