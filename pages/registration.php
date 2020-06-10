@@ -131,6 +131,8 @@ if ($_SESSION['auth'] != 'yes_auth') { //выводим эту страницу 
 
     </html>
 
-<?php } else {
+<?php } elseif ($_SESSION['auth_login'] == 'admin') {
+    header(("Location: ../admin_control_panel/admin_control_panel.php"));
+} else {
     header(("Location: ../index.php"));
 } ?>

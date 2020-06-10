@@ -17,10 +17,15 @@
                 <p id="block-basket_header_prise"> <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/cart.php?action=oneclick"></a></p>
             </li>
 
-            <?php if (isset($_SESSION['auth_name'])) : ?>
+            <?php if (isset($_SESSION['auth_name']) != ($_SESSION['auth_login'] == 'admin')) : ?>
                 <div id="auth-user-info">
                     <p id="auth-user-info"> Вы - <?php echo $_SESSION['auth_name']; ?></p>
                 </div>
+
+            <?php elseif ($_SESSION['auth_login'] == 'admin') : ?>
+                <li class="nav-item  ">
+                    <p id="auth-user-info"> Вы - Администратор</p>
+                </li>
 
             <?php else : ?>
                 <li class="nav-item  ">
@@ -31,7 +36,13 @@
 
             <div id="block-user">
                 <ul>
-                    <li> <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>  /pages/profile.php"> Профиль</a></li>
+
+                    <?php if ($_SESSION['auth_login'] == 'admin') : ?>
+                        <li> <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>  /admin_control_panel/admin_control_panel.php"> Панель управления</a></li>
+                    <?php else : ?>
+                        <li> <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>  /pages/profile.php"> Профиль</a></li>
+                    <?php endif; ?>
+
                     <li>
                         <p id="logout">Выход</p>
                     </li>

@@ -1,0 +1,47 @@
+.card_image img {
+    width: 170px;
+    height: 170px;
+}
+
+#gallery-img {
+    display: flex;
+}
+
+
+.div-editor1,
+.div-editor2,
+.div-editor4 {
+    display: none;
+}
+
+li {
+    list-style-type: none;
+    /* Убираем маркеры */
+}
+
+ul {
+    margin-left: 0;
+    /* Отступ слева в браузере IE и Opera */
+    padding-left: 0;
+    /* Отступ слева в браузере Firefox, Safari, Chrome */
+}
+
+
+
+#baseimg a {
+    width: 16px;
+    height: 16px;
+    background: url(../../../assets/action_delete.png) no-repeat;
+    float: left;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+#gallery-img a {
+    width: 16px;
+    height: 16px;
+    background: url(../../../assets/action_delete.png) no-repeat;
+    float: right;
+    cursor: pointer;
+    margin-left: 5px;
+}

@@ -18,17 +18,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $good   = clear_string($_POST['good']);
     $good   = mysqli_real_escape_string($link, $good); //Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и Control-Z.
     $good   = mb_strtolower($good, 'UTF-8'); //Приведение строки к нижнему регистру
-    $good  = mb_convert_case($good, MB_CASE_TITLE, "UTF-8"); //Преобразует первый символ строки в верхний регистр
 
     $bad   = clear_string($_POST['bad']);
     $bad   = mysqli_real_escape_string($link, $bad); //Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и Control-Z.
     $bad   = mb_strtolower($bad, 'UTF-8'); //Приведение строки к нижнему регистру
-    $bad  = mb_convert_case($bad, MB_CASE_TITLE, "UTF-8"); //Преобразует первый символ строки в верхний регистр
 
     $comment   = clear_string($_POST['comment']);
     $comment   = mysqli_real_escape_string($link, $comment); //Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и Control-Z.
     $comment   = mb_strtolower($comment, 'UTF-8'); //Приведение строки к нижнему регистру
-    $comment  = mb_convert_case($comment, MB_CASE_TITLE, "UTF-8"); //Преобразует первый символ строки в верхний регистр
+
 
     mysqli_query($link, "INSERT INTO reviews_products(products_id,name,rating,good_reviews,bad_reviews,comment,date)
                             VALUES(						
