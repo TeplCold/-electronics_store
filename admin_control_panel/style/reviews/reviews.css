@@ -1,0 +1,41 @@
+li {
+    list-style-type: none;
+}
+
+ul {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+
+#list-links-sort {
+    position: absolute;
+    display: none;
+}
+
+.card_image img {
+    width: 170px;
+    height: 170px;
+}
+
+
+/* вывод рэйтинга */
+.rating-mini {
+    display: inline-block;
+    font-size: 0;
+}
+
+.rating-mini span {
+    padding: 0;
+    font-size: 20px;
+    line-height: 1;
+    color: lightgrey;
+}
+
+.rating-mini>span:before {
+    content: '★';
+}
+
+.rating-mini>span.active {
+    color: gold;
+}

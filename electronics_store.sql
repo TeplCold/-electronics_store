@@ -10,9 +10,7 @@ CREATE TABLE `brand` (
 CREATE TABLE `category` (
   `category_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `categorya` varchar(50) NOT NULL,
-  `subcategory` varchar(50) NOT NULL,
-  `brand_id` int NOT NULL,
-   FOREIGN KEY (`brand_id`) REFERENCES `brand` (`brand_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `subcategory` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `products` (
@@ -31,8 +29,7 @@ CREATE TABLE `products` (
   `votes` float NOT NULL,
   `count` int(11) NOT NULL DEFAULT '0',
   `visible` int(11) NOT NULL DEFAULT '1',
-  `category_id` int NOT NULL,
-   FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `category_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `image_products` (

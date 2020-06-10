@@ -23,21 +23,36 @@ $(document).ready(function () {
     });
 
 
+    $('.delete2').click(function () {
+
+        var rel = $(this).attr("rel");
+
+        $.confirm({
+            'message': 'После удаления восстановление будет невозможно!Вы уверенны что хотите удалить этот отзыв?',
+            'buttons': {
+                'Да': {
+                    'class': 'blue',
+                    'action': function () {
+                        location.href = rel;
+                    }
+                },
+                'Нет': {
+                    'class': 'gray',
+                    'action': function () {}
+                }
+            }
+        });
+    });
 
     var count_input = 1;
     //добавление
     $("#add-input").click(function () {
-
         count_input++;
-
         $('<div id="addimage' + count_input + '" class="addimage"><input type="hidden" name="MAX_FILE_SIZE" value="200000000"/><input type="file" name="galleryimg[]" /><a class="delete-input" rel="' + count_input + '" >Удалить</a></div>').fadeIn(300).appendTo('#objects'); //appendTo - вставить в #objects 
-
     });
     //удаление
     $('.delete-input').live('click', function () {
-
         var rel = $(this).attr("rel");
-
         $("#addimage" + rel).fadeOut(300, function () {
             $("#addimage" + rel).remove();
         });
@@ -72,5 +87,43 @@ $(document).ready(function () {
         });
     });
 
+    $('.delete-cat_category').click(function () {
+        var selectid = $("#cat_category option:selected").val();
+        if (!selectid) {
+            $("#cat_category").css("borderColor", "#F5A4A4");
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "actions/delete-category.php",
+                data: "id=" + selectid,
+                dataType: "html",
+                cache: false,
+                success: function (data) {
+                    if (data == "delete") {
+                        $("#cat_category option:selected").remove();
+                    }
+                }
+            });
+        }
+    });
 
+    $('.delete-cat_brand').click(function () {
+        var selectid = $("#cat_brand option:selected").val();
+        if (!selectid) {
+            $("#cat_brand").css("borderColor", "#F5A4A4");
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "actions/delete-brand.php",
+                data: "id=" + selectid,
+                dataType: "html",
+                cache: false,
+                success: function (data) {
+                    if (data == "delete") {
+                        $("#cat_brand option:selected").remove();
+                    }
+                }
+            });
+        }
+    });
 });

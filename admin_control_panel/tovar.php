@@ -59,9 +59,9 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
             <ul>
                 <li><a href="orders.php">Заказы</a><?php echo $count_str1; ?></li>
                 <li><a href="tovar.php">Товары</a></li>
-                <li><a href="clients.php">Клиенты</a></li>
+                <li><a href="clients.php">Клиенты/администраторы</a></li>
                 <li><a href="reviews.php">Отзывы</a><?php echo $count_str2; ?></li>
-                <li><a href="category.php">Категории</a></li>
+                <li><a href="category_brand.php">Категории/брэнды</a></li>
                 <li><a href="news.php">Новости</a></li>
             </ul>
         </div>
