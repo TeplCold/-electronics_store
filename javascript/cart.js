@@ -113,10 +113,9 @@ function loadcart() {
         success: function (data) {
 
             if (data == "0") {
-
                 $("#block-basket > a").html("Корзина пуста");
                 $("#block-basket_header_count > a").html("");
-                $("#block-basket_header_prise > a").html("");
+                $("#block-basket_header_prise > a").html("Корзина пуста");
             } else {
                 $("#block-basket > a").html(data.result1);
                 $("#block-basket_header_count > a").html(data.result2);

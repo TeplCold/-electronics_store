@@ -3,6 +3,74 @@
 @import url(home-tablet.css) (min-width: 768px) and (max-width: 1024px);
 @import url(home-mobile.css) (max-width: 768px); */
 
+
+.containerglavn {
+    background: url("../../assets/home/space-science-fiction.jpg");
+    background-size: cover;
+    height: 450px;
+    position: relative;
+}
+
+.SPASE_ELECTRONICS {
+    font-family: 'Regular';
+    font-size: 60px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    padding-top: 45px;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+}
+
+
+.inetshop {
+    font-family: 'Underdog', cursive;
+    font-size: 45px;
+    color: white;
+    text-align: center;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+}
+
+.glavnplus {
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    padding: 0 240px;
+}
+
+.join {
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    padding: 0 240px;
+}
+
+
+
+#block-basket {
+    position: absolute;
+    font-size: 20px;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    bottom: 0;
+    right: 0;
+    margin-bottom: 10px;
+    margin-right: 20px;
+}
+
+#block-basket a {
+    color: white;
+}
+
+
+
+
+
+
 #options-list {
     display: flex;
     list-style-type: none;
@@ -32,35 +100,145 @@
 
 
 
-.container_cards {
-    border: 2px solid rgb(255, 0, 0);
+/* блок с карточками */
+.col-xl-auto,
+.col-lg-auto,
+.col-md-3,
+.col-auto {
+    position: relative;
+    width: 100% !important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+.cards {
     overflow: hidden;
-    justify-content: center;
-    display: flex;
+    text-align: center;
 }
 
 .cards>li {
-    width: 180px;
     text-align: center;
-    border: 2px solid rgb(15, 248, 6);
-    float: left;
+    width: 240px;
     margin: 0px 15px;
     list-style-type: none;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 5px solid #323232;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.count_otzv {
+    position: absolute;
+    text-align: right !important;
+    color: #000;
+    font-size: 20px;
+    width: 100%;
+    padding-right: 8px;
+}
+
+.count img {
+    width: 30px;
+    margin-right: 5px;
+}
+
+
+/* картинки товара */
+
+.card_image {
+    width: 205px;
+    height: 205px;
+    background: white;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.blockimage {
+    height: 245px;
 }
 
 .card_image img {
-    width: 170px;
-    height: 170px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    max-height: 100%;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+
+}
+
+.tow_title {
+    background: #2a2a2a;
+    background: rgba(0, 0, 0);
+    opacity: 100;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: -50px;
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.tow_title a {
+    color: white;
+}
+
+
+.rating {
+    width: 100%;
+    display: flex;
+    color: black;
+    justify-content: center;
+    margin-top: 2px;
+    margin-bottom: 5px;
+
+}
+
+.otzv img {
+    width: 20px;
+    margin-right: 5px;
+    margin-left: 15px;
+}
+
+
+.card_price {
+    border: 1px solid black;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: black;
+}
+
+.price {
+    font-size: 25px;
+    margin-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+
+.add-card img {
+    width: 55px;
+    margin-left: 35px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 
 
 
-
-
-
-.container_pagination {
-    border: 2px solid rgb(255, 0, 0);
+/* постраничная навигация */
+.pagination {
     justify-content: center;
-    display: flex;
 }

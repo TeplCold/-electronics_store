@@ -2,12 +2,52 @@
 @import url(style-tablet.css) (min-width: 769px) and (max-width: 1023px);
 @import url(style-mobile.css) (max-width: 768px);
 
-#body {
-    /* вы можете ставить любую высоту и ширину блока */
-    width: 100%;
-    height: 1500px;
-    background-image: url(../assets/fon.jpg);
+@font-face {
+    font-family: Regular;
+    /* Имя шрифта */
+    src: url(../fonts/Snap\ ITC\ Regular.ttf);
+    /* Путь к файлу со шрифтом */
 }
+
+.bg-dark {
+    background-color: #000000 !important;
+}
+
+
+.container-fluid {
+    padding: 0px !important;
+}
+
+
+
+body {
+    /* вы можете ставить любую высоту и ширину блока */
+    background-image: url(../assets/fon.jpg);
+    height: 1500px;
+}
+
+
+.scrollup {
+    width: 40px;
+    height: 40px;
+    opacity: 0.3;
+    position: fixed;
+    bottom: 50px;
+    right: 100px;
+    display: none;
+    text-indent: -9999px;
+    background: url('../assets/icon_top.png') no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 /* рэйтинг */
@@ -65,11 +105,12 @@
 .rating-mini {
     display: inline-block;
     font-size: 0;
+    margin-top: -3.5px;
 }
 
 .rating-mini span {
     padding: 0;
-    font-size: 20px;
+    font-size: 30px;
     line-height: 1;
     color: lightgrey;
 }

@@ -2,6 +2,7 @@
 include("db_connect.php");
 include("reg_aunt/functions.php");
 include("reg_aunt/auth_cooke.php");
+include("group_numerals.php");
 session_start();
 
 $sorting = '';
@@ -51,9 +52,17 @@ switch ($sorting) {
 </head>
 
 
-<body id="particles-js">
+<body>
 
     <?php include("header_footer/header.php") ?>
+
+    <div class="containerglavn">
+        <div class="SPASE_ELECTRONICS"> SPASE ELECTRONICS</div>
+        <div class="inetshop"> Интернет магазин</div>
+        <div class="glavnplus"> SPASE ELECTRONICS - Игровой торрент портал для настоящих PRO геймеров, это молодой, но успешно развивающийся игровой торрент портал. На нашем сайте, пользователям предоставляется возможность скачать игру без регистрации и каких либо ограничений, также на сайте представленны статьи, анонсы, гайды и многое другое.</div>
+        <div class="join"> Приятных покупок!</div>
+        <p id="block-basket"> <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/cart.php?action=oneclick"></a></p>
+    </div>
 
     <ul id="options-list">
         Сортировать:
@@ -68,65 +77,124 @@ switch ($sorting) {
         </li>
     </ul>
 
-    <div class="container_cards container-fluid">
-        <ul class="cards">
-            <?php
+    <div class="container text-white ">
 
-            $num = 5; //вывод товара 
-            $page = (int) $_GET['page']; //значение страници              
+        <div class="row justify-content-center">
 
-            $count = mysqli_query($link, "SELECT COUNT(*) FROM products WHERE visible = '1'");
-            $temp = mysqli_fetch_array($count);
 
-            if ($temp[0] > 0) {
-                $tempcount = $temp[0];
+            <div class="col-xl-auto col-lg-auto col-md-3 col-auto">
 
-                // находим общее число страниц 
-                $total = (($tempcount - 1) / $num) + 1;
-                $total =  intval($total);
-                $page = intval($page);
+                <ul class="cards">
+                    <?php
+                    $num = 16; //вывод товара 
+                    $page = (int) $_GET['page']; //значение страници              
 
-                if (empty($page) or $page < 0) {
-                    $page = 1;
-                }
-                if ($page > $total) {
-                    $page = $total;
-                }
-                // вычисляем с какого номера начинать следует выводить товар
-                $start = $page * $num - $num;
-                $qury_start_num = " LIMIT $start, $num";
-            }
+                    $count = mysqli_query($link, "SELECT COUNT(*) FROM products WHERE visible = '1'");
+                    $temp = mysqli_fetch_array($count);
 
-            $result = mysqli_query($link, "SELECT * FROM products WHERE visible='1' ORDER BY $sorting $qury_start_num ");
+                    if ($temp[0] > 0) {
+                        $tempcount = $temp[0];
 
-            if (mysqli_num_rows($result) > 0) {
-                $row = mysqli_fetch_array($result);
-                do {
-                    if ($row["image"] != "" && file_exists("../assets/products/" . $row["image"])) {
-                        $img_path = '../assets/products/' . $row["image"]; //фото есть 
-                    } else {
-                        $img_path = "../assets/products/no_photo.jpg"; //фото нету
+                        // находим общее число страниц 
+                        $total = (($tempcount - 1) / $num) + 1;
+                        $total =  intval($total);
+                        $page = intval($page);
+
+                        if (empty($page) or $page < 0) {
+                            $page = 1;
+                        }
+                        if ($page > $total) {
+                            $page = $total;
+                        }
+                        // вычисляем с какого номера начинать следует выводить товар
+                        $start = $page * $num - $num;
+                        $qury_start_num = " LIMIT $start, $num";
                     }
-                    echo ('
 
+                    $result = mysqli_query($link, "SELECT * FROM products WHERE visible='1' ORDER BY $sorting $qury_start_num ");
+
+                    if (mysqli_num_rows($result) > 0) {
+                        $row = mysqli_fetch_array($result);
+                        do {
+                            if ($row["image"] != "" && file_exists("../assets/products/" . $row["image"])) {
+                                $img_path = '../assets/products/' . $row["image"]; //фото есть 
+                            } else {
+                                $img_path = "../assets/products/no_photo.jpg"; //фото нету
+                            }
+
+                            $query_reviews = mysqli_query($link, "SELECT * FROM reviews_products WHERE products_id='{$row['id']}' AND moderat='1'");
+                            $row_reviews = mysqli_fetch_array($query_reviews);
+                            $rating = round($row_reviews['rating'] / $query_reviews);
+                            $a = mysqli_num_rows($query_reviews);
+
+                            echo (' 
                         <li>
-                        <div class = "card_image">
-                        <img src="' . $img_path . '" /> 
+
+                        <div class="count_otzv">
+                            <div class="count"> <img src="../assets/64875.png" />' . $row["count"] . ' </div>
                         </div>
-                        
-                        <div> ' . $row["title"] . ' </div>
-                        
-                        <div>' . $row["price"] . '₽ </div>
-                        
+                      
+
+
+                            <a href="/pages/content.php?id=' . $row["id"] . '">
+                            
+
+
+                         <div class = "blockimage">
+                                <div class = "card_image"> <img src="' . $img_path . '" /> </div>
+                            </div>
+
+
+                             <div class="down_card">
+                              <div class="tow_title"> <a>' . $row["title"] . '</a> </div> 
+                                ');
+                    ?>
+
+                            <div class="rating">
+                                <div class="rating-mini">
+                                    <span class="<?php if ($rating >= 1) echo 'active'; ?>"></span>
+                                    <span class="<?php if ($rating >= 2) echo 'active'; ?>"></span>
+                                    <span class="<?php if ($rating >= 3) echo 'active'; ?>"></span>
+                                    <span class="<?php if ($rating >= 4) echo 'active'; ?>"></span>
+                                    <span class="<?php if ($rating >= 5) echo 'active'; ?>"></span>
+                                </div>
+
+
+                        <?php
+                            echo ('  
+                                <div class="otzv"> <img src="../assets/sms.png" />' .  $a . ' </div>
+                            </div>
+                     
+                            </a>
+
+                            <div class="card_price">
+                                <div class="price">' . group_numerals($row["price"]) . '₽ </div>
+                                 <div class="add-card"  tid="' . $row["id"] . '" > <img src="../assets/_9610-12+.png" /></div>
+                            </div>
+                            </div>
                         </li>
-               
-                   
                         ');
-                } while ($row = mysqli_fetch_array($result));
-            }
-            ?>
-        </ul>
+                        } while ($row = mysqli_fetch_array($result));
+                    }
+                        ?>
+                </ul>
+
+            </div>
+
+        </div>
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
     <?php
 
     if ($page != 1) {
@@ -186,6 +254,8 @@ switch ($sorting) {
 
     <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
     <script defer src="../bootstrap/js/bootstrap.min.js"></script>
+    <script defer type="text/javascript" src="../javascript/scrollup.js"></script>
+    <a href="#" class="scrollup">Наверх</a>
 
 </body>
 

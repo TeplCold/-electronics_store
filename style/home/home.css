@@ -2,34 +2,262 @@
 @import url(home-desktop.css) (min-width: 1024px);
 @import url(home-tablet.css) (min-width: 768px) and (max-width: 1024px);
 @import url(home-mobile.css) (max-width: 768px);
+@import url('https://fonts.googleapis.com/css2?family=Underdog&display=swap');
 
 
-.container_cards {
-    border: 2px solid rgb(200, 0, 255);
-    overflow: hidden;
+.containerglavn {
+    background: url("../../assets/home/Planets_Stones_Surface_of_planets_Mass_Effect_558772_2560x1440.jpg");
+    background-size: cover;
+    height: auto;
+    position: relative;
 }
 
-.section_name {
-    color: rgb(228, 24, 24);
-    font-size: 25px;
+.blockglavn {
+    background: rgb(0, 0, 0, 0.6);
+    height: 100%;
+}
+
+.SPASE_ELECTRONICS {
+    font-family: 'Regular';
+    font-size: 60px;
     text-align: center;
-    border: 2px solid rgb(0, 4, 237);
+    color: rgb(255, 255, 255);
+    padding-top: 25px;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+}
+
+.inetshop {
+    font-family: 'Underdog', cursive;
+    font-size: 45px;
+    color: white;
+    text-align: center;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+}
+
+.glavnplus {
+    font-family: 'Underdog', cursive;
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    padding: 0 280px;
+    font-weight: 100;
+}
+
+.join {
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    padding: 0 240px;
+    font-family: 'Underdog', cursive;
+    padding-bottom: 21px;
+}
+
+.recomend {
+    background: url("../../assets/home/space-science-fiction.png");
+    background-size: cover;
+    height: 500px;
+}
+
+.downheader {
+    background: url("../../assets/home/320391-blackangel.jpg");
+    background-size: cover;
+    height: 500px;
+}
+
+.block-basket {
+    background: rgb(132, 132, 132);
+    bottom: 0;
+    right: 0;
+    text-align: right;
+    width: 100%;
+}
+
+#block-basket {
+    margin-bottom: 5px;
+    margin-right: 20px;
+    font-size: 20px;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+}
+
+#block-basket a {
+    color: white;
+}
+
+/* название с блоком */
+.boxes {
+    font-family: 'Underdog', cursive;
+    font-size: 45px;
+    color: white;
+    text-align: center;
+    font-weight: 900px;
+    -webkit-text-stroke-width: 1.2px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+}
+
+/* блок с карточками */
+.col-xl-auto,
+.col-lg-auto,
+.col-md-3,
+.col-auto {
+    position: relative;
+    width: 100% !important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+.cards {
+    text-align: center;
 }
 
 .cards>li {
     text-align: center;
-    border: 2px solid rgb(15, 248, 6);
-    float: left;
-    width: 190px;
+    width: 240px;
     margin: 0px 15px;
     list-style-type: none;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 5px solid #323232;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.count_otzv {
+    position: absolute;
+    text-align: right !important;
+    color: #000;
+    font-size: 20px;
+    width: 100%;
+    padding-right: 8px;
+}
+
+.count img {
+    width: 30px;
+    margin-right: 5px;
+}
+
+
+/* картинки товара */
+.card_image {
+    width: 205px;
+    height: 205px;
+    background: white;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.blockimage {
+    height: 245px;
 }
 
 .card_image img {
-    width: 170px;
-    height: 170px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    max-height: 100%;
+    max-width: 100%;
+    display: block;
+    margin: auto;
 }
 
-.add-card {
-    border: 2px solid rgb(255, 0, 0);
+.tow_title {
+    background: rgba(0, 0, 0);
+    margin-top: -50px;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.rating {
+    display: flex;
+    color: black;
+    justify-content: center;
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
+
+.otzv img {
+    width: 20px;
+    margin-right: 5px;
+    margin-left: 15px;
+}
+
+.card_price {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background: black;
+}
+
+.price {
+    font-size: 25px;
+    margin-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.add-card img {
+    width: 55px;
+    margin-left: 35px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
+
+/* обзоры */
+.cardsobzor {
+    border: solid red;
+    height: 450px;
+    position: relative;
+    text-align: center;
+}
+
+.contoxor {
+    display: inline-block;
+    width: 500px;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 30px 30px 0px 0px;
+    overflow: hidden;
+}
+
+.contoxor iframe {
+    width: 501px;
+    height: 250px;
+}
+
+.pereiti {
+    border: solid rgb(168, 168, 168);
+    border-width: 3px 0px 0px 0px;
+    width: 390px;
+    margin: 15px auto;
+    color: rgb(226, 226, 226);
+}
+
+.titlevideo {
+    height: 45px;
+    line-height: 35px;
+    font-weight: 600px;
+    font-size: 25px;
+}
+
+.containervidname {
+    background: black;
+    border-radius: 0px 0px 30px 30px;
 }

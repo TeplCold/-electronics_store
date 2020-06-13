@@ -1,3 +1,212 @@
+@import url(../style.css);
+@import url(header_footer-desktop.css) (min-width: 1024px);
+@import url(header_footer-tablet.css) (min-width: 768px) and (max-width: 1024px);
+@import url(header_footer-mobile.css) (max-width: 768px);
+
+li {
+    list-style-type: none;
+}
+
+ul,
+p,
+.nav-link {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item a {
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbar {
+    padding: 8px;
+}
+
+.glavnimg img {
+    width: 160px;
+}
+
+.blockcat-reg {
+    margin-right: 5px;
+}
+
+.blockcat-reg div {
+    display: inline-block;
+    text-align: center;
+}
+
+.form-reg img {
+    width: 78px;
+}
+
+.block-basket_header_count img {
+    width: 70px;
+}
+
+.form-reg,
+.form-reg a,
+#block-basket_header_count a,
+#block-basket_header_prise a {
+    color: rgb(206, 206, 206);
+}
+
+.block-basket_header_count {
+    margin-right: 25px;
+}
+
+.form-reg a {
+    font-size: 12px;
+}
+
+#block-basket_header_prise {
+    font-size: 12px;
+    background-color: black;
+    margin-left: 13px;
+    width: 90px;
+}
+
+#block-basket_header_count {
+    position: absolute;
+    border-radius: 40px;
+    background-color: rgb(255, 0, 0);
+    width: 18px;
+    font-size: 12px;
+}
+
+.countcat #block-basket_header_count {
+    float: right !important;
+    position: absolute;
+    margin-left: 75px;
+}
+
+
+
+
+.form-cat {
+    text-align: center;
+}
+
+.headlinks {
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    margin-left: 20px;
+}
+
+.headlinks a {
+    font-size: 26px;
+    color: white;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.linkhead {
+    font-family: 'Underdog', cursive;
+}
+
+
+/* форма поиска */
+#block-search {
+    margin-right: 70px;
+}
+
+/* Стили поля ввода текста */
+.form-wrapper input {
+    width: 270px;
+    height: 20px;
+    padding: 10px 5px;
+    float: left;
+    font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    border: 0;
+    background: #eee;
+    border-radius: 5px 0 0 5px;
+    height: 40px;
+}
+
+.form-wrapper input:focus {
+    outline: 0;
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .8) inset;
+}
+
+.form-wrapper input::-webkit-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.form-wrapper input:-moz-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.form-wrapper input:-ms-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* Кнопка отправки формы */
+.form-wrapper button {
+    overflow: visible;
+    position: relative;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    font: bold 15px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    color: #fff;
+    text-transform: uppercase;
+    background: #77e1ffc3;
+    border-radius: 0 5px 5px 0;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+    position: absolute;
+}
+
+.form-wrapper button:before {
+    /* стрелка влево */
+    content: '';
+    position: absolute;
+    border-width: 8px 8px 8px 0;
+    border-style: solid solid solid none;
+    border-color: transparent #009ac5c3 transparent;
+    top: 12px;
+    left: -8px;
+}
+
+.form-wrapper button:hover:before {
+    border-right-color: #77e1ffc3;
+}
+
+.form-wrapper button:focus:before,
+.form-wrapper button:active:before {
+    border-right-color: #77e1ffc3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #block-user {
     border: 1px solid rgb(243, 0, 0);
     width: 200px;
@@ -6,14 +215,4 @@
     z-index: 7;
     background-color: black;
     display: none;
-}
-
-.nav-item p {
-    margin: 0px;
-
-}
-
-.nav-item a {
-    margin: 0px;
-    padding: 0px;
 }
