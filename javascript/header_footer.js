@@ -1,11 +1,20 @@
-$('#auth-user-info').toggle(
-    function () {
-        $("#block-user").fadeIn(200);
-    },
-    function () {
-        $("#block-user").fadeOut(200);
+$('#auth-user-info').click(function (e) {
+    var $message = $('#block-user');
+
+    if ($message.css('display') != 'block') {
+        $message.show();
+
+        var firstClick = true;
+        $(document).bind('click.myEvent', function (e) {
+            if (!firstClick && $(e.target).closest('#block-user').length == 0) {
+                $message.hide();
+                $(document).unbind('click.myEvent');
+            }
+            firstClick = false;
+        });
     }
-);
+    e.preventDefault();
+});
 
 $('#logout').click(function () {
     $.ajax({

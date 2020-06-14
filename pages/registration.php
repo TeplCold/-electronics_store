@@ -27,87 +27,97 @@ if ($_SESSION['auth'] != 'yes_auth') { //выводим эту страницу 
     </head>
 
     <body>
+        <div class="fon">
+            <?php include("header_footer/header.php") ?>
 
-        <?php include("header_footer/header.php") ?>
-
-        <!-- Аторизация  -->
-        <div id="block-body">
-            <?php
-            if ($_SESSION['auth'] == 'yes_auth') {
-                echo 'Вы успешно вошли под учетной записью - ' . $_SESSION['auth_name'];
-            }
-            ?>
-            <div id="block-top-auth">
-                <form method="post">
-                    <div id="imput-email-pass">
-                        <p id="message-auth">Неверный логин или пароль</p>
-                        <div><input type="text" name="auth_login" id="auth_login" placeholder="Логин или Email" /> </div>
-                        <div>
-                            <input type="password" name="auth_pass" id="auth_pass" placeholder="Пароль">
-                            <span id="button-pass-show-hide" class="pass-show"></span>
-                        </div>
-                        <div id="list-auth">
-                            <div><input type="checkbox" name="rememberme" id="rememberme"><label for="rememberme">Запомнить меня</label> </div>
-                            <div><a id="remindpass" href="#">Забыли пароль?</a></div>
-                        </div>
-                        <div id="button-auth"><a>Вход</a></div>
-                        <div class="auth-loading"><img src="../assets/reg_aunt/loading.gif"></div>
-                    </div>
-                </form>
-
-                <div id="block-remind">
-                    <h3>Востановление пароля</h3>
-                    <p id="message-remind" class="message-remind-success"></p>
-                    <input type="text" id="remind-email" placeholder="Ваш E-mail" />
-                    <p id="button-remind"><a>Готово</a></p>
-                    <p class="auth-loading"><img src="../assets/reg_aunt/loading.gif"></p>
-                    <p id="prev-auth">Назад</p>
+            <div class="containerglavn">
+                <div class="blockglavn">
+                    <div class="SPASE_ELECTRONICS"> SPASE ELECTRONICS</div>
+                    <div class="inetshop"> Интернет магазин</div>
+                    <div class="glavnplus"> SPASE ELECTRONICS - небольшой, но динамично развивающийся интернет-магазин. Это позволяет нам более внимательно относиться к потребностям и желаниям наших покупателей. Индивидуальный подход, подробные консультации, широкий ассортимент электроники, цифровой и бытовой техники. Ассортимент постоянно расширяется. Интернет-магазин SPASE ELECTRONICS - это возможность сделать покупки оптом и в розницу.</div>
+                    <div class="join"> Приятных покупок!</div>
                 </div>
             </div>
-        </div>
 
-        <!-- Регистрация -->
-        <div id="block-content">
-            <form method="post" id="form_reg" action="reg_aunt/handler_reg.php">
-                <p id="reg_message"></p>
-                <div id="block-form-registration">
-                    <div id="form-registration">
-
-                        <div>
-                            <label>Логин</label>
-                            <input type="text" name="reg_login" id="reg_login" />
+            <!-- Аторизация  -->
+            <div id="block-body">
+                <?php
+                if ($_SESSION['auth'] == 'yes_auth') {
+                    echo 'Вы успешно вошли под учетной записью - ' . $_SESSION['auth_name'];
+                }
+                ?>
+                <div id="block-top-auth">
+                    <form method="post">
+                        <div id="imput-email-pass">
+                            <p id="message-auth">Неверный логин или пароль</p>
+                            <div><input type="text" name="auth_login" id="auth_login" placeholder="Логин или Email" /> </div>
+                            <div>
+                                <input type="password" name="auth_pass" id="auth_pass" placeholder="Пароль">
+                                <span id="button-pass-show-hide" class="pass-show"></span>
+                            </div>
+                            <div id="list-auth">
+                                <div><input type="checkbox" name="rememberme" id="rememberme"><label for="rememberme">Запомнить меня</label> </div>
+                                <div><a id="remindpass" href="#">Забыли пароль?</a></div>
+                            </div>
+                            <div id="button-auth"><a>Вход</a></div>
+                            <div class="auth-loading"><img src="../assets/reg_aunt/loading.gif"></div>
                         </div>
+                    </form>
 
-                        <div>
-                            <label>Пароль</label>
-                            <input type="text" name="reg_pass" id="reg_pass" />
-                            <span id="genpass">Сгенерировать</span>
-                        </div>
-
-                        <div>
-                            <label>Фамилия</label>
-                            <input type="text" name="reg_surname" id="reg_surname" />
-                        </div>
-
-                        <div>
-                            <label>Имя</label>
-                            <input type="text" name="reg_name" id="reg_name" />
-                        </div>
-
-                        <div>
-                            <label>Отчество</label>
-                            <input type="text" name="reg_patronymic" id="reg_patronymic" />
-                        </div>
-
-                        <div>
-                            <label>E-mail</label>
-                            <input type="text" name="reg_email" id="reg_email" />
-                        </div>
-
+                    <div id="block-remind">
+                        <h3>Востановление пароля</h3>
+                        <p id="message-remind" class="message-remind-success"></p>
+                        <input type="text" id="remind-email" placeholder="Ваш E-mail" />
+                        <p id="button-remind"><a>Готово</a></p>
+                        <p class="auth-loading"><img src="../assets/reg_aunt/loading.gif"></p>
+                        <p id="prev-auth">Назад</p>
                     </div>
                 </div>
-                <input type="submit" name="reg_submit" id="form_submit" value="Зарегистрироваться" />
-            </form>
+            </div>
+
+            <!-- Регистрация -->
+            <div id="block-content">
+                <form method="post" id="form_reg" action="reg_aunt/handler_reg.php">
+                    <p id="reg_message"></p>
+                    <div id="block-form-registration">
+                        <div id="form-registration">
+
+                            <div>
+                                <label>Логин</label>
+                                <input type="text" name="reg_login" id="reg_login" />
+                            </div>
+
+                            <div>
+                                <label>Пароль</label>
+                                <input type="text" name="reg_pass" id="reg_pass" />
+                                <span id="genpass">Сгенерировать</span>
+                            </div>
+
+                            <div>
+                                <label>Фамилия</label>
+                                <input type="text" name="reg_surname" id="reg_surname" />
+                            </div>
+
+                            <div>
+                                <label>Имя</label>
+                                <input type="text" name="reg_name" id="reg_name" />
+                            </div>
+
+                            <div>
+                                <label>Отчество</label>
+                                <input type="text" name="reg_patronymic" id="reg_patronymic" />
+                            </div>
+
+                            <div>
+                                <label>E-mail</label>
+                                <input type="text" name="reg_email" id="reg_email" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <input type="submit" name="reg_submit" id="form_submit" value="Зарегистрироваться" />
+                </form>
+            </div>
         </div>
 
         <?php include("header_footer/footer.php") ?>

@@ -59,6 +59,10 @@ p,
     font-size: 12px;
 }
 
+.form-reg p {
+    font-size: 12px;
+}
+
 #block-basket_header_prise {
     font-size: 12px;
     background-color: black;
@@ -80,8 +84,9 @@ p,
     margin-left: 75px;
 }
 
-
-
+#block-basket a {
+    padding: 2px;
+}
 
 .form-cat {
     text-align: center;
@@ -106,7 +111,6 @@ p,
 .linkhead {
     font-family: 'Underdog', cursive;
 }
-
 
 /* форма поиска */
 #block-search {
@@ -188,31 +192,158 @@ p,
     border-right-color: #77e1ffc3;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #block-user {
-    border: 1px solid rgb(243, 0, 0);
-    width: 200px;
-    height: 60px;
+    width: auto;
+    height: auto;
     position: absolute;
-    z-index: 7;
     background-color: black;
+    right: 0;
+    text-align: center;
+    color: white;
+    z-index: 2;
     display: none;
+    padding-left: 23px;
+    padding-right: 23px;
+    font-size: 12px;
+}
+
+#block-user a {
+    color: white;
+}
+
+/* подвал */
+
+#block-content_footer {
+    background: rgb(7, 7, 7);
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.block-content_footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.containerzagolovokcontacts {
+    text-align: center;
+}
+
+.footerimg img {
+    width: 225px;
+    height: 100px;
+    margin-top: 10px;
+    margin-right: 10px;
+
+}
+
+.social_network_img {
+    width: 42px;
+    margin: 5px;
+}
+
+.obrfrrdback {
+    color: rgb(255, 255, 255);
+}
+
+.razdel {
+    color: white;
+}
+
+.razdel a {
+    color: white;
+    font-size: 21px;
+    margin-top: 7px;
+}
+
+.containerrazdelmargin {
+    margin-top: 6px;
+    padding-bottom: 5px;
+}
+
+.contacts {
+    color: white;
+}
+
+.prava {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    padding: 9px;
+    text-align: center;
+}
+
+.zagolovokfooter {
+    font-size: 30px;
+}
+
+.zagolovokcontactssocial {
+    font-size: 19px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+
+}
+
+.zagolovokcontacts {
+    margin-top: 7px;
+    font-size: 21px;
+    color: rgb(255, 255, 255);
+}
+
+.contentcontacts {
+    font-size: 15px;
+    margin-top: 2px;
+}
+
+.right {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.feed_text {
+    width: 280px;
+    resize: none;
+    margin-top: 8px;
+    height: 80px;
+}
+
+.feed_name {
+    width: 280px;
+    margin-top: 8px;
+    height: 35px;
+}
+
+.feed_email {
+    width: 280px;
+    margin-top: 8px;
+    height: 35px;
+}
+
+#form_submit {
+    border: none;
+    border-top: 1px solid rgb(255, 255, 255);
+    background: rgb(7, 7, 7);
+    color: white;
+    text-align: center;
+    width: 220px;
+}
+
+.form_submit {
+    padding-top: 8px;
+    text-align: center;
+}
+
+#form-success {
+    width: 100%;
+    background: rgb(55, 255, 0);
+    color: white;
+    text-align: center;
+}
+
+#form-error {
+    width: 100%;
+    background: rgb(255, 0, 0);
+    color: white;
+    text-align: center;
 }

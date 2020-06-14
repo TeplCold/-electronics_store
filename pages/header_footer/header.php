@@ -46,7 +46,7 @@
             <?php if (isset($_SESSION['auth_name']) != ($_SESSION['auth_login'] == 'admin')) : ?>
                 <div class="form-reg" id="auth-user-info">
                     <img src="../../assets/fly_123847-1.png" />
-                    <p id="auth-user-info"> <?php echo $_SESSION['auth_name']; ?></p>
+                    <p> <?php echo $_SESSION['auth_name']; ?></p>
                 </div>
             <?php elseif ($_SESSION['auth_login'] == 'admin') : ?>
                 <div class="form-reg" id="auth-user-info">
@@ -55,35 +55,20 @@
                 </div>
             <?php else : ?>
                 <div class="form-reg">
-                    <img src="../../assets/fly_123847-1.png" />
-                    <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/registration.php">Вход|Регистрация</a>
+
+                    <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/registration.php"> <img src="../../assets/fly_123847-1.png" /><br>Вход|Регистрация</a>
                 </div>
             <?php endif; ?>
         </div>
     </div>
-
-
-
-
-
-
-
-
-    <div id="block-user">
-        <ul>
-            <?php if ($_SESSION['auth_login'] == 'admin') : ?>
-                <li> <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>  /admin_control_panel/admin_control_panel.php"> Панель управления</a></li>
-            <?php else : ?>
-                <li> <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>  /pages/profile.php"> Профиль </a></li>
-            <?php endif; ?>
-
-            <li>
-                <p id="logout">Выход</p>
-            </li>
-        </ul>
-    </div>
-
-    </div>
-
-
 </nav>
+<div id="block-user">
+    <ul>
+        <?php if ($_SESSION['auth_login'] == 'admin') : ?>
+            <li class="ad"> <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>  /admin_control_panel/admin_control_panel.php">Панель <br>управления</a></li>
+        <?php else : ?>
+            <li class="us"> <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>  /pages/profile.php"> Профиль </a></li>
+        <?php endif; ?>
+        <p id="logout">Выход</p>
+    </ul>
+</div>

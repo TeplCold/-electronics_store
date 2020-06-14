@@ -4,26 +4,35 @@
 @import url(home-mobile.css) (max-width: 768px); */
 
 
+.fon {
+    background-color: rgb(0, 0, 0, 0.3);
+}
+
 .containerglavn {
-    background: url("../../assets/home/space-science-fiction.jpg");
+    background: url("../../assets/home/Planets_Stones_Surface_of_planets_Mass_Effect_558772_2560x1440.jpg");
     background-size: cover;
-    height: 450px;
+    height: auto;
     position: relative;
 }
 
+.blockglavn {
+    background: rgb(0, 0, 0, 0.4);
+    height: 100%;
+}
+
+
 .SPASE_ELECTRONICS {
-    font-family: 'Regular';
+    font-family: "Regular";
     font-size: 60px;
     text-align: center;
     color: rgb(255, 255, 255);
-    padding-top: 45px;
+    padding-top: 25px;
     -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: rgb(0, 0, 0);
 }
 
-
 .inetshop {
-    font-family: 'Underdog', cursive;
+    font-family: "Underdog", cursive;
     font-size: 45px;
     color: white;
     text-align: center;
@@ -32,34 +41,53 @@
 }
 
 .glavnplus {
-    font-size: 20px;
+    font-family: "Underdog", cursive;
+    font-size: 22px;
     color: white;
     text-align: center;
-    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 0.5px;
     -webkit-text-stroke-color: rgb(0, 0, 0);
-    padding: 0 240px;
+    padding: 0 280px;
+    font-weight: 100;
 }
 
 .join {
     font-size: 24px;
     color: white;
     text-align: center;
-    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 0.5px;
     -webkit-text-stroke-color: rgb(0, 0, 0);
     padding: 0 240px;
+    font-family: "Underdog", cursive;
+    padding-bottom: 21px;
 }
 
+.recomend {
+    background: url("../../assets/home/space-science-fiction.png");
+    background-size: cover;
+    height: 500px;
+}
 
+.downheader {
+    background: url("../../assets/home/320391-blackangel.jpg");
+    background-size: cover;
+    height: 500px;
+}
 
-#block-basket {
-    position: absolute;
-    font-size: 20px;
-    -webkit-text-stroke-width: 3px;
-    -webkit-text-stroke-color: rgb(0, 0, 0);
+.block-basket {
+    background: rgb(132, 132, 132);
     bottom: 0;
     right: 0;
-    margin-bottom: 10px;
+    text-align: right;
+    width: 100%;
+}
+
+#block-basket {
+    margin-bottom: 5px;
     margin-right: 20px;
+    font-size: 20px;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
 }
 
 #block-basket a {
@@ -112,7 +140,6 @@
 }
 
 .cards {
-    overflow: hidden;
     text-align: center;
 }
 
@@ -144,9 +171,7 @@
     margin-right: 5px;
 }
 
-
 /* картинки товара */
-
 .card_image {
     width: 205px;
     height: 205px;
@@ -157,7 +182,7 @@
     margin-right: auto;
     display: flex;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 }
 
 .blockimage {
@@ -173,35 +198,23 @@
     max-width: 100%;
     display: block;
     margin: auto;
-
 }
 
 .tow_title {
-    background: #2a2a2a;
     background: rgba(0, 0, 0);
-    opacity: 100;
-    border: 1px solid rgba(255, 255, 255, 0.2);
     margin-top: -50px;
-    width: 100%;
     padding-right: 10px;
     padding-left: 10px;
     display: inline-block;
     vertical-align: bottom;
 }
 
-.tow_title a {
-    color: white;
-}
-
-
 .rating {
-    width: 100%;
     display: flex;
     color: black;
     justify-content: center;
     margin-top: 2px;
     margin-bottom: 5px;
-
 }
 
 .otzv img {
@@ -210,11 +223,8 @@
     margin-left: 15px;
 }
 
-
 .card_price {
-    border: 1px solid black;
     position: relative;
-    width: 100%;
     display: flex;
     justify-content: center;
     background: black;
@@ -225,7 +235,6 @@
     margin-left: 15px;
     margin-top: 5px;
     margin-bottom: 5px;
-
 }
 
 .add-card img {
@@ -237,8 +246,16 @@
 
 
 
-
 /* постраничная навигация */
 .pagination {
     justify-content: center;
+    padding-bottom: 30px;
+}
+
+
+/* блок сортировки */
+#options-list {
+    height: 45px;
+    background: black;
+    color: white;
 }

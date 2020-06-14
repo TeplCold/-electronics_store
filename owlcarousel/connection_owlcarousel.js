@@ -11,3 +11,18 @@ $(document).ready(function () {
     center: true
   });
 });
+
+// на главной странице
+$(document).ready(function () {
+  $("#carousel2").owlCarousel({
+    items: 1, //сколько слайдов показывать 
+    loop: true, // бесконечная прокрутка 
+    nav: true, // стрелочки влево вправо '
+    autoplay: true,
+    autoplayTimeout: 9000,
+    autoplaySpeed: 100,
+    smartSpeed: 100,
+    video: true,
+    center: true,
+  });
+});
