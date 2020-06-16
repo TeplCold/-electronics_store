@@ -25,6 +25,37 @@ body {
     background-image: url(../assets/fon.jpg);
 }
 
+button:active,
+button:focus {
+    outline: none;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+}
+
+.remindpass button,
+.remindpass button:active,
+.remindpass button:focus {
+    outline: none;
+    border: none;
+    outline-color: rgb(0, 0, 0, 0);
+}
+
+a:active,
+a:focus {
+    outline: none;
+}
+
+input,
+textarea {
+    outline: none;
+}
+
+input:active,
+textarea:active {
+    outline: none;
+}
 
 .scrollup {
     width: 40px;

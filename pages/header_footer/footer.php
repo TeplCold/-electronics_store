@@ -94,5 +94,5 @@ if (isset($_SESSION['message'])) {
             </form>
         </div>
     </div>
+    <div class="prava">© SPASE ELECTRONICS, 2020. Все права защищены</div>
 </div>
-<div class="prava">© SPASE ELECTRONICS, 2020. Все права защищены</div>

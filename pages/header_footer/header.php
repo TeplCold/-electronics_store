@@ -10,10 +10,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <ul class="navbar-nav mr-auto">
-
-
-
-
+            
             <div class="headlinks">
                 <a class="linkhead" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/../../index.php"> Главная</a>
                 <a class="linkhead" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/product_list.php"> Каталог</a>

@@ -1,11 +1,3 @@
-$('#remindpass').click(function () {
-    $('#block-remind').fadeIn(300);
-});
-
-$('#prev-auth').click(function () {
-    $('#block-remind').fadeOut(200);
-});
-
 //забыл пароль
 $('#button-remind').click(function () {
 
@@ -18,7 +10,7 @@ $('#button-remind').click(function () {
         $("#remind-email").css("borderColor", "#DBDBDB");
 
         $("#button-remind").hide();
-        $(".auth-loading").show();
+        $(".a-loading").show();
 
         $.ajax({
             type: "POST",
@@ -29,14 +21,14 @@ $('#button-remind').click(function () {
             success: function (data) {
 
                 if (data == 'yes') {
-                    $(".auth-loading").hide();
+                    $(".a-loading").hide();
                     $("#button-remind").show();
                     $('#message-remind').attr("class", "message-remind-success").html("На ваш e-mail выслан пароль.").slideDown(400);
 
-                    setTimeout("$('#message-remind').html('').hide(),$('#block-remind').hide(),$('#input-email-pass').show()", 3000);
+
 
                 } else {
-                    $(".auth-loading").hide();
+                    $(".a-loading").hide();
                     $("#button-remind").show();
                     $('#message-remind').attr("class", "message-remind-error").html(data).slideDown(400);
 

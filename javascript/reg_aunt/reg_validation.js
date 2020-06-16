@@ -73,13 +73,11 @@ $(document).ready(function () {
       $(form).ajaxSubmit({
         success: function (data) {
           if (data == "true") {
-            $("#block-form-registration").fadeOut(300, function () {
-              $("#reg_message")
-                .attr("class", "reg_message_good")
-                .fadeIn(400)
-                .html("Вы успешно зарегистрированы!");
-              $("#form_submit").hide();
-            });
+            $("#reg_message")
+              .addClass("reg_message_good")
+              .fadeIn(400).val('').change()
+              .html("Вы успешно зарегистрированы!");
+            $('#form_reg')[0].reset();
           } else {
             $("#reg_message")
               .addClass("reg_message_error")

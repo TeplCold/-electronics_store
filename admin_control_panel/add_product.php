@@ -22,7 +22,15 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
         } else {
             $result = mysqli_query($link, "SELECT * FROM category WHERE category_id='{$_POST["form_category"]}'");
             $row = mysqli_fetch_array($result);
-            $selectbrand = $row["brand"];
+            $selectcategory = $row["category_id"];
+        }
+
+        if (!$_POST["form_subcategory"]) {
+            $error[] = "Укажите подкатегорию";
+        } else {
+            $result = mysqli_query($link, "SELECT * FROM subcategory WHERE subcategory_id='{$_POST["form_subcategory"]}'");
+            $row = mysqli_fetch_array($result);
+            $selectsubcategory = $row["subcategory_id"];
         }
 
         // Проверка чекбоксов
@@ -36,7 +44,7 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
             $_SESSION['message'] = "<p id='form-error'>" . implode('<br />', $error) . "</p>";
         } else {
 
-            mysqli_query($link, "INSERT INTO products (title, price, min_description, description, features, visible) VALUES(	
+            mysqli_query($link, "INSERT INTO products (title, price, min_description, description, features, visible,subcategory_id) VALUES(	
               
                 '" . $_POST["form_title"] . "',	
                 '" . $_POST["form_price"] . "',
@@ -45,7 +53,8 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
                 '" . $_POST["txt2"] . "',
                 '" . $_POST["txt4"] . "',
        
-                '" . $chk_visible . "'                  
+                '" . $chk_visible . "',       
+                '" . $selectsubcategory . "'             
             )");
 
             $_SESSION['message'] = "<p id='form-success'>Товар успешно добавлен!</p>";
@@ -126,34 +135,77 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
                     <input type="text" name="form_price" />
                 </li>
 
-                <li>
-                    <label>Тип товара</label>
-                    <select name="form_type" id="type" size="6">
-                        <option value="smartfony"> Смартфоны</option>
-                        <option value="tablet_pc"> Планшеты</option>
-                        <option value="cell_phones"> Мобильные телефоны</option>
-                        <option value="handsfree"> Наушники </option>
-                        <option value="backup_battery">Power bank</option>
-                        <option value="cellphones_chargers">Зарядные устройства</option>
-                    </select>
-                </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <li>
-                    <label>Брэнд</label>
-                    <select name="form_category" size="10">
-
+                    <label>Категория</label>
+                    <select id="form_category" name="form_category" size="6">
                         <?php
-                        $category = mysqli_query($link, "SELECT * FROM brand");
-
+                        $category = mysqli_query($link, "SELECT * FROM category");
                         if (mysqli_num_rows($category) > 0) {
                             $result_category = mysqli_fetch_array($category);
                             do {
-                                echo '  <option value="' . $result_category["brand_id"] . '" >' . $result_category["brand"] . '</option>';
+                                echo '  <option value="' . $result_category["category_id"] . '" >' . $result_category["category"] . '</option>';
                             } while ($result_category = mysqli_fetch_array($category));
                         }
                         ?>
-
                     </select>
+
+
+                </li>
+
+
+                <li>
+            
+                    <div id="mydiv"></div>
+
+                </li>
+
+                <li id="subcategory">
+                    <label>Подкатегория</label>
+                    <select name="form_subcategory" id="type" size="6">
+                        <?php
+                        $subcategory = mysqli_query($link, 'SELECT * FROM subcategory WHERE category_id = "" ');
+                        if (mysqli_num_rows($subcategory) > 0) {
+                            $result_subcategory = mysqli_fetch_array($subcategory);
+                            do {
+                                echo '  <option value="' . $result_subcategory["subcategory_id"] . '" >' . $result_subcategory["subcategory"] . '</option>';
+                            } while ($result_subcategory = mysqli_fetch_array($subcategory));
+                        }
+                        ?>
+                    </select>
+                </li>
+
             </ul>
 
             <label class="stylelabel">Основная картинка</label>
@@ -220,6 +272,40 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
         <script defer type="text/javascript">
             var ckeditor1 = CKEDITOR.replace("editor4");
         </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <select class="form_category" id="form_category" name="form_category" size="1">
+            <option value="0"> Выбрать категорию</option>
+            <?php
+            $category = mysqli_query($link, "SELECT * FROM category");
+            if (mysqli_num_rows($category) > 0) {
+                $result_category = mysqli_fetch_array($category);
+                do {
+                    echo '  <option value="' . $result_category["category_id"] . '" >' . $result_category["category"] . '</option>';
+                } while ($result_category = mysqli_fetch_array($category));
+            }
+            ?>
+        </select>
+
+        <span class="form_subcategory">
+
+
+
+        </span>
+
+
+
     </body>
 
     </html>

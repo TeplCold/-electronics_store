@@ -6,7 +6,6 @@ $("#button-auth").click(function () { //если нажата кнопка
         $("#auth_login").css("borderColor", "#DF0101"); //красим рамку в красный цвет 
         send_login = 'no'; //помещаем no в send_login
     } else { //если все нормально
-        $("#auth_login").css("borderColor", "#82FA58"); //красим рамку в стандарнтый цвет
         send_login = 'yes'; //помещаем yes в send_login
     }
 
@@ -14,7 +13,6 @@ $("#button-auth").click(function () { //если нажата кнопка
         $("#auth_pass").css("borderColor", "#DF0101"); //красим рамку в красный цвет 
         send_pass = 'no'; //помещаем no в send_pass
     } else { //если все нормально
-        $("#auth_pass").css("borderColor", "#82FA58"); //красим рамку в стандарнтый цвет
         send_pass = 'yes'; //помещаем yes в send_pass
     }
 

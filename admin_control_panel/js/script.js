@@ -177,4 +177,21 @@ $(document).ready(function () {
         $(this).find('ul').slideToggle(300);
 
     });
+
+    $(document).ready(function () {
+        $('#form_category').change(function () {
+            $.ajax({
+                type: "POST",
+                url: 'add_product.php',
+                data: {
+                    "param": $(this).val()
+                }
+            });
+
+            $('#mydiv').html($(this).val());
+
+        });
+    });
+
+
 });

@@ -1,18 +1,95 @@
 @import url(../style.css);
-@import url(home-desktop.css) (min-width: 1024px);
+/* @import url(home-desktop.css) (min-width: 1024px);
 @import url(home-tablet.css) (min-width: 768px) and (max-width: 1024px);
-@import url(home-mobile.css) (max-width: 768px);
+@import url(home-mobile.css) (max-width: 768px); */
 
 .pass-show {
     background: url(/assets/reg_aunt/open_eye.png) no-repeat;
-    width: 18px;
-    height: 11px;
+    width: 18px !important;
+    height: 11px !important;
+    padding-right: 60px;
 }
+
 
 .pass-hide {
     background: url(/assets/reg_aunt/eye_closed.png) no-repeat;
-    width: 20px;
-    height: 10px;
+    width: 18px !important;
+    height: 11px !important;
+    padding-right: 65px;
+}
+
+#remindpass {
+    color: rgb(224, 224, 224);
+    border-top: 2px solid rgb(224, 224, 224);
+    width: 160px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+.remindpass {
+    outline: none;
+    /* Для синий ободки */
+    border: 0;
+    background: transparent;
+    background-color: rgb(0, 0, 0, 0);
+}
+
+a:active,
+a:focus {
+    outline: none;
+}
+
+input,
+textarea {
+    outline: none;
+}
+
+input:active,
+textarea:active {
+    outline: none;
+}
+
+:focus {
+    outline: none;
+}
+
+textarea {
+    resize: none;
+}
+
+textarea {
+    resize: vertical;
+}
+
+textarea {
+    resize: horizontal;
+}
+
+button:active,
+button:focus {
+    outline: none;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+}
+
+.remindpass button,
+.remindpass button:active,
+.remindpass button:focus {
+    outline: none;
+    border: none;
+    outline-color: rgb(0, 0, 0, 0);
+}
+
+#rememberme {
+    width: 15px !important;
+    margin: 0 !important;
+    margin-right: 5px !important;
+    height: auto !important;
+
 }
 
 #imput-email-pass span {
@@ -20,14 +97,63 @@
     height: 25px;
     margin-top: 5px;
     position: absolute;
+    margin-top: 23px;
+    right: 27px;
+}
+
+#imput-email-pass {
+    margin-top: 55px;
 }
 
 .auth-loading {
+    background-color: #03A9F4;
+    border: none;
+    padding: 8px;
+    width: 200px;
+    border-radius: 3px;
+    box-shadow: 1px 5px 20px -5px rgba(0, 0, 0, 0.4);
+    color: rgb(0, 0, 0);
+    margin-top: 10px;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+    right: 50% !important;
     display: none;
 }
 
+.a-loading {
+    width: 52px;
+    display: none;
+}
+
+
+
+
+#auth-loading label {
+    margin-bottom: 0px !important;
+}
+
+#auth-loading img {
+    position: absolute;
+    vertical-align: middle;
+    left: 50%;
+    padding-top: 20px !important;
+    display: none;
+}
+
+
 #message-auth {
     display: none;
+    background-color: rgb(255, 0, 0);
+    margin-bottom: 5px;
+    position: absolute;
+    width: 100%;
+    top: 8px;
+    height: 25px;
+}
+
+#imput-email-pass {
+    height: auto;
 }
 
 li {
@@ -45,35 +171,36 @@ body {
 
 .fon {
     background-color: rgb(0, 0, 0, 0.3);
+
+    overflow: hidden;
 }
 
 .containerglavn {
-    background: url("../../assets/home/Planets_Stones_Surface_of_planets_Mass_Effect_558772_2560x1440.jpg");
+    background: url("../../assets/Vadim_Sadovski_digital_art_space_space_art_500px_astronaut-1179267.jpg");
     background-size: cover;
     height: auto;
     position: relative;
-}
 
+}
 
 .blockglavn {
     background: rgb(0, 0, 0, 0.4);
-    height: 100%;
+    min-height: 330px;
 }
-
 
 .SPASE_ELECTRONICS {
     font-family: "Regular";
-    font-size: 60px;
+    font-size: 65px;
     text-align: center;
     color: rgb(255, 255, 255);
-    padding-top: 25px;
+    padding-top: 35px;
     -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: rgb(0, 0, 0);
 }
 
 .inetshop {
     font-family: "Underdog", cursive;
-    font-size: 45px;
+    font-size: 55px;
     color: white;
     text-align: center;
     -webkit-text-stroke-width: 1.5px;
@@ -82,13 +209,14 @@ body {
 
 .glavnplus {
     font-family: "Underdog", cursive;
-    font-size: 22px;
+    font-size: 25px;
     color: white;
     text-align: center;
     -webkit-text-stroke-width: 0.5px;
     -webkit-text-stroke-color: rgb(0, 0, 0);
-    padding: 0 280px;
+    padding: 0 380px;
     font-weight: 100;
+    padding-top: 5px;
 }
 
 .join {
@@ -100,4 +228,490 @@ body {
     padding: 0 240px;
     font-family: "Underdog", cursive;
     padding-bottom: 21px;
+}
+
+.rgba {
+    background: rgba(0, 0, 0, 0.0) !important;
+    border: none;
+}
+
+
+/* правила */
+.pravmargin {
+    background: url("../../assets/star-citizen-dogfight.jpg");
+    background-size: cover;
+
+}
+
+#pravmargin {
+    background: rgb(0, 0, 0, 0.5);
+    padding: 20px 3em 32px 3em;
+}
+
+.pravila {
+    font-family: 'Underdog', cursive;
+    text-align: center;
+    font-size: 43px;
+    margin-top: 20px;
+    font-weight: 900px;
+}
+
+.caption {
+    font-family: 'Underdog', cursive;
+    font-size: 28px;
+    margin-top: 11px;
+
+    font-weight: 900px;
+}
+
+.txt {
+    text-align: justify;
+    font-family: "Open Sans", sans-serif;
+    font-size: 22px;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    font-weight: 900px;
+
+}
+
+/*  */
+.grow:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.fluid {
+    height: 580px
+}
+
+.rgba {
+    margin-left: 249px;
+}
+
+.cotn_principal {
+    position: absolute;
+}
+
+.cont_login {
+    position: relative;
+    left: 50%;
+    margin-left: -320px;
+}
+
+.cont_back_info {
+    position: relative;
+    float: left;
+    width: 640px;
+    height: 340px;
+    overflow: hidden;
+    background-color: #fff;
+    margin-top: 120px;
+    box-shadow: 1px 10px 30px -10px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+}
+
+.cont_forms {
+    position: absolute;
+    overflow: hidden;
+    top: 120px;
+    left: 0px;
+    width: 320px;
+    height: 340px;
+    background-color: #eee;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    border-radius: 20px;
+}
+
+.cont_forms_active_login {
+    box-shadow: 1px 10px 30px -10px rgba(0, 0, 0, 0.5);
+    height: 380px;
+    left: 0px;
+    top: 100px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.cont_forms_active_sign_up {
+    box-shadow: 1px 10px 30px -10px rgba(0, 0, 0, 0.5);
+    height: 500px;
+    left: 320px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    top: 40px;
+}
+
+.cont_img_back_grey {
+    position: absolute;
+    width: 950px;
+    top: -80px;
+    left: -116px;
+}
+
+.cont_img_back_grey>img {
+    width: 100%;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    opacity: 0.7;
+    animation-name: animar_fondo;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.cont_img_back_ {
+    position: absolute;
+    width: 950px;
+    top: -80px;
+    left: -116px;
+}
+
+.cont_img_back_>img {
+    width: 100%;
+    opacity: 0.8;
+    animation-name: animar_fondo;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.cont_forms_active_login>.cont_img_back_ {
+    top: 0px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.cont_forms_active_sign_up>.cont_img_back_ {
+    top: 0px;
+    left: -435px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.cont_info_log_sign_up {
+    position: absolute;
+    width: auto;
+    height: 280px;
+    top: 100px;
+    z-index: 1;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.col_md_login {
+    position: relative;
+    float: left;
+    margin: 0px 20px 0 20px;
+}
+
+.col_md_login>h2 {
+    font-weight: 400;
+    margin-top: 70px;
+    color: #fff;
+}
+
+.col_md_login>p {
+    font-weight: 400;
+    margin-top: 15px;
+    width: 80%;
+    color: #37474F;
+}
+
+.btn_login {
+    background-color: #03A9F4;
+    border: none;
+    padding: 10px;
+    width: 200px !important;
+    border-radius: 3px;
+    box-shadow: 1px 5px 20px -5px rgba(0, 0, 0, 0.4);
+    color: rgb(0, 0, 0);
+    margin-top: 10px;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+}
+
+#imput-email-pass input {
+    overflow: visible;
+    height: 40px;
+    margin: 8px;
+    width: 200px;
+}
+
+#form_reg #form_submit {
+    width: 200px !important;
+    height: 45px;
+    background-color: #d32f2f !important;
+    border: none;
+    margin-top: 20px !important;
+}
+
+
+.col_md_sign_up {
+    position: relative;
+    float: left;
+    margin: 0px 20px 0 20px;
+}
+
+.cont_ba_opcitiy>h2 {
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+}
+
+.cont_ba_opcitiy>p {
+    font-weight: 400;
+    margin-top: 15px;
+    color: rgb(255, 255, 255);
+}
+
+/* ----------------------------------
+  background text
+  ------------------------------------ */
+
+.cont_ba_opcitiy {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 280px;
+    border-radius: 20px;
+    margin-top: 100px;
+    padding: 15px 0px;
+}
+
+.btn_sign_up {
+
+    border: none;
+    padding: 10px;
+    width: 200px;
+    border-radius: 3px;
+    box-shadow: 1px 5px 20px -5px rgba(0, 0, 0, 0.4);
+    color: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: #d32f2f;
+}
+
+.cont_forms_active_sign_up {
+    z-index: 2;
+}
+
+@-webkit-keyframes animar_fondo {
+    from {
+        -webkit-transform: scale(1) translate(0px);
+        -moz-transform: scale(1) translate(0px);
+        -ms-transform: scale(1) translate(0px);
+        -o-transform: scale(1) translate(0px);
+        transform: scale(1) translate(0px);
+    }
+
+    to {
+        -webkit-transform: scale(1.5) translate(50px);
+        -moz-transform: scale(1.5) translate(50px);
+        -ms-transform: scale(1.5) translate(50px);
+        -o-transform: scale(1.5) translate(50px);
+        transform: scale(1.5) translate(50px);
+    }
+}
+
+@-o-keyframes identifier {
+    from {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+    }
+
+    to {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+}
+
+@-moz-keyframes identifier {
+    from {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+    }
+
+    to {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+}
+
+@keyframes identifier {
+    from {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+    }
+
+    to {
+        -webkit-transform: scale(1.5);
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+}
+
+.cont_form_sign_up input {
+    width: 200px;
+    height: 35px;
+    display: block;
+    margin: 0px auto;
+    margin-top: 20px;
+}
+
+.cont_form_sign_up {
+    content: "";
+    display: inline-block;
+    min-height: inherit;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.cont_form_sign_up .error {
+    text-align: 15px;
+}
+
+#form_reg span {
+    font-size: 12px !important;
+    position: absolute;
+    left: 0px;
+    width: 100%;
+}
+
+
+.cont_form_login,
+.cont_form_sign_up {
+    position: absolute;
+    opacity: 0;
+    display: none;
+    width: auto;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    text-align: center;
+    height: 100%;
+}
+
+.cont_forms_active_login {
+    z-index: 2;
+}
+
+.cont_form_sign_up>h2 {
+    margin-top: 50px;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+}
+
+.cont_form_login>input,
+.cont_form_sign_up>input {
+    padding: 8px 5px;
+    margin-left: 10px;
+    margin-top: 20px;
+    width: 260px;
+    border: none;
+    text-align: left;
+    color: rgb(255, 255, 255);
+    text-align: center
+}
+
+.cont_form_login>h2 {
+    margin-top: 40px !important;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+}
+
+.cont_form_login>a,
+.cont_form_sign_up>a {
+    position: relative;
+    float: left;
+    margin: 10px;
+    margin-left: 30px;
+}
+
+.reg_message_good {
+    color: rgb(0, 0, 0);
+    background-color: chartreuse;
+    margin-bottom: 11px;
+    position: absolute;
+    width: 100%;
+    top: 8px;
+}
+
+.reg_message_error {
+    display: none;
+    background-color: rgb(255, 0, 0);
+    margin-bottom: 5px;
+    position: absolute;
+    width: 100%;
+    top: 8px;
+    height: 25px;
+}
+
+#form_reg {
+    height: 100%;
+}
+
+.reg_login {
+    margin: 0px !important;
+}
+
+#reg_surname {
+    margin-top: 10px;
+}
+
+#genpass {
+    font-size: 13px;
+    position: absolute;
+    left: 165px;
+    bottom: 105px;
+    color: black;
+}
+
+.modal-content {
+    color: #000;
+}
+
+.message-remind-error {
+    margin-top: 20px;
+    color: rgb(255, 0, 0);
+}
+
+.message-remind-success {
+    margin-top: 20px;
+    color: chartreuse;
 }
