@@ -1,7 +1,7 @@
 @import url(../style.css);
-@import url(home-desktop.css) (min-width: 1024px);
+/* @import url(home-desktop.css) (min-width: 1024px);
 @import url(home-tablet.css) (min-width: 768px) and (max-width: 1024px);
-@import url(home-mobile.css) (max-width: 768px);
+@import url(home-mobile.css) (max-width: 768px); */
 @import url("https://fonts.googleapis.com/css2?family=Underdog&display=swap");
 
 .fon {

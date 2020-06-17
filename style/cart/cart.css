@@ -1,9 +1,156 @@
+@import url(../style.css);
+/* @import url(home-desktop.css) (min-width: 1024px);
+@import url(home-tablet.css) (min-width: 768px) and (max-width: 1024px);
+@import url(home-mobile.css) (max-width: 768px); */
+@import url("https://fonts.googleapis.com/css2?family=Underdog&display=swap");
+
+.fon {
+    background-color: rgb(0, 0, 0, 0.3);
+}
+
+.containerglavn {
+    background: url("../../assets/home/Planets_Stones_Surface_of_planets_Mass_Effect_558772_2560x1440.jpg");
+    background-size: cover;
+    height: auto;
+    position: relative;
+}
+
+.blockglavn {
+    background: rgb(0, 0, 0, 0.4);
+    height: 100%;
+}
+
+.SPASE_ELECTRONICS {
+    font-family: "Regular";
+    font-size: 60px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    padding-top: 25px;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+}
+
+.inetshop {
+    font-family: "Underdog", cursive;
+    font-size: 45px;
+    color: white;
+    text-align: center;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+}
+
+.glavnplus {
+    font-family: "Underdog", cursive;
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    padding: 0 280px;
+    font-weight: 100;
+}
+
+.join {
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    padding: 0 240px;
+    font-family: "Underdog", cursive;
+    padding-bottom: 21px;
+}
+
+.block-basket {
+    background: rgb(132, 132, 132);
+    bottom: 0;
+    right: 0;
+    text-align: right;
+    width: 100%;
+}
+
+#block-basket {
+    margin-bottom: 5px;
+    margin-right: 20px;
+    font-size: 20px;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+}
+
+#block-basket a {
+    color: white;
+}
+
+.container_card {
+    background-color: rgb(15, 15, 15);
+    margin-top: 45px;
+    margin-bottom: 45px;
+    border-radius: 10px;
+    padding: 0px !important;
+    position: relative;
+}
+
+#cintainer-list-card {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.progress {
+    height: 1rem;
+    margin-top: 25px;
+}
+
+.active {
+    color: rgb(255, 255, 255) !important;
+}
+
+.activ {
+    border-right: 1px solid black;
+}
+
+.noactiv {
+    color: rgb(178, 178, 178);
+    background-color: white;
+    border-right: 1px solid black;
+}
+
+.width_name1 {
+    width: 352px;
+    margin-left: 13.8px;
+}
+
+.width_name2 {
+    width: 352px;
+    margin-left: 4px;
+}
+
+.width_name3 {
+    width: 352px;
+    margin-left: 8px;
+}
+
+.width_name4 {
+    margin-left: 6.5px;
+}
+
+.width_name5 {
+    margin-left: 11px;
+}
+
 #name-step {
-    border: 2px solid rgb(15, 248, 6);
+    color: rgb(178, 178, 178);
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    text-align: center;
 }
 
 #name-step a.active {
-    color: rgb(0, 60, 255);
+    color: rgb(255, 255, 255);
 }
 
 #name-step ul {
@@ -13,30 +160,75 @@
 
 #name-step li {
     display: inline;
-
 }
 
 #block-list-card {
-    border: 2px solid rgb(255, 217, 0);
-    overflow: hidden;
+    position: relative;
 }
 
-.card {
-    border: 2px solid rgb(230, 0, 255);
-    float: left;
-    margin: 0px;
+#cintainer-list-card {
+    display: inline-flex;
 }
 
-#list-card {
-    border: 2px solid rgb(0, 255, 204);
-    margin-right: 10px;
-    overflow: hidden;
-    margin: 0px;
+.card_title {
+    color: white;
+    font-size: 20px;
+    width: 345px;
+    margin: auto 0;
 }
 
-#list-card>div {
-    display: inline;
+
+
+/* картинки товара */
+.block_cardss {
+    color: rgb(255, 255, 255);
+    width: 110px;
+    text-align: center;
+    margin: 20px 30px 20px 30px;
 }
+
+.blockimage {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.container_cardss {
+    background-color: white;
+    border-radius: 20px;
+}
+
+.card_image {
+    width: 80px;
+    height: 80px;
+    background: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card_image img {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
+
+
+
+
 
 .card {
     padding: 0px;
@@ -45,45 +237,123 @@
 }
 
 .card img {
-
     height: 120px;
 }
 
+
+
+
+
 .count {
-    border: 2px solid rgb(24, 62, 0);
-    float: left;
+    color: white;
+    position: relative;
+    margin: auto 0;
+    width: 100px;
+    margin-left: 25px;
 }
 
-.count ul {
-    margin: 0px;
-    padding: 0px;
-}
-
-.count li {
-    list-style-type: none;
-}
-
-.input-count input {
-    text-align: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 10px;
+.input-count {
+    display: flex;
 }
 
 .input-count p {
     margin: 0px;
     width: 35px;
     text-align: center;
+    font-size: 25px;
+}
+
+.input-count input {
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    margin-top: 4px;
+}
+
+.count li {
+    list-style-type: none;
 }
 
 .price-product {
-    float: left;
-    border: 2px solid rgb(248, 0, 0);
     text-align: center;
+    color: white;
+    font-size: 25px;
+    height: auto;
+    margin: auto 0;
 }
 
+.price-product span {
+    position: relative;
+    width: 40px;
+}
 
 .delete-cart {
-    border: 2px solid rgb(0, 81, 255);
-    float: left;
+    margin-top: 15px;
+    text-align: right;
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+}
+
+.delete-cart a {
+    color: white;
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.price {
+    font-size: 30px;
+    color: white;
+    margin-top: 42px;
+    margin: auto 0;
+    margin-right: 100px;
+    width: 130px;
+    text-align: right;
+}
+
+.itog-price {
+    color: white;
+    padding-left: 30px;
+    width: 100%;
+
+}
+
+.cat_top {
+    width: 100%;
+    display: inline-flex;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    padding-top: 6px;
+    border-top: 1px solid rgb(255, 255, 255);
+}
+
+.cat_top a {
+    color: white;
+    width: 100%;
+    font-size: 29px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.button-next {
+    text-align: right;
+}
+
+.clear {
+    width: 100%;
+    text-align: right;
+    padding-right: 20px;
+    margin-top: 30px;
+}
+
+.clear a {
+    text-align: right;
+    color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.clear-cart {
+    color: white;
 }

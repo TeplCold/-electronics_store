@@ -1,7 +1,7 @@
 @import url(../style.css);
-@import url(header_footer-desktop.css) (min-width: 1024px);
+/* @import url(header_footer-desktop.css) (min-width: 1024px);
 @import url(header_footer-tablet.css) (min-width: 768px) and (max-width: 1024px);
-@import url(header_footer-mobile.css) (max-width: 768px);
+@import url(header_footer-mobile.css) (max-width: 768px); */
 
 li {
     list-style-type: none;

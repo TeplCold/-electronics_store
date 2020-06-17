@@ -1,6 +1,6 @@
-@import url(style-desktop.css) (min-width: 1024px);
+/* @import url(style-desktop.css) (min-width: 1024px);
 @import url(style-tablet.css) (min-width: 769px) and (max-width: 1023px);
-@import url(style-mobile.css) (max-width: 768px);
+@import url(style-mobile.css) (max-width: 768px); */
 
 @font-face {
     font-family: Regular;

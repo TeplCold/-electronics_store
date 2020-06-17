@@ -123,109 +123,192 @@ if (mysqli_num_rows($result) > 0) {
 </head>
 
 <body>
+    <div class="fon">
 
-    <?php include("header_footer/header.php");
 
-    $action = clear_string($_GET["action"]); //подключаем функцию очистки строк
-    $action = mb_strtolower($action, 'UTF-8'); //Приведение строки к нижнему регистру
-    $action = mysqli_real_escape_string($link, $action); //Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и Control-Z.
+        <?php include("header_footer/header.php"); ?>
 
-    switch ($action) {
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        case 'oneclick':
-            echo '
-            <div id="block-step">
-                <div id="name-step">
-                    <ul>
-                        <li> <a class="active"> Корзина товаров</a></li>
-                        <li><span>&rarr;</span></li>
-                        <li> <a> Оформление заказа</a></li>
-                        <li><span>&rarr;</span></li>
-                        <li> <a> Завершение</a></li>
-                    </ul>
-                </div>
-                <p>Шаг 1 из 3</p>
-                <a href="cart.php?action=clear">Очистить корзину</a>
+        <div class="containerglavn">
+            <div class="blockglavn">
+                <div class="SPASE_ELECTRONICS"> SPASE ELECTRONICS</div>
+                <div class="inetshop">Корзина товаров</div>
+                <div class="glavnplus"> SPASE ELECTRONICS - небольшой, но динамично развивающийся интернет-магазин. Это позволяет нам более внимательно относиться к потребностям и желаниям наших покупателей. Индивидуальный подход, подробные консультации, широкий ассортимент электроники, цифровой и бытовой техники. Ассортимент постоянно расширяется. Интернет-магазин SPASE ELECTRONICS - это возможность сделать покупки оптом и в розницу.</div>
+                <div class="join"> Приятных покупок!</div>
             </div>
-            ';
+        </div>
+        <div class="block-basket">
+            <p id="block-basket"> <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/cart.php?action=oneclick"></a></p>
+        </div>
 
-            $result = mysqli_query($link, "SELECT * FROM cart,products WHERE cart.ip_users = '{$_SERVER['REMOTE_ADDR']}' AND products.id = cart.id_products_cart");
+        <?php
 
-            if (mysqli_num_rows($result) > 0) {
-                $row = mysqli_fetch_array($result);
+        $action = clear_string($_GET["action"]); //подключаем функцию очистки строк
+        $action = mb_strtolower($action, 'UTF-8'); //Приведение строки к нижнему регистру
+        $action = mysqli_real_escape_string($link, $action); //Экранируемые символы NUL (ASCII 0), \n, \r, \, ', ", и Control-Z.
+
+        switch ($action) {
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            case 'oneclick':
                 echo '
 
-            <div id="list-card">
-                <div id="name-card"> Товар</div>
-                <div id="name-qty">Кол-во</div>
-                <div id="name-prise">Цена</div>
-            </div>
-            ';
-                do {
+            <div class="container container_card">
+             
+                <div id="block-step">
+                   <div class="progress">
+                        <div class="activ progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="33" aria-valuemin="0"      aria-valuemax="100" style="width:33.33333333333333%">   <p>Шаг 1 из 3</p></div>
+                        <div class="noactiv progress-bar " role="progressbar" aria-valuenow="33" aria-valuemin="0"      aria-valuemax="100" style="width: 33.33333333333333%">   <p>Шаг 2 из 3</p></div>
+                        <div class="noactiv progress-bar " role="progressbar" aria-valuenow="33" aria-valuemin="0"      aria-valuemax="100" style="width: 33.33333333333333%">   <p>Шаг 3 из 3</p></div>
+                    </div>
+                    <div id="name-step">
+                        <div  class="width_name1 "> <a class="active"> Корзина товаров</a></div>
+                        <div class="width_name4" ><span>&rarr;</span></div>
+                        <div  class="width_name2"> <a> Оформление заказа</a></div>
+                        <div class="width_name5" ><span>&rarr;</span></div>
+                        <div  class="width_name3"> <a> Завершение</a></div>
+                    </div>
+                </div>
+               <div class="clear"><a  href="cart.php?action=clear">Очистить корзину</a></div>
+                ';
 
-                    $int = $row["price"] * $row["count_cart"];
-                    $all_price = $all_price + $int; // подсчитываем итоговую цену
+                $result = mysqli_query($link, "SELECT * FROM cart,products WHERE cart.ip_users = '{$_SERVER['REMOTE_ADDR']}' AND products.id = cart.id_products_cart");
 
-                    if ($row["image"] != "" && file_exists("../assets/products/" . $row["image"])) {
-                        $img_path = '../assets/products/' . $row["image"]; //фото есть 
-                    } else {
-                        $img_path = "../assets/products/no_photo.jpg"; //фото нету
-                    }
+                if (mysqli_num_rows($result) > 0) {
+                    $row = mysqli_fetch_array($result);
+                    echo '
+
+        
+                ';
+                    do {
+
+                        $int = $row["price"] * $row["count_cart"];
+                        $all_price = $all_price + $int; // подсчитываем итоговую цену
+
+                        if ($row["image"] != "" && file_exists("../assets/products/" . $row["image"])) {
+                            $img_path = '../assets/products/' . $row["image"]; //фото есть 
+                        } else {
+                            $img_path = "../assets/products/no_photo.jpg"; //фото нету
+                        }
+
+                        echo '
+                        
+                        <div id="block-list-card">
+                            <div id="cintainer-list-card">
+
+                                <div class="block_cardss">
+                                    <div class="container_cardss">
+                                        <div class = "blockimage">
+                                            <div class = "card_image"> <img src="' . $img_path . '" /> </div>   
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card_title"> <a>' . $row["title"] . '</a> </div>
+
+                                <div  id="tovar' . $row["id_cart"] . '" class="price-product">
+                                    <span> ' .  group_numerals($row["price"]) . '₽ </span>
+                                </div> 
+
+                                <div class="count">
+                                    <ul class="input-count">
+                                        <li>
+                                            <p class="count-minus"  iid="' . $row["id_cart"] . '"> -</p>
+                                        </li>
+                                        <li>
+                                            <p><input id="input-id' . $row["id_cart"] . '" class="count-input" maxlength="3" type="text" value="'  . $row["count_cart"] . '" iid="' . $row["id_cart"] . '"> </p>
+                                        </li>
+                                        <li>
+                                            <p class="count-plus"  iid="' . $row["id_cart"] . '"> + </p>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                     
+                                <div class="price" id="tovar' . $row["id_cart"] . '" class="price-product">
+                                    <p price="' . $row["cart_price"] . '" >' . group_numerals($int) . '₽</p>
+                                </div>
+
+                                <div class="delete-cart"><a  href="cart.php?id=' . $row["id_cart"] . '&action=delete" >×</a></div>
+                            </div>
+                        </div>
+                    ';
+                    } while ($row = mysqli_fetch_array($result));
 
                     echo '
-                    <div id="block-list-card">
-
-                        <div class="card">
-                            <img src="' . $img_path . '"/>
-                            <div> <a>' . $row["title"] . '</a> </div>
-                        </div>
-                        
-                        <div class="count">
-                            <ul class="input-count">
-                        
-                                <li>
-                                <p class="count-minus"  iid="' . $row["id_cart"] . '"> -</p>
-                                </li>
-                        
-                                <li>
-                                <p><input id="input-id' . $row["id_cart"] . '" class="count-input" maxlength="3" type="text" value="'  . $row["count_cart"] . '" iid="' . $row["id_cart"] . '"> </p>
-                                </li>
-                        
-                                <li>
-                                <p class="count-plus"  iid="' . $row["id_cart"] . '"> + </p>
-                                </li>
-                    
-                            </ul>
-                        </div>
-
-                        <div  id="tovar' . $row["id_cart"] . '" class="price-product">
-                            <h5>
-                                <span class="span-count" >1</span> 
-                                x 
-                                <span> ' .  group_numerals($row["price"]) . '₽ </span>
-
-                            </h5><p price="' . $row["cart_price"] . '" >' . group_numerals($int) . '₽</p>
-
-                        </div>
-
-                        <div class="delete-cart"><a  href="cart.php?id=' . $row["id_cart"] . '&action=delete" >X</a></div>
-
+                    <div class="cat_top">
+                        <h2 class="itog-price">Итого: <strong>' . group_numerals($all_price) . '</strong>₽</h2>
+                        <h2  class="button-next" ><a href="cart.php?action=confirm" >Далее</a></h2
                     </div>
-                    ';
-                } while ($row = mysqli_fetch_array($result));
-
-                echo '
-                <h2 class="itog-price">Итого: <strong>' . group_numerals($all_price) . '</strong>₽</h2>
-                <p  class="button-next" ><a href="cart.php?action=confirm" >Далее</a></p> 
+                   
+                </div>  
+                   
+            </div>
                 ';
-            } else {
-                echo '<h3 id="clear-cart">Корзина пуста</h3>';
-            }
-            break;
+                } else {
+                    echo '<h3 id="clear-cart">Корзина пуста</h3>';
+                }
+                break;
 
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        case 'confirm':
-            echo '
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            case 'confirm':
+                echo '
             <div id="block-step">
             <div id="name-step">
     
@@ -241,11 +324,11 @@ if (mysqli_num_rows($result) > 0) {
             </div>
             ';
 
-            if ($_SESSION['order_delivery'] == "Почтой") $chck1 = "checked";
-            if ($_SESSION['order_delivery'] == "Курьером") $chck2 = "checked";
-            if ($_SESSION['order_delivery'] == "Самовывоз") $chck3 = "checked";
+                if ($_SESSION['order_delivery'] == "Почтой") $chck1 = "checked";
+                if ($_SESSION['order_delivery'] == "Курьером") $chck2 = "checked";
+                if ($_SESSION['order_delivery'] == "Самовывоз") $chck3 = "checked";
 
-            echo '
+                echo '
             <h3 class="title-h3" >Способ доставки:</h3>
             <form method="post">
             <ul id="info-radio">
@@ -266,14 +349,14 @@ if (mysqli_num_rows($result) > 0) {
             <ul id="info-order">
             ';
 
-            if ($_SESSION['auth'] == 'yes_auth') {
-                echo '
+                if ($_SESSION['auth'] == 'yes_auth') {
+                    echo '
                 <li><label for="order_phone">Телефон</label><input type="text" name="order_phone" id="order_phone" value="' . $_SESSION["order_phone"] . '" />
                 <li><label class="order_label_style" for="order_address">Адрес доставки</label><input type="text" name="order_address" id="order_address" value="' . $_SESSION["order_address"] . '" />
                 <li><label class="order_label_style" for="order_note">Примечания</label><textarea name="order_note"  >' . $_SESSION["order_note"] . '</textarea></li>
                 ';
-            } else {
-                echo '
+                } else {
+                    echo '
                 <li><label for="order_fio">Фамилия</label><input type="text" name="order_fio" id="order_fio" value="' . $_SESSION["order_fio"] . '" />
                 <li><label for="order_name">Имя</label><input type="text" name="order_name" id="order_name" value="' . $_SESSION["order_name"] . '" />
                 <li><label for="order_patronymic">Отчество</label><input type="text" name="order_patronymic" id="order_patronymic" value="' . $_SESSION["order_patronymic"] . '" />
@@ -282,18 +365,18 @@ if (mysqli_num_rows($result) > 0) {
                 <li><label class="order_label_style" for="order_address">Адрес доставки</label><input type="text" name="order_address" id="order_address" value="' . $_SESSION["order_address"] . '" />
                 <li><label class="order_label_style" for="order_note">Примечания</label><textarea name="order_note"  >' . $_SESSION["order_note"] . '</textarea></li>
                 ';
-            }
-            echo '
+                }
+                echo '
             </ul> 
             <p><input type="submit" name="submitdata2" value="Назад" /></p>
             <p><input type="submit" name="submitdata" id="confirm-button-next" value="Далее" /></p>
             </form>
             ';
-            break;
+                break;
 
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        case 'completion':
-            echo '
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            case 'completion':
+                echo '
             <div id="block-step">
             <div id="name-step">
     
@@ -311,8 +394,8 @@ if (mysqli_num_rows($result) > 0) {
             </div>
             ';
 
-            if ($_SESSION['auth'] == 'yes_auth') {
-                echo '
+                if ($_SESSION['auth'] == 'yes_auth') {
+                    echo '
                 <ul id="list-info" >
                 <li><strong>Способ доставки:</strong>' . $_SESSION['order_delivery'] . '</li>
                 <li><strong>Фамилия:</strong>' . $_SESSION['auth_surname'] . '</li>
@@ -322,13 +405,13 @@ if (mysqli_num_rows($result) > 0) {
                 <li><strong>Телефон:</strong>' . $_SESSION['order_phone'] . '</li>
                 <li><strong>Адрес доставки:</strong>' . $_SESSION['order_address'] . '</li>
                 ';
-                if ($_SESSION['order_note'] != "") {
-                    echo '
+                    if ($_SESSION['order_note'] != "") {
+                        echo '
                     <li><strong>Примечания:</strong>' . $_SESSION['order_note'] . '</li>
                     ';
-                }
-            } else {
-                echo '
+                    }
+                } else {
+                    echo '
                 <ul id="list-info" >
                 <li><strong>Способ доставки:</strong>' . $_SESSION['order_delivery'] . '</li>
                 <li><strong>Фамилия:</strong>' . $_SESSION['order_fio'] . '</li>
@@ -338,23 +421,23 @@ if (mysqli_num_rows($result) > 0) {
                 <li><strong>Телефон:</strong>' . $_SESSION['order_phone'] . '</li>
                 <li><strong>Адрес доставки:</strong>' . $_SESSION['order_address'] . '</li>
                 ';
-                if ($_SESSION['order_note'] != "") {
-                    echo '
+                    if ($_SESSION['order_note'] != "") {
+                        echo '
                 <li><strong>Примечания:</strong>' . $_SESSION['order_note'] . '</li>
                 ';
+                    }
                 }
-            }
 
-            echo '
+                echo '
             <h2 class="itog-price">Итог: <strong>' . group_numerals($itogpricecart) . '</strong>₽</h2>
             <p  class="button-next" ><a href="cart.php?action=confirm" >Назад</a></p> 
               <pclass="button-next" ><a href="" >Оплатить</a></pclass=> 
              ';
-            break;
+                break;
 
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        default:
-            echo '
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            default:
+                echo '
         <div id="block-step">
             <div id="name-step">
                 <ul>
@@ -366,15 +449,14 @@ if (mysqli_num_rows($result) > 0) {
                 </ul>
             </div>
             <p>Шаг 1 из 3</p>
-            <a href="cart.php?action=clear">Очистить корзину</a>
         </div>
         ';
 
-            $result = mysqli_query($link, "SELECT * FROM cart,products WHERE cart.ip_users = '{$_SERVER['REMOTE_ADDR']}' AND products.id = cart.id_products_cart");
+                $result = mysqli_query($link, "SELECT * FROM cart,products WHERE cart.ip_users = '{$_SERVER['REMOTE_ADDR']}' AND products.id = cart.id_products_cart");
 
-            if (mysqli_num_rows($result) > 0) {
-                $row = mysqli_fetch_array($result);
-                echo '
+                if (mysqli_num_rows($result) > 0) {
+                    $row = mysqli_fetch_array($result);
+                    echo '
 
         <div id="list-card">
             <div id="name-card"> Товар</div>
@@ -382,18 +464,18 @@ if (mysqli_num_rows($result) > 0) {
             <div id="name-prise">Цена</div>
         </div>
         ';
-                do {
+                    do {
 
-                    $int = $row["price"] * $row["count_cart"];
-                    $all_price = $all_price + $int; // подсчитываем итоговую цену
+                        $int = $row["price"] * $row["count_cart"];
+                        $all_price = $all_price + $int; // подсчитываем итоговую цену
 
-                    if ($row["image"] != "" && file_exists("../assets/products/" . $row["image"])) {
-                        $img_path = '../assets/products/' . $row["image"]; //фото есть 
-                    } else {
-                        $img_path = "../assets/products/no_photo.jpg"; //фото нету
-                    }
+                        if ($row["image"] != "" && file_exists("../assets/products/" . $row["image"])) {
+                            $img_path = '../assets/products/' . $row["image"]; //фото есть 
+                        } else {
+                            $img_path = "../assets/products/no_photo.jpg"; //фото нету
+                        }
 
-                    echo '
+                        echo '
                 <div id="block-list-card">
 
                     <div class="card">
@@ -433,20 +515,21 @@ if (mysqli_num_rows($result) > 0) {
 
                 </div>
                 ';
-                } while ($row = mysqli_fetch_array($result));
+                    } while ($row = mysqli_fetch_array($result));
 
-                echo '
+                    echo '
             <h2 class="itog-price">Итого: <strong>' . group_numerals($all_price) . '</strong>₽</h2>
             <p  class="button-next" ><a href="cart.php?action=confirm" >Далее</a></p> 
             ';
-            } else {
-                echo '<h3 id="clear-cart">Корзина пуста</h3>';
-            }
-            break;
-    }
-    ?>
+                } else {
+                    echo '<h3 id="clear-cart">Корзина пуста</h3>';
+                }
+                break;
+        }
+        ?>
 
-    <?php include("header_footer/footer.php") ?>
+        <?php include("header_footer/footer.php") ?>
+    </div>
 
     <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
     <script defer type="text/javascript" src="../javascript/cart.js"></script>
