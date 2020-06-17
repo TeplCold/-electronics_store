@@ -112,7 +112,7 @@
 }
 
 .noactiv {
-    color: rgb(178, 178, 178);
+    color: rgb(0, 0, 0);
     background-color: white;
     border-right: 1px solid black;
 }
@@ -141,7 +141,7 @@
 }
 
 #name-step {
-    color: rgb(178, 178, 178);
+    color: rgb(121, 121, 121);
     margin-top: 10px;
     display: flex;
     flex-direction: row;
@@ -316,7 +316,6 @@
     color: white;
     padding-left: 30px;
     width: 100%;
-
 }
 
 .cat_top {
@@ -355,5 +354,120 @@
 }
 
 .clear-cart {
+    color: rgb(255, 255, 255);
+    width: 100%;
+    text-align: center;
+    height: 180px;
+}
+
+.clear-cart h3 {
+    height: 100%;
+    margin-top: 90px !important;
+}
+
+
+
+/* шаг 2 из 3 */
+
+.title-h3 {
+    color: rgb(255, 255, 255);
+    margin-top: 25px;
+    margin-left: 25px;
+}
+
+#info-radio {
+    margin-left: 25px;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+
+}
+
+#info-order {
+    margin-left: 25px;
+    color: rgb(0, 0, 0);
+}
+
+#info-order input {
+    width: 365px;
+    height: 35px;
+    margin: 5px 0;
+}
+
+#info-order textarea {
+    width: 365px;
+    resize: none;
+    height: 100px;
+    margin: 5px 0;
+}
+
+
+
+
+.button-back input {
     color: white;
+    padding-left: 23px;
+    border: none;
+    outline: none;
+    width: 100%;
+    background: rgba(0, 0, 0, 0);
+}
+
+button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled) {
+    cursor: pointer;
+    text-align: right;
+    color: white;
+    padding-right: 20px;
+    border: none;
+    outline: none;
+    width: 100%;
+    background: rgba(0, 0, 0, 0);
+    font-size: 30px;
+    height: 37.82px;
+}
+
+/* шаг 3 из 3 */
+.cat_top2 {
+    width: 100%;
+    display: inline-flex;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    padding-top: 6px;
+    border-top: 1px solid rgb(255, 255, 255);
+}
+
+.cat_top2 a {
+    color: white;
+    width: 100%;
+    font-size: 29px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.button-oplat {
+    text-decoration: none;
+    padding-left: 20px;
+}
+
+.button-back2 {
+    text-align: right;
+    width: 100%;
+    text-decoration: none;
+}
+
+.itog-price2 {
+    color: white;
+}
+
+#list-info {
+    color: rgb(255, 255, 255);
+    padding-left: 20px;
+    margin-top: 20px;
+}
+
+#list-info li {
+    margin-bottom: 5px;
+    font-size: 17px;
 }
