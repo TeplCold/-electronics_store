@@ -9,7 +9,7 @@
 }
 
 .containerglavn {
-    background: url("../../assets/home/Planets_Stones_Surface_of_planets_Mass_Effect_558772_2560x1440.jpg");
+    background: url("../../assets/565696.jpg");
     background-size: cover;
     height: auto;
     position: relative;
@@ -22,17 +22,17 @@
 
 .SPASE_ELECTRONICS {
     font-family: "Regular";
-    font-size: 60px;
+    font-size: 65px;
     text-align: center;
     color: rgb(255, 255, 255);
-    padding-top: 25px;
+    padding-top: 35px;
     -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: rgb(0, 0, 0);
 }
 
 .inetshop {
     font-family: "Underdog", cursive;
-    font-size: 45px;
+    font-size: 50px;
     color: white;
     text-align: center;
     -webkit-text-stroke-width: 1.5px;
@@ -41,7 +41,7 @@
 
 .glavnplus {
     font-family: "Underdog", cursive;
-    font-size: 22px;
+    font-size: 26px;
     color: white;
     text-align: center;
     -webkit-text-stroke-width: 0.5px;
@@ -177,8 +177,6 @@
     margin: auto 0;
 }
 
-
-
 /* картинки товара */
 .block_cardss {
     color: rgb(255, 255, 255);
@@ -223,13 +221,6 @@
     vertical-align: middle;
 }
 
-
-
-
-
-
-
-
 .card {
     padding: 0px;
     width: 180px;
@@ -239,10 +230,6 @@
 .card img {
     height: 120px;
 }
-
-
-
-
 
 .count {
     color: white;
@@ -333,6 +320,7 @@
     font-size: 29px;
     text-align: right;
     padding-right: 20px;
+    text-decoration: none;
 }
 
 .button-next {
@@ -365,10 +353,7 @@
     margin-top: 90px !important;
 }
 
-
-
 /* шаг 2 из 3 */
-
 .title-h3 {
     color: rgb(255, 255, 255);
     margin-top: 25px;
@@ -400,9 +385,6 @@
     margin: 5px 0;
 }
 
-
-
-
 .button-back input {
     color: white;
     padding-left: 23px;
@@ -412,10 +394,7 @@
     background: rgba(0, 0, 0, 0);
 }
 
-button:not(:disabled),
-[type="button"]:not(:disabled),
-[type="reset"]:not(:disabled),
-[type="submit"]:not(:disabled) {
+#confirm-button-next {
     cursor: pointer;
     text-align: right;
     color: white;
@@ -444,6 +423,7 @@ button:not(:disabled),
     font-size: 29px;
     text-align: right;
     padding-right: 20px;
+    text-decoration: none;
 }
 
 .button-oplat {

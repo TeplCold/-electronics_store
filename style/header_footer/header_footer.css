@@ -157,19 +157,19 @@ p,
 /* Кнопка отправки формы */
 .form-wrapper button {
     overflow: visible;
-    position: relative;
-    border: 0;
+    border: 0 !important;
     padding: 0;
-    cursor: pointer;
-    height: 40px;
-    width: 40px;
+    cursor: pointer !important;
+    height: 40px !important;
+    width: 40px !important;
     font: bold 15px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
-    color: #fff;
+    color: #fff !important;
     text-transform: uppercase;
-    background: #77e1ffc3;
+    background: #77e1ffc3 !important;
     border-radius: 0 5px 5px 0;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
-    position: absolute;
+    position: absolute !important;
+    font-size: 17px !important;
 }
 
 .form-wrapper button:before {
@@ -204,12 +204,13 @@ p,
     display: none;
     padding-left: 23px;
     padding-right: 23px;
-    font-size: 12px;
+    font-size: 12px ;
 }
 
 #block-user a {
     color: white;
 }
+
 
 /* подвал */
 
