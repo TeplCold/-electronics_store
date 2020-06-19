@@ -278,9 +278,10 @@ if ($_SESSION['auth'] != 'yes_auth') { //выводим эту страницу 
         </div>
 
         <?php include("header_footer/footer.php") ?>
+        <a href="#" class="scrollup">Наверх</a>
+
         <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
         <script defer type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
-
 
         <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
         <script defer type="text/javascript" src="../javascript/jquery.form.js"></script>
@@ -295,6 +296,7 @@ if ($_SESSION['auth'] != 'yes_auth') { //выводим эту страницу 
         <script defer type="text/javascript" src="../javascript/cart.js"></script>
         <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
         <script defer src="../javascript/reg.js"></script>
+        <script defer type="text/javascript" src="../javascript/scrollup.js"></script>
 
     </body>
 

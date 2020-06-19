@@ -499,19 +499,7 @@ session_start();
         <script defer type="text/javascript" src="javascript/jquery-3.5.1.js"> </script>
         <script defer src="bootstrap/js/bootstrap.min.js"></script>
 
-        <script defer>
-            window.RUDEBOX_DEMO_SETTINGS = {
-                lessonLink: '//www.rudebox.org.ua/carousel-with-support-touch-screens-bootstrap',
-                lessonTitle: 'Карусель с поддержкой сенсорных экранов Bootstrap!',
-                downloadLink: '',
-                barPos: 'top',
-                barState: true,
-                showBtn: true,
-                btnPos: 'top-left',
-                themeSwitcher: true,
-                theme: 'light',
-            }
-        </script>
+       
 
 
         <a href="#" class="scrollup">Наверх</a>

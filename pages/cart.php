@@ -497,6 +497,7 @@ if (mysqli_num_rows($result) > 0) {
         ?>
 
         <?php include("header_footer/footer.php") ?>
+        <a href="#" class="scrollup">Наверх</a>
     </div>
 
     <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
@@ -505,7 +506,7 @@ if (mysqli_num_rows($result) > 0) {
 
     <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
     <script defer src="../bootstrap/js/bootstrap.min.js"></script>
-
+    <script defer type="text/javascript" src="../javascript/scrollup.js"></script>
 </body>
 
 </html>

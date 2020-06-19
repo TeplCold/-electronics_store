@@ -102,16 +102,16 @@ switch ($sorting) {
             <div class="container_cards container-fluid">
                 <ul class="cards">
 
-                            <?php
-                            if (mysqli_num_rows($result) > 0) {
-                                $row = mysqli_fetch_array($result);
-                                do {
-                                    if ($row["image"] != "" && file_exists("../assets/products/" . $row["image"])) {
-                                        $img_path = '../assets/products/' . $row["image"]; //фото есть 
-                                    } else {
-                                        $img_path = "../assets/products/no_photo.jpg"; //фото нету
-                                    }
-                                    echo ('
+            <?php
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_array($result);
+                do {
+                    if ($row["image"] != "" && file_exists("../assets/products/" . $row["image"])) {
+                        $img_path = '../assets/products/' . $row["image"]; //фото есть 
+                    } else {
+                        $img_path = "../assets/products/no_photo.jpg"; //фото нету
+                    }
+                    echo ('
 
                                                         <li>
                                                             <div class = "card_image">
@@ -122,15 +122,15 @@ switch ($sorting) {
                                                         </li>
                                             
                                                         ');
-                                } while ($row = mysqli_fetch_array($result));
-                            }
-                        } else {
-                            echo "<p>Ничего не найдено!</p>";
-                        }
-                    } else {
-                        echo "<p>Поисковое значение должно быть от 2 до 64 символов!</p>";
-                    }
-                            ?>
+                } while ($row = mysqli_fetch_array($result));
+            }
+        } else {
+            echo "<p>Ничего не найдено!</p>";
+        }
+    } else {
+        echo "<p>Поисковое значение должно быть от 2 до 64 символов!</p>";
+    }
+            ?>
 
                 </ul>
             </div>
@@ -186,8 +186,11 @@ switch ($sorting) {
 
             <?php include("header_footer/footer.php") ?>
 
+            <a href="#" class="scrollup">Наверх</a>
+
             <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
             <script defer type="text/javascript" src="../javascript/cart.js"></script>
+            <script defer type="text/javascript" src="javascript/scrollup.js"></script>
             <script defer type="text/javascript" src="../javascript/product_list.js"></script>
             <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
 
