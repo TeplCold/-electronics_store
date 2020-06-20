@@ -6,9 +6,8 @@
     margin-bottom: 20px;
     margin-top: 40px;
     padding: 0px !important;
+    overflow: hidden;
 }
-
-
 
 /* блок с карточками */
 .col-xl-auto,
@@ -39,6 +38,19 @@
     display: inline-block;
 }
 
+.count_otzv {
+    position: absolute;
+    text-align: right !important;
+    color: #000;
+    font-size: 20px;
+    width: 100%;
+    padding-right: 8px;
+}
+
+.count img {
+    width: 30px;
+    margin-right: 5px;
+}
 
 /* картинки товара */
 .card_image {
@@ -78,12 +90,29 @@
     vertical-align: bottom;
 }
 
+.otzv img {
+    width: 20px;
+    margin-right: 5px;
+    margin-left: 15px;
+}
 
+.card_price {
+    position: relative;
+    justify-content: center;
+    background: black;
+    height: 30px;
+}
+
+
+.add-card img {
+    width: 55px;
+    margin-left: 35px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 
 #pagination {
-    border: 2px solid rgb(6, 22, 248);
-
-
+    margin-bottom: 30px;
 }
 
 .pagination {
@@ -91,4 +120,28 @@
     top: 50%;
     left: 50%;
     margin: 0px;
+}
+
+#block-info {
+    display: flex;
+    margin-left: 25px;
+    margin-right: 25px;
+    font-size: 20px;
+    margin-top: 25px;
+    border-bottom: 1px solid white;
+    margin-bottom: 25px;
+}
+
+#add-style {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+#add-style a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.card_price a{
+    text-decoration: none;
 }

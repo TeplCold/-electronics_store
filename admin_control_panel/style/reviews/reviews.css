@@ -1,3 +1,13 @@
+.block_cuntent {
+    background: rgb(22, 22, 22);
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    padding: 0px !important;
+    overflow: hidden;
+    padding-bottom: 25px !important;
+}
+
 li {
     list-style-type: none;
 }
@@ -11,23 +21,30 @@ ul {
 #list-links-sort {
     position: absolute;
     display: none;
+    color: white;
+    background: rgb(12, 12, 12);
+    padding: 5px;
 }
 
-.card_image img {
-    width: 170px;
-    height: 170px;
+#list-links-sort a {
+
+    color: white;
+    font-size: 20px;
+
 }
+
 
 
 /* вывод рэйтинга */
 .rating-mini {
     display: inline-block;
     font-size: 0;
+    margin-top: 2px;
 }
 
 .rating-mini span {
     padding: 0;
-    font-size: 20px;
+    font-size: 25px;
     line-height: 1;
     color: lightgrey;
 }
@@ -38,4 +55,163 @@ ul {
 
 .rating-mini>span.active {
     color: gold;
+}
+
+#options-list {
+    display: flex;
+    margin-left: 25px;
+
+    font-size: 20px;
+}
+
+#select-links {
+    font-size: 20px;
+    color: white;
+}
+
+#review-info-count li {
+    font-size: 20px;
+
+}
+
+#review-info-count {
+    font-size: 20px;
+    margin-top: 25px;
+
+}
+
+
+
+/* картинки товара */
+
+.block_cardss {
+    color: rgb(255, 255, 255);
+    width: 110px;
+    text-align: center;
+    margin: 0px 0px 10px 0px;
+}
+
+.blockimage {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.container_cardss {
+    background-color: white;
+    border-radius: 20px;
+    width: 100px;
+}
+
+.card_image {
+    width: 80px;
+    height: 80px;
+    background: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card_image img {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.card {
+    padding: 0px;
+    width: 180px;
+    text-align: center;
+}
+
+.card img {
+    height: 120px;
+}
+
+.block_content {
+    margin-top: 40px;
+    margin-left: 25px;
+    margin-right: 25px;
+    text-align: justify;
+}
+
+#block-info {
+    margin-left: 25px;
+}
+
+.block_reviews {
+    font-size: 19px;
+    padding-top: 10px;
+    font-weight: 600;
+}
+
+.container_data {
+    margin-left: auto;
+    margin-right: 0;
+    font-size: 19px;
+}
+
+.container_reviews {
+    font-size: 17px;
+    text-align: justify;
+
+}
+
+.block-reviews {
+    font-size: 20px;
+    padding-top: 10px;
+
+}
+
+.containerblock-reviews {
+    border-bottom: 1px solid white;
+    display: inline-flex;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.block-reviews-name {
+    font-size: 22px;
+    margin-right: 20px;
+}
+
+#good_review,
+#bad_review,
+#comment_review {
+    resize: none;
+    height: 100px;
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+#name_review {
+    width: 300px;
+    height: 40px;
+    resize: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.block_coment {
+    font-style: italic;
+}
+
+.links-actions {
+    font-size: 20px;
+    text-align: right;
+}
+
+.links-actions a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
 }

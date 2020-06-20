@@ -62,44 +62,45 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
 
 
             <div id="block-info">
-                <p id="count-style">Всего товаров- <strong><?php echo $all_count_result; ?></strong></p>
-                <p id="add-style"><a href="add_product.php">Добавить товар</a></p>
+                <div id="count-style">Всего товаров - <strong><?php echo $all_count_result; ?></strong></div>
+                <div id="add-style"><a href="add_product.php">Добавить товар</a></div>
             </div>
 
 
 
-            <div class="row justify-content-center">
-                <div class="col-xl-auto col-lg-auto col-md-3 col-auto">
-                    <?php
-                    $num = 8; //вывод товара 
-                    $page = (int) $_GET['page']; //значение страници              
 
-                    $count = mysqli_query($link, "SELECT COUNT(*) FROM products $cat");
-                    $temp = mysqli_fetch_array($count);
 
-                    if ($temp[0] > 0) {
-                        $tempcount = $temp[0];
 
-                        // находим общее число страниц 
-                        $total = (($tempcount - 1) / $num) + 1;
-                        $total =  intval($total);
-                        $page = intval($page);
-
-                        if (empty($page) or $page < 0) {
-                            $page = 1;
-                        }
-                        if ($page > $total) {
-                            $page = $total;
-                        }
-                        // вычисляем с какого номера начинать следует выводить товар
-                        $start = $page * $num - $num;
-                        $qury_start_num = " LIMIT $start, $num";
-                    }
-                    ?>
-
-                    <li>
+            <div class="container text-white ">
+                <div class="row justify-content-center">
+                    <div class="col-xl-auto col-lg-auto col-md-3 col-auto">
                         <ul class="cards">
                             <?php
+                            $num = 8; //вывод товара 
+                            $page = (int) $_GET['page']; //значение страници              
+
+                            $count = mysqli_query($link, "SELECT COUNT(*) FROM products $cat");
+                            $temp = mysqli_fetch_array($count);
+
+                            if ($temp[0] > 0) {
+                                $tempcount = $temp[0];
+
+                                // находим общее число страниц 
+                                $total = (($tempcount - 1) / $num) + 1;
+                                $total =  intval($total);
+                                $page = intval($page);
+
+                                if (empty($page) or $page < 0) {
+                                    $page = 1;
+                                }
+                                if ($page > $total) {
+                                    $page = $total;
+                                }
+                                // вычисляем с какого номера начинать следует выводить товар
+                                $start = $page * $num - $num;
+                                $qury_start_num = " LIMIT $start, $num";
+                            }
+
                             $result = mysqli_query($link, "SELECT * FROM products $cat ORDER BY id DESC LIMIT  $start, $num");
                             if (mysqli_num_rows($result) > 0) {
                                 $row = mysqli_fetch_array($result);
@@ -110,56 +111,52 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
                                         $img_path = "../assets/products/no_photo.jpg"; //фото нету
                                     }
                                     echo (' 
-                                    <li>
-                                            <div class = "blockimage">
-                                                    <div class = "card_image"> <img src="' . $img_path . '" /> </div>
-                                            </div>
-                                                <div class="down_card">
-                                                    <div class="tow_title"> <a>' . $row["title"] . '</a> </div> 
-                                            </div>
-                                      
-                                        <div class="card_price2">
-                                            <a href="edit_product.php?id=' . $row["id"] . '">Изменить</a> | 
-                                            <a rel="tovar.php?id=' . $row["id"] . '&action=delete" class="delete" >Удалить</a>
+                                <li>
+
+                                    <div class = "blockimage">
+                                        <div class = "card_image"> <img src="' . $img_path . '" /> </div>
+                                    </div>
+
+                                    <div class="down_card">
+                                        <div class="tow_title"> <a>' . $row["title"] . '</a> </div> 
+                    
+                          
+                                        <div class="card_price">
+                                            <a class="izm" href="edit_product.php?id=' . $row["id"] . '">Изменить </a> | 
+                                            <a rel="tovar.php?id=' . $row["id"] . '&action=delete" class="delete" > Удалить</a>
                                         </div>
-                                    </li>
-                                  
-                
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    ...
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ...
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    </p>
                                 </li>
-                                ');
+                            ');
                                 } while ($row = mysqli_fetch_array($result));
                             }
                             ?>
                         </ul>
+
+                    </div>
                 </div>
             </div>
-
-
-
-
-
-
 
 
 
