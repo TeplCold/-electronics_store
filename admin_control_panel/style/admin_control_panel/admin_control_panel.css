@@ -57,3 +57,7 @@
 .blockTABLE {
     padding-bottom: 30px;
 }
+
+.order_datetime{
+    width: 180px;
+}

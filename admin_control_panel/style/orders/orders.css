@@ -1,0 +1,14 @@
+.block_cuntent {
+    background: rgb(22, 22, 22);
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    padding: 0px !important;
+    overflow: hidden;
+}
+
+.block-order{
+    margin-left: 25px;
+    margin-top: 25px;
+    font-size: 18px;
+}

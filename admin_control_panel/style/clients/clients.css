@@ -7,15 +7,62 @@ ul {
     padding-left: 0;
 }
 
-
 #list-links-sort {
     position: absolute;
     display: none;
 }
 
-
-
 .block-clients>ul {
     display: none;
     margin-bottom: 15px;
+}
+
+.block_cuntent {
+    background: rgb(22, 22, 22);
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    padding: 0px !important;
+    overflow: hidden;
+}
+
+#count-clients {
+    margin-left: 25px;
+    font-size: 20px;
+    margin-top: 25px;
+}
+
+#count-admin {
+    margin-left: 25px;
+
+    font-size: 20px;
+}
+
+.block-clients {
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 15px;
+    border-bottom: 1px solid rgb(255, 255, 255);
+    font-size: 18px;
+}
+
+.block-clientsflex {
+    display: flex;
+}
+
+.client-links {
+    margin-left: auto;
+}
+
+
+
+#pagination {
+    margin-bottom: 30px;
+}
+
+.pagination {
+    position: relative;
+    top: 50%;
+    justify-content: center;
+    margin-top: 30px;
 }
