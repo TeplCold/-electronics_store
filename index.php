@@ -17,10 +17,6 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="style/home/home.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-
-    <!-- owlcarousel css style -->
-    <link rel="stylesheet" href="owlcarousel/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="owlcarousel/assets/owl.theme.default.min.css">
 </head>
 
 <body>
@@ -111,8 +107,11 @@ session_start();
             </div>
         </div>
 
+
+
+
         <div class="container-fluid downheader ">
-            <div class="container text-white ">
+            <div class="container text-white">
                 <div class="row justify-content-center">
                     <div class="col boxes "> Популярные товары</div>
                     <div class="col-xl-auto col-lg-auto col-md-3 col-auto">
@@ -136,21 +135,17 @@ session_start();
                                     $a = mysqli_num_rows($query_reviews);
 
                                     echo (' 
-                                <li>
-
-                                    <div class="count_otzv">
-                                        <div class="count"> <img src="assets/64875.png" />' . $row["count"] . ' </div>
-                                    </div>
-                            
-                                    <a href="/pages/content.php?id=' . $row["id"] . '">
-                                    
-                                        <div class = "blockimage">
+                            <li>
+                                <div class="count_otzv">
+                                    <div class="count"> <img src="assets/64875.png" />' . $row["count"] . ' </div>
+                                </div>
+                                <a href="/pages/content.php?id=' . $row["id"] . '">
+                                    <div class = "blockimage">
                                             <div class = "card_image"> <img src="' . $img_path . '" /> </div>
-                                        </div>
-
+                                    </div>
                                         <div class="down_card">
                                             <div class="tow_title"> <a>' . $row["title"] . '</a> </div> 
-                                ');
+                                    ');
                             ?>
                                     <div class="rating">
                                         <div class="rating-mini">
@@ -164,15 +159,14 @@ session_start();
                                     echo ('  
                                             <div class="otzv"> <img src="assets/sms.png" />' .  $a . ' </div>
                                         </div>
-                            
-                                    </a>
+                                </a>
 
-                                    <div class="card_price">
-                                        <div class="price">' . group_numerals($row["price"]) . '₽ </div>
-                                        <div class="add-card"  tid="' . $row["id"] . '" > <img src="assets/_9610-12+.png" /></div>
-                                    </div>
-                                </li>
-                                ');
+                                <div class="card_price2">
+                                    <div class="price">' . group_numerals($row["price"]) . '₽ </div>
+                                    <div class="add-card"  tid="' . $row["id"] . '" > <img src="assets/_9610-12+.png" /></div>
+                                </div>
+                            </li>
+                            ');
                                 } while ($row = mysqli_fetch_array($result));
                             }
                                 ?>
@@ -181,6 +175,10 @@ session_start();
                 </div>
             </div>
         </div>
+
+
+
+
 
         <div class="container-fluid text-white " data-wow-offset="300">
 
@@ -202,71 +200,54 @@ session_start();
                             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                         </ol>
-
                         <div class="carousel-inner">
-
                             <div class="carousel-item active">
-
                                 <div class="container">
-
                                     <div class="mar">
-
                                         <div class=" justify-content-center text-center asas">
 
-                                            <div class="  text-center txt ">
+                                            <?php
+                                            $result = mysqli_query($link, "SELECT * FROM `products` WHERE visible = '1'   LIMIT 2");
 
-                                                <div class=" buttonbox">
+                                            if (mysqli_num_rows($result) > 0) {
+                                                $row = mysqli_fetch_array($result);
+                                                do {
 
-                                                    <div class="holder">
-                                                        <button id="click" class="block" type="button" data-toggle="modal" data-target="#exampleModalCenter"> cмотреть</button>
-                                                    </div>
-                                                    <img src="//img.youtube.com/vi/kc-OcOduEx0/mqdefault.jpg" alt="Need For Speed: Payback - трейлер" class="img_thriller">
+                                                    echo '
+                                                    <div class="  text-center txt ">
 
-                                                    <div class="thriller_Name"> Need For Speed Payback</div>
+                                                        <div class=" buttonbox">
 
-                                                    <div class="smpage ">
-                                                        <a href="pages/infGame/Need_for_Speed_Payback.html" class="smBtn ">
-                                                            Перейти к товару
-                                                        </a>
-                                                    </div>
+                                                            <div class="holder">
+                                                                <button id="click" class="block" type="button" data-toggle="modal" data-target="#exampleModalCenter"> cмотреть</button>
+                                                            </div>
 
-                                                </div>
+                                                            <img src="//img.youtube.com/vi/' . $row["obzor"] . '/mqdefault.jpg" class="img_thriller">
 
-                                            </div>
+                                                            <div class="thriller_Name"> ' . $row["title_obzor"] . ' </div>
 
-                                            <div class=" text-center txt">
+                                                            <div class="smpage ">
 
-                                                <div class=" buttonbox">
-                                                    <div class="holder ">
+                                                                <a href="pages/content.php?id=' . $row["id"] . '" class="smBtn ">
+                                                                    Перейти к товару
+                                                                </a>
+                                                            </div>
 
-                                                        <button id="click2" class="block" type="button" data-toggle="modal" data-target="#exampleModalCenter"> cмотреть </button>
-
-                                                    </div>
-
-                                                    <img src="//img.youtube.com/vi/DuvN4YcJ0ZA/mqdefault.jpg" alt="Need For Speed: Payback - трейлер" div class="img_thriller">
-
-                                                    <div class="thriller_Name"> Metro: Exodus </div>
-
-                                                    <div class="smpage ">
-
-                                                        <a href="pages/infGame/Metro_Exodus.html" class="smBtn">
-
-                                                            Перейти к товару
-
-                                                        </a>
+                                                        </div>
 
                                                     </div>
-
-                                                </div>
-
-                                            </div>
-
+                                                    ';
+                                                } while ($row = mysqli_fetch_array($result));
+                                            }
+                                            ?>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
+
+
+
+
                             <div class="carousel-item ">
 
                                 <div class="container">
@@ -275,53 +256,90 @@ session_start();
 
                                         <div class=" justify-content-center text-center asas">
 
-                                            <div class="  text-center txt ">
+                                            <?php
+                                            $result = mysqli_query($link, "SELECT * FROM `products` WHERE visible = '1'   LIMIT 2");
 
-                                                <div class=" buttonbox">
+                                            if (mysqli_num_rows($result) > 0) {
+                                                $row = mysqli_fetch_array($result);
+                                                do {
 
-                                                    <div class="holder">
-                                                        <button id="click" class="block" type="button" data-toggle="modal" data-target="#exampleModalCenter"> cмотреть</button>
-                                                    </div>
-                                                    <img src="//img.youtube.com/vi/kc-OcOduEx0/mqdefault.jpg" alt="Need For Speed: Payback - трейлер" class="img_thriller">
+                                                    echo '
+                                                    <div class="  text-center txt ">
 
-                                                    <div class="thriller_Name"> Need For Speed Payback</div>
+                                                        <div class=" buttonbox">
 
-                                                    <div class="smpage ">
-                                                        <a href="pages/infGame/Need_for_Speed_Payback.html" class="smBtn ">
-                                                            Перейти к товару
-                                                        </a>
-                                                    </div>
+                                                            <div class="holder">
+                                                                <button id="click" class="block" type="button" data-toggle="modal" data-target="#exampleModalCenter"> cмотреть</button>
+                                                            </div>
 
-                                                </div>
+                                                            <img src="//img.youtube.com/vi/' . $row["obzor"] . '/mqdefault.jpg" class="img_thriller">
 
-                                            </div>
+                                                            <div class="thriller_Name"> ' . $row["title_obzor"] . ' </div>
 
-                                            <div class=" text-center txt">
+                                                            <div class="smpage ">
 
-                                                <div class=" buttonbox">
-                                                    <div class="holder ">
+                                                                <a href="pages/content.php?id=' . $row["id"] . '" class="smBtn ">
+                                                                    Перейти к товару
+                                                                </a>
+                                                            </div>
 
-                                                        <button id="click2" class="block" type="button" data-toggle="modal" data-target="#exampleModalCenter"> cмотреть </button>
-
-                                                    </div>
-
-                                                    <img src="//img.youtube.com/vi/DuvN4YcJ0ZA/mqdefault.jpg" alt="Need For Speed: Payback - трейлер" div class="img_thriller">
-
-                                                    <div class="thriller_Name"> Metro: Exodus </div>
-
-                                                    <div class="smpage ">
-
-                                                        <a href="pages/infGame/Metro_Exodus.html" class="smBtn">
-
-                                                            Перейти к товару
-
-                                                        </a>
+                                                        </div>
 
                                                     </div>
+                                                    ';
+                                                } while ($row = mysqli_fetch_array($result));
+                                            }
+                                            ?>
 
-                                                </div>
+                                        </div>
 
-                                            </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="carousel-item ">
+
+                                <div class="container">
+
+                                    <div class="mar">
+
+                                        <div class=" justify-content-center text-center asas">
+
+                                            <?php
+                                            $result = mysqli_query($link, "SELECT * FROM `products` WHERE visible = '1'   LIMIT 2");
+
+                                            if (mysqli_num_rows($result) > 0) {
+                                                $row = mysqli_fetch_array($result);
+                                                do {
+
+                                                    echo '
+                                                    <div class="  text-center txt ">
+
+                                                        <div class=" buttonbox">
+
+                                                            <div class="holder">
+                                                                <button id="click" class="block" type="button" data-toggle="modal" data-target="#exampleModalCenter"> cмотреть</button>
+                                                            </div>
+
+                                                            <img src="//img.youtube.com/vi/' . $row["obzor"] . '/mqdefault.jpg" class="img_thriller">
+
+                                                            <div class="thriller_Name"> ' . $row["title_obzor"] . ' </div>
+
+                                                            <div class="smpage ">
+
+                                                                <a href="pages/content.php?id=' . $row["id"] . '" class="smBtn ">
+                                                                    Перейти к товару
+                                                                </a>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                    ';
+                                                } while ($row = mysqli_fetch_array($result));
+                                            }
+                                            ?>
 
                                         </div>
 
@@ -343,17 +361,52 @@ session_start();
             </div>
         </div>
 
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
+            <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+
+                <span class="close" aria-hidden="true">
+
+                    &#10060; </span>
+
+            </button>
+
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+
+                <div class="modal-content">
+
+                    <div class="modal-header p-0">
+
+                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+
+                        <div class="modal-body p-0">
+
+                            <iframe class="videoPlayer"></iframe>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+        
 
         <div class="container-fluid recomend ">
-            <div class="container text-white ">
+            <div class="container text-white blockrecomend ">
                 <div class="row justify-content-center">
                     <div class="col boxes "> Рекомендуемые товары</div>
                     <div class="col-xl-auto col-lg-auto col-md-3 col-auto">
                         <ul class="cards">
                             <?php
 
-                            $result =  mysqli_query($link, "SELECT * FROM products,reviews_products WHERE  products.visible = '1' AND reviews_products.moderat='1' AND products.id=reviews_products.products_id ORDER BY reviews_products.rating DESC LIMIT 4	");
+                            $result =  mysqli_query($link, "SELECT * FROM  products , reviews_products WHERE products.id = reviews_products.products_id AND reviews_products.moderat='1' AND  products.visible = '1'  GROUP BY reviews_products.products_id ORDER BY reviews_products.rating DESC LIMIT 4");
 
                             if (mysqli_num_rows($result) > 0) {
                                 $row = mysqli_fetch_array($result);
@@ -363,27 +416,24 @@ session_start();
                                     } else {
                                         $img_path = "assets/products/no_photo.jpg"; //фото нету
                                     }
+
                                     $query_reviews = mysqli_query($link, "SELECT * FROM reviews_products WHERE products_id='{$row['id']}' AND moderat='1'");
                                     $row_reviews = mysqli_fetch_array($query_reviews);
                                     $rating = round($row_reviews['rating'] / $query_reviews);
                                     $a = mysqli_num_rows($query_reviews);
 
                                     echo (' 
-                                <li>
-
-                                    <div class="count_otzv">
-                                        <div class="count"> <img src="assets/64875.png" />' . $row["count"] . ' </div>
-                                    </div>
-                        
-                                    <a href="/pages/content.php?id=' . $row["id"] . '">
-                                    
-                                        <div class = "blockimage">
+                            <li>
+                                <div class="count_otzv">
+                                    <div class="count"> <img src="assets/64875.png" />' . $row["count"] . ' </div>
+                                </div>
+                                <a href="/pages/content.php?id=' . $row["id"] . '">
+                                    <div class = "blockimage">
                                             <div class = "card_image"> <img src="' . $img_path . '" /> </div>
-                                        </div>
-
+                                    </div>
                                         <div class="down_card">
                                             <div class="tow_title"> <a>' . $row["title"] . '</a> </div> 
-                                ');
+                                    ');
                             ?>
                                     <div class="rating">
                                         <div class="rating-mini">
@@ -397,15 +447,14 @@ session_start();
                                     echo ('  
                                             <div class="otzv"> <img src="assets/sms.png" />' .  $a . ' </div>
                                         </div>
-             
-                                    </a>
+                                </a>
 
-                                    <div class="card_price">
-                                        <div class="price">' . group_numerals($row["price"]) . '₽ </div>
-                                        <div class="add-card"  tid="' . $row["id"] . '" > <img src="assets/_9610-12+.png" /></div>
-                                    </div>
-                                </li>
-                                ');
+                                <div class="card_price">
+                                    <div class="price">' . group_numerals($row["price"]) . '₽ </div>
+                                    <div class="add-card"  tid="' . $row["id"] . '" > <img src="assets/_9610-12+.png" /></div>
+                                </div>
+                            </li>
+                            ');
                                 } while ($row = mysqli_fetch_array($result));
                             }
                                 ?>
@@ -479,17 +528,6 @@ session_start();
             </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
         <?php include("pages/header_footer/footer.php") ?>
 
         <script defer type="text/javascript" src="javascript/jquery-3.4.1.js"></script>
@@ -498,9 +536,6 @@ session_start();
         <script defer type="text/javascript" src="javascript/scrollup.js"></script>
         <script defer type="text/javascript" src="javascript/jquery-3.5.1.js"> </script>
         <script defer src="bootstrap/js/bootstrap.min.js"></script>
-
-       
-
 
         <a href="#" class="scrollup">Наверх</a>
     </div>

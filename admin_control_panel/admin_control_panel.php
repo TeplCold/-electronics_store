@@ -18,7 +18,8 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="style/admin_control_panel/admin_control_panel.css">
+
 
     </head>
 
@@ -39,72 +40,85 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
         $result4 = mysqli_num_rows($query4);
         ?>
 
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">Главная</li>
-            </ol>
-        </nav>
 
-        <?php include("panelyprav.php"); ?>
 
-        <p id="title-page">Общая статистика</p>
-        <ul id="general-statistics">
-            <li>
-                <p>Всего заказов - <span><?php echo $result1; ?></span></p>
-            </li>
-            <li>
-                <p>Товаров - <span><?php echo $result2; ?></span></p>
-            </li>
-            <li>
-                <p>Отзывы - <span><?php echo $result3; ?></span></p>
-            </li>
-            <li>
-                <p>Клиенты - <span><?php echo $result4; ?></span></p>
-            </li>
-        </ul>
 
-        <h3 id="title-statistics">Статистика продаж</h3>
 
-        <TABLE>
-            <TR>
-                <TH>Дата</TH>
-                <TH>Товар</TH>
-                <TH>Цена</TH>
-                <TH>Статус</TH>
-            </TR>
-            <?php
 
-            $result = mysqli_query($link, "SELECT * FROM orders,buy_products WHERE orders.order_pay='accepted' AND orders.order_id=buy_products.buy_id_order");
+        <div class="container block_cuntent">
 
-            if (mysqli_num_rows($result) > 0) {
-                $row = mysqli_fetch_array($result);
-                do {
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Главная</li>
+                </ol>
+            </nav>
 
-                    $result2 = mysqli_query($link, "SELECT * FROM products WHERE id='{$row["buy_id_product"]}'");
-                    if (mysqli_num_rows($result2) > 0) {
-                        $row2 = mysqli_fetch_array($result2);
-                    }
+            <?php include("panelyprav.php"); ?>
 
-                    $statuspay = "";
-                    if ($row["order_pay"] == "accepted") $statuspay = "Оплачено";
+            <p id="title-page">Общая статистика</p>
+            <ul id="general-statistics">
+                <li>
+                    <p>Всего заказов - <span><?php echo $result1; ?></span></p>
+                </li>
+                <li>
+                    <p>Товаров - <span><?php echo $result2; ?></span></p>
+                </li>
+                <li>
+                    <p>Отзывы - <span><?php echo $result3; ?></span></p>
+                </li>
+                <li>
+                    <p>Клиенты - <span><?php echo $result4; ?></span></p>
+                </li>
+            </ul>
 
-                    echo '
+            <h3 id="title-statistics">Статистика продаж</h3>
+
+
+            <div class="blockTABLE">
+                <TABLE class="TABLE ">
                     <TR>
-                    <TD  align="CENTER" >' . $row["order_datetime"] . '</TD>
-                    <TD  align="CENTER" >' . $row2["title"] . '</TD>
-                    <TD  align="CENTER" >' . $row2["price"] . ' ₽</TD>
-                    <TD  align="CENTER" >' . $statuspay . '</TD>
+                        <TH class="CENTER">Дата</TH>
+                        <TH class="CENTER">Товар</TH>
+                        <TH class="CENTER">Цена</TH>
+                        <TH class="CENTER">Статус</TH>
+                    </TR>
+                    <?php
+                    $result = mysqli_query($link, "SELECT * FROM orders,buy_products WHERE orders.order_pay='accepted' AND orders.order_id=buy_products.buy_id_order");
+                    if (mysqli_num_rows($result) > 0) {
+                        $row = mysqli_fetch_array($result);
+                        do {
+
+                            $result2 = mysqli_query($link, "SELECT * FROM products WHERE id='{$row["buy_id_product"]}'");
+                            if (mysqli_num_rows($result2) > 0) {
+                                $row2 = mysqli_fetch_array($result2);
+                            }
+
+                            $statuspay = "";
+                            if ($row["order_pay"] == "accepted") $statuspay = "Оплачено";
+
+                            echo '
+                    <TR class="contentTABLE">
+                    <TD class="strokaTABLE order_datetime"  >' . $row["order_datetime"] . '</TD>
+                    <TD class="strokaTABLE title"  >' . $row2["title"] . '</TD>
+                    <TD class="strokaTABLE price"  >' . $row2["price"] . ' ₽</TD>
+                    <TD class="strokaTABLE statuspay"  >' . $statuspay . '</TD>
                     </TR>
                     ';
-                } while ($row = mysqli_fetch_array($result));
-            }
-            ?>
+                        } while ($row = mysqli_fetch_array($result));
+                    }
+                    ?>
+                </TABLE>
+            </div>
+        </div>
 
-            <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
-            <script defer type="text/javascript" src="../javascript/cart.js"></script>
-            <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
-            <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
-            <script defer type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+        <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
+        <script defer type="text/javascript" src="../javascript/cart.js"></script>
+        <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
+        <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
+        <script defer type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+        <script defer type="text/javascript" src="../javascript/scrollup.js"></script>
+        <?php include("footer.php") ?>
+        <a href="#" class="scrollup">Наверх</a>
     </body>
 
     </html>

@@ -1,0 +1,59 @@
+@import url(../header_footer/footer.css);
+
+#title-page {
+    color: white;
+}
+
+.block_cuntent {
+    background: rgb(22, 22, 22);
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    padding: 0px !important;
+}
+
+#title-page,
+#title-statistics {
+    font-size: 30px;
+    padding-top: 15px;
+    margin-left: 25px;
+}
+
+#general-statistics li {
+    font-size: 20px;
+    margin-left: 25px;
+}
+
+.TABLE {
+    font-size: 20px;
+    margin-left: 25px;
+    text-align: justify;
+    padding-left: 20px;
+    width: 1090px;
+}
+
+
+
+.contentTABLE {
+    font-size: 15px;
+    margin: 25px;
+
+}
+
+.strokaTABLE {
+    font-size: 15px;
+    border: 1px solid white;
+    padding-left: 5px;
+    height: 30px;
+}
+
+
+
+.CENTER {
+    padding-left: 5px;
+    border: 1px solid white;
+}
+
+.blockTABLE {
+    padding-bottom: 30px;
+}

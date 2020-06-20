@@ -21,9 +21,10 @@ if ($countt2 > 0) {
 
 
 
-Панель управления
 
-<div id="left-nav">
+
+<div class="container" id="left-nav">
+<div class="panelyprav_name">Панель управления</div>
     <ul>
         <li><a href="admin_control_panel.php">Главная</a></li>
         <li><a href="tovar.php">Товары</a></li>

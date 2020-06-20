@@ -1,0 +1,38 @@
+#block-content_footer {
+    padding-top: 20px;
+    bottom: 0;
+    width: 100%;
+}
+
+.block-content_footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+}
+
+.prava {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    padding: 9px;
+    text-align: center;
+}
+
+
+#left-nav {
+    color: rgb(255, 255, 255);
+    background: rgb(22, 22, 22);
+}
+
+#left-nav a {
+    color: rgb(255, 255, 255);
+}
+
+.panelyprav_name{
+    font-size: 30px;margin-left: 11px;
+}
+
+#left-nav li {
+    font-size: 20px;margin-left:11px;
+}

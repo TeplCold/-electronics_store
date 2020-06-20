@@ -64,13 +64,14 @@
 .recomend {
   background: url("../../assets/home/space-science-fiction.png");
   background-size: cover;
-  height: 500px;
+  height: 510px;
 }
+
 
 .downheader {
   background: url("../../assets/home/320391-blackangel.jpg");
   background-size: cover;
-  height: 500px;
+  height: 510px;
 }
 
 .block-basket {
@@ -208,12 +209,22 @@
   display: flex;
   justify-content: center;
   background: black;
+  padding-bottom: 5px;
+  padding-top: 2px;
+}
+
+.card_price2 {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background: black;
+  padding-bottom: 5px;
 }
 
 .price {
   font-size: 25px;
   margin-left: 15px;
-  margin-top: 5px;
+  margin-top: 7px;
   margin-bottom: 5px;
 }
 
@@ -221,7 +232,6 @@
   width: 55px;
   margin-left: 35px;
   margin-top: 5px;
-  margin-bottom: 5px;
 }
 
 /* обзоры */
@@ -281,8 +291,8 @@
 
 .holder,
 .block {
-  width: 290px;
-  height: 180px;
+  width: 450px;
+  height: 280px;
 }
 
 .block {
@@ -319,6 +329,17 @@
   font-size: 12px;
 }
 
+.smpage a {
+  text-decoration: none;
+}
+
+.smpage A:hover {
+  text-decoration: none;
+  /* Добавляем подчеркивание при наведении курсора на ссылку */
+  color: rgb(255, 255, 255);
+  /* Ссылка красного цвета */
+}
+
 .smBtn:link {
   color: rgb(255, 255, 255);
 }
@@ -336,6 +357,26 @@
   text-decoration: none;
 }
 
-.carousel-indicators {
-  padding-top: 30px;
+
+
+
+.modal-header {
+  height: 450px !important;
+}
+
+.videoPlayer {
+  width: 800px;
+  height: 450px;
+}
+
+.carousel-control-prev {
+  left: 0px !important;
+  width: 80px !important;
+  bottom: 60px !important;
+}
+
+.carousel-control-next {
+  right: 0px !important;
+  width: 80px !important;
+  bottom: 60px !important;
 }
