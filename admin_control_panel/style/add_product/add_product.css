@@ -3,3 +3,85 @@
 .div-editor4 {
     display: none;
 }
+
+.block_cuntent {
+    background: rgb(22, 22, 22);
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    padding: 0px !important;
+    overflow: hidden;
+}
+
+.container_cuntent {
+    margin-left: 25px;
+    margin-bottom: 25px;
+    margin-top: 40px;
+}
+
+#title-page {
+    font-size: 28px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid white;
+    margin-right: 25px;
+}
+
+.nazv label {
+    font-size: 20px;
+}
+
+.nazv input {
+    width: 250px;
+    margin-bottom: 20px;
+    height: 30px;
+}
+
+.nazv select {
+    width: 250px;
+    margin-bottom: 20px;
+    height: 30px;
+}
+
+#baseimg-upload {
+    margin-bottom: 20px;
+}
+
+.nazv_top {
+    margin-top: 20px;
+}
+
+.h3click {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#add-input {
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.addimage input {
+    margin-top: 5px;
+}
+
+.delete-input {
+    width: 200px;
+}
+
+.submit_form input{
+    background: none;
+    color: white;
+    border: none;
+    font-size: 21px;
+    margin-top: 10px;
+    padding: 0;
+}
+
+.h3title{
+    font-size: 20px;
+}
+
+#form-error{
+    color: rgb(150, 0, 0);
+    margin-bottom: 20PX;
+}

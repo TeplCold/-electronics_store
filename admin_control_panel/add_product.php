@@ -33,6 +33,14 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
             $selectsubcategory = $row["subcategory_id"];
         }
 
+        if (!$_POST["form_brand"]) {
+            $error[] = "Укажите брэнд";
+        } else {
+            $result = mysqli_query($link, "SELECT * FROM brand WHERE brand_id='{$_POST["form_brand"]}'");
+            $row = mysqli_fetch_array($result);
+            $selectsubcategory = $row["brand"];
+        }
+
         // Проверка чекбоксов
         if ($_POST["chk_visible"]) {
             $chk_visible = "1";
@@ -96,215 +104,201 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
 
         <?php include("header.php"); ?>
 
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="admin_control_panel.php">Главная</a></li>
-                <li class="breadcrumb-item"><a href="tovar.php">Товары</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Добавление товара</li>
-            </ol>
-        </nav>
+        <div class="container block_cuntent">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="admin_control_panel.php">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="tovar.php">Товары</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Добавление товара</li>
+                </ol>
+            </nav>
 
-        <?php include("panelyprav.php"); ?>
-
-        <p id="title-page">Добавление товара</p>
-
-        <?php
-        if (isset($msgerror)) echo '<p id="form-error">' . $msgerror . '</p>';
-
-        if (isset($_SESSION['message'])) {
-            echo $_SESSION['message'];
-            unset($_SESSION['message']);
-        }
-
-        if (isset($_SESSION['answer'])) {
-            echo $_SESSION['answer'];
-            unset($_SESSION['answer']);
-        }
-        ?>
-
-        <form enctype="multipart/form-data" method="post">
-            <ul id="edit-tovar">
-
-                <li>
-                    <label>Название товара</label>
-                    <input type="text" name="form_title" />
-                </li>
-
-                <li>
-                    <label>Цена</label>
-                    <input type="text" name="form_price" />
-                </li>
+            <?php include("panelyprav.php"); ?>
 
 
 
+            <div class="container_cuntent">
+                <p id="title-page">Добавление товара</p>
+
+                <?php
+                if (isset($msgerror)) echo '<p id="form-error">' . $msgerror . '</p>';
+
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
+                }
+
+                if (isset($_SESSION['answer'])) {
+                    echo $_SESSION['answer'];
+                    unset($_SESSION['answer']);
+                }
+                ?>
+
+                <form enctype="multipart/form-data" method="post">
+                    <ul id="edit-tovar">
+
+                        <li class="nazv">
+                            <label>Название товара</label>
+                        </li>
+                        <li class="nazv">
+                            <input type="text" name="form_title" />
+                        </li>
+
+                        <li class="nazv">
+                            <label>Цена</label>
+                        </li>
+                        <li class="nazv">
+                            <input type="text" name="form_price" />
+                        </li>
+
+
+
+                        <li class="nazv">
+                            <label>Категория</label>
+                        </li>
+                        <li class="nazv">
+                            <select id="form_category" name="form_category" size="1">
+                                <?php
+                                $category = mysqli_query($link, "SELECT * FROM category");
+                                if (mysqli_num_rows($category) > 0) {
+                                    $result_category = mysqli_fetch_array($category);
+                                    do {
+                                        echo '  <option value="' . $result_category["category_id"] . '" >' . $result_category["category"] . '</option>';
+                                    } while ($result_category = mysqli_fetch_array($category));
+                                }
+                                ?>
+                            </select>
+                        </li>
+
+
+
+                        <li class="nazv">
+                            <label>Подкатегория</label>
+                        </li>
+                        <li class="nazv">
+                            <select name="form_subcategory" id="type" size="1">
+                                <?php
+                                $subcategory = mysqli_query($link, 'SELECT * FROM subcategory WHERE category_id = "" ');
+                                if (mysqli_num_rows($subcategory) > 0) {
+                                    $result_subcategory = mysqli_fetch_array($subcategory);
+                                    do {
+                                        echo '  <option value="' . $result_subcategory["subcategory_id"] . '" >' . $result_subcategory["subcategory"] . '</option>';
+                                    } while ($result_subcategory = mysqli_fetch_array($subcategory));
+                                }
+                                ?>
+                            </select>
+                        </li>
+
+                        <li class="nazv">
+                            <label>Брэнд</label>
+                        </li>
+                        <li class="nazv">
+                            <select name="form_brand" id="type" size="1">
+                                <?php
+                                $subcategory = mysqli_query($link, 'SELECT * FROM brand');
+                                if (mysqli_num_rows($subcategory) > 0) {
+                                    $result_subcategory = mysqli_fetch_array($subcategory);
+                                    do {
+                                        echo '  <option value="' . $result_subcategory["brand_id"] . '" >' . $result_subcategory["brand"] . '</option>';
+                                    } while ($result_subcategory = mysqli_fetch_array($subcategory));
+                                }
+                                ?>
+                            </select>
+                        </li>
+                    </ul>
+
+                    <li class="nazv">
+                        <label class="stylelabel">Основная картинка</label>
+                    </li>
+                    <div id="baseimg-upload">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                        <input type="file" name="upload_image" />
+                    </div>
+
+                    <h3 class="h3click">Краткое описание товара</h3>
+                    <div class="div-editor1">
+                        <textarea id="editor1" name="txt1" cols="100" rows="10"></textarea>
+
+
+                    </div>
+
+                    <h3 class="h3click">Описание товара</h3>
+                    <div class="div-editor2">
+                        <textarea defer id="editor2" name="txt2" cols="100" rows="10"></textarea>
+
+                    </div>
+
+                    <h3 class="h3click">Характеристики</h3>
+                    <div class="div-editor4">
+                        <textarea id="editor4" name="txt4" cols="100" rows="10"></textarea>
+
+                    </div>
+
+
+                    <li class="nazv nazv_top">
+                        <label class="stylelabel">Галерея картинок</label>
+                    </li>
+                    <div id="objects">
+
+                        <div id="addimage1" class="addimage">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                            <input type="file" name="galleryimg[]" />
+                        </div>
+
+                    </div>
 
 
 
 
 
+                    <p id="add-input">Добавить</p>
 
 
+                    <li class="nazv">
+                        <label>Обзор</label>
+                    </li>
+                    <li class="nazv">
+                        <input type="text" name="form_title" />
+                    </li>
+
+                    <li class="nazv">
+                        <label>Название обзора</label>
+                    </li>
+                    <li class="nazv">
+                        <input type="text" name="form_title" />
+                    </li>
+
+                    <h3 class="h3title">Настройки товара</h3>
+                    <ul id="chkbox">
+                        <li><input type="checkbox" name="chk_visible" id="chk_visible" /><label for="chk_visible"> &nbsp показать товар</label></li>
+                    </ul>
 
 
+                    <div class="submit_form"><input type="submit" id="submit_form" name="submit_add" value="Добавить товар" /></div>
+                </form>
+                <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
+                <script defer type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 
 
+                <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
+                <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
+                <script defer type="text/javascript" src="js/script.js"></script>
+                <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+                <script defer type="text/javascript">
+                    var ckeditor1 = CKEDITOR.replace("editor1");
+                </script>
+                <script defer type="text/javascript">
+                    var ckeditor1 = CKEDITOR.replace("editor2");
+                </script>
+                <script defer type="text/javascript">
+                    var ckeditor1 = CKEDITOR.replace("editor4");
+                </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <li>
-                    <label>Категория</label>
-                    <select id="form_category" name="form_category" size="6">
-                        <?php
-                        $category = mysqli_query($link, "SELECT * FROM category");
-                        if (mysqli_num_rows($category) > 0) {
-                            $result_category = mysqli_fetch_array($category);
-                            do {
-                                echo '  <option value="' . $result_category["category_id"] . '" >' . $result_category["category"] . '</option>';
-                            } while ($result_category = mysqli_fetch_array($category));
-                        }
-                        ?>
-                    </select>
-
-
-                </li>
-
-
-                <li>
-            
-                    <div id="mydiv"></div>
-
-                </li>
-
-                <li id="subcategory">
-                    <label>Подкатегория</label>
-                    <select name="form_subcategory" id="type" size="6">
-                        <?php
-                        $subcategory = mysqli_query($link, 'SELECT * FROM subcategory WHERE category_id = "" ');
-                        if (mysqli_num_rows($subcategory) > 0) {
-                            $result_subcategory = mysqli_fetch_array($subcategory);
-                            do {
-                                echo '  <option value="' . $result_subcategory["subcategory_id"] . '" >' . $result_subcategory["subcategory"] . '</option>';
-                            } while ($result_subcategory = mysqli_fetch_array($subcategory));
-                        }
-                        ?>
-                    </select>
-                </li>
-
-            </ul>
-
-            <label class="stylelabel">Основная картинка</label>
-
-            <div id="baseimg-upload">
-                <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
-                <input type="file" name="upload_image" />
+                <script defer type="text/javascript" src="../javascript/scrollup.js"></script>
             </div>
-
-            <h3 class="h3click">Краткое описание товара</h3>
-            <div class="div-editor1">
-                <textarea id="editor1" name="txt1" cols="100" rows="10"></textarea>
-
-
-            </div>
-
-            <h3 class="h3click">Описание товара</h3>
-            <div class="div-editor2">
-                <textarea defer id="editor2" name="txt2" cols="100" rows="10"></textarea>
-
-            </div>
-
-            <h3 class="h3click">Характеристики</h3>
-            <div class="div-editor4">
-                <textarea id="editor4" name="txt4" cols="100" rows="10"></textarea>
-
-            </div>
-
-            <label class="stylelabel">Галерея картинок</label>
-
-            <div id="objects">
-
-                <div id="addimage1" class="addimage">
-                    <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
-                    <input type="file" name="galleryimg[]" />
-                </div>
-
-            </div>
-
-            <p id="add-input">Добавить</p>
-
-            <h3 class="h3title">Настройки товара</h3>
-            <ul id="chkbox">
-                <li><input type="checkbox" name="chk_visible" id="chk_visible" /><label for="chk_visible">Показать товар</label></li>
-            </ul>
-
-
-            <p><input type="submit" id="submit_form" name="submit_add" value="Добавить товар" /></p>
-        </form>
-        <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
-        <script defer type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
-
-
-        <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
-        <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
-        <script defer type="text/javascript" src="js/script.js"></script>
-        <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
-        <script defer type="text/javascript">
-            var ckeditor1 = CKEDITOR.replace("editor1");
-        </script>
-        <script defer type="text/javascript">
-            var ckeditor1 = CKEDITOR.replace("editor2");
-        </script>
-        <script defer type="text/javascript">
-            var ckeditor1 = CKEDITOR.replace("editor4");
-        </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <select class="form_category" id="form_category" name="form_category" size="1">
-            <option value="0"> Выбрать категорию</option>
-            <?php
-            $category = mysqli_query($link, "SELECT * FROM category");
-            if (mysqli_num_rows($category) > 0) {
-                $result_category = mysqli_fetch_array($category);
-                do {
-                    echo '  <option value="' . $result_category["category_id"] . '" >' . $result_category["category"] . '</option>';
-                } while ($result_category = mysqli_fetch_array($category));
-            }
-            ?>
-        </select>
-
-        <span class="form_subcategory">
-
-
-
-        </span>
-
-
+        </div>
+        <?php include("footer.php") ?>
+        <a href="#" class="scrollup">Наверх</a>
 
     </body>
 
