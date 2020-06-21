@@ -1,0 +1,144 @@
+.containerglavn {
+    background: url("../../assets/gotham_21_12141_oboi_kosmonavt_i_babochki_320x480.jpg");
+    background-size: cover;
+    height: auto;
+    position: relative;
+}
+
+.blockglavn {
+    height: 100%;
+}
+
+
+.SPASE_ELECTRONICS {
+    font-family: "Regular";
+    font-size: 60px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    padding-top: 25px;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+}
+
+.inetshop {
+    font-family: "Underdog", cursive;
+    font-size: 45px;
+    color: white;
+    text-align: center;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+    padding-bottom: 25px;
+}
+
+.container_content {
+    background-color: rgb(15, 15, 15);
+    margin-top: 45px;
+    margin-bottom: 45px;
+    border-radius: 10px;
+    padding: 0px !important;
+    position: relative;
+}
+
+.contenttxtimg {
+    display: flex;
+    margin-left: 25px;
+    padding-top: 20px;
+}
+
+.imgcontent {
+    margin-right: 25px;
+}
+
+.contenttxt {
+    text-align: justify;
+    text-indent: 1.5em;
+    font-size: 16px;
+}
+
+.imgcontent img {
+    height: 580px;
+    width: 420px;
+}
+
+.center {
+    margin-bottom: 5px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.preem {
+    text-indent: 0em;
+    padding-top: 10px;
+}
+
+.raspolo {
+    font-size: 22px;
+    text-align: center;
+    margin: 0px;
+}
+
+.infocicontent {
+    display: flex;
+    margin-left: 80px;
+    text-align: justify;
+    margin-top: 45px !important;
+}
+
+.infocicontenttxt {
+    margin-left: 40px;
+    text-align: center;
+    font-size: 18px;
+
+}
+
+.infocicontenttxt p {
+    margin-top: 4.5px;
+
+}
+
+.botom {
+    margin-top: 23px !important;
+}
+
+.none {
+    margin-top: 0px !important;
+}
+
+.txt-employes {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 60px;
+}
+
+.name-employes {
+    text-align: center;
+
+}
+
+.grow:hover {
+    -webkit-transform: scale(2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.rotate:hover {
+    -webkit-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    transform: rotateZ(2deg);
+    color: #fff;
+}
+
+.swing:hover {
+    -webkit-animation: swing 1s ease;
+    animation: swing 1s ease;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
+
+.img_employes {
+    width: 130px;
+}
+
+.FI{
+    padding-bottom: 25px;
+}
