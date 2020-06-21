@@ -9,7 +9,7 @@
 }
 
 .containerglavn {
-    background: url("../../assets/home/Planets_Stones_Surface_of_planets_Mass_Effect_558772_2560x1440.jpg");
+    background: url("../../assets/spaceship_astronaut_science_fiction_3D-71925.png");
     background-size: cover;
     height: auto;
     position: relative;
@@ -255,7 +255,107 @@
 
 /* блок сортировки */
 #options-list {
-    height: 45px;
+    height: 70px;
     background: black;
     color: white;
+    margin-bottom: 35px;
+    margin-top: -5px;
+}
+
+.nazv select {
+    height: 30px;
+    width: 260px;
+}
+
+.diapazon {
+    width: 220px;
+
+}
+
+.sorting-list {
+    font-size: 18px;
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 12px;
+}
+
+.sorting-list label {
+    font-size: 18px;
+    margin-left: 14px;
+    margin-right: 5px;
+}
+
+#select-sort {
+    color: rgb(255, 255, 255);
+    margin-left: 5px;
+}
+
+.diapazon {
+    margin-left: 25px;
+}
+
+
+.diapazon p {
+    margin-left: 38px;
+    margin-bottom: 15px;
+}
+
+.slider {
+    width: 200px;
+    height: 5px;
+    background: #555;
+    position: relative;
+    margin-bottom: 50px;
+    margin-left: 20px;
+}
+
+.slider .bar {
+    position: absolute;
+    background: rgb(255, 255, 255);
+    height: 100%;
+}
+
+.slider .bar .lp span {
+    position: relative;
+    left: -32px;
+    top: 10px;
+}
+
+.slider .bar .rp span {
+    position: relative;
+    left: 0px;
+    top: 10px;
+}
+
+.slider .bar .lp,
+.slider .bar .rp {
+    cursor: pointer;
+    background: #555;
+    width: 16px;
+    height: 16px;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 100%;
+    position: absolute;
+    color: white;
+    user-select: none;
+}
+
+.slider .bar .lp {
+    left: 0px;
+    top: -8px;
+}
+
+.slider .bar .rp {
+    left: 100%;
+    top: -8px;
+}
+
+.cards p {
+    font-size: 25px;
+    margin-bottom: 40px;
+    height: 150px;
+    background: black;
+    border-radius: 20px;
+    padding-top: 55px;
 }

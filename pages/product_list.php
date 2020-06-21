@@ -59,8 +59,7 @@ switch ($sorting) {
         <div class="containerglavn">
             <div class="blockglavn">
                 <div class="SPASE_ELECTRONICS"> SPASE ELECTRONICS</div>
-                <div class="inetshop"> Интернет магазин</div>
-                <div class="glavnplus"> SPASE ELECTRONICS - небольшой, но динамично развивающийся интернет-магазин. Это позволяет нам более внимательно относиться к потребностям и желаниям наших покупателей. Индивидуальный подход, подробные консультации, широкий ассортимент электроники, цифровой и бытовой техники. Ассортимент постоянно расширяется. Интернет-магазин SPASE ELECTRONICS - это возможность сделать покупки оптом и в розницу.</div>
+                <div class="inetshop"> Каталог товаров</div>
                 <div class="join"> Приятных покупок!</div>
             </div>
         </div>
@@ -69,16 +68,89 @@ switch ($sorting) {
         </div>
 
         <ul id="options-list">
-            Сортировать:
-            <li><a id="select-sort"><?php echo $sort_name; ?></a>
-                <ul id="sorting-list">
-                    <li><a href="product_list.php?sort=id-ASC">без сортировки</a></li>
-                    <li><a href="product_list.php?sort=price-desc">Цена (по убыванию)</a></li>
-                    <li><a href="product_list.php?sort=price-asc">Цена (по возрастанию)</a></li>
-                    <li><a href="product_list.php?sort=title">от А до Я</a></li>
-                </ul>
-            </li>
+
+            <div class="sorting-list">
+                Сортировать:
+                <li><a id="select-sort"><?php echo $sort_name; ?></a>
+                    <ul id="sorting-list">
+                        <li><a href="product_list.php?sort=id-ASC">без сортировки</a></li>
+                        <li><a href="product_list.php?sort=price-desc">Цена (по убыванию)</a></li>
+                        <li><a href="product_list.php?sort=price-asc">Цена (по возрастанию)</a></li>
+                        <li><a href="product_list.php?sort=title">от А до Я</a></li>
+                    </ul>
+                </li>
+            </div>
+
+
+            <div class="sorting-list">
+                <li class="nazv">
+                    <label>Категория</label>
+                </li>
+                <li class="nazv">
+                    <select id="form_category" name="form_category" size="1">
+                        <option label=" "></option>
+                        <?php
+                        $category = mysqli_query($link, "SELECT * FROM category");
+                        if (mysqli_num_rows($category) > 0) {
+                            $result_category = mysqli_fetch_array($category);
+                            do {
+                                echo '  <option value="' . $result_category["category_id"] . '" >' . $result_category["category"] . '</option>';
+                            } while ($result_category = mysqli_fetch_array($category));
+                        }
+                        ?>
+                    </select>
+                </li>
+            </div>
+            <div class="sorting-list">
+                <li class="nazv">
+                    <label>Подкатегория</label>
+                </li>
+                <li class="nazv">
+                    <select name="form_subcategory" id="type" size="1">
+                        <option label=" "></option>
+                        <?php
+                        $subcategory = mysqli_query($link, 'SELECT * FROM subcategory WHERE category_id = "" ');
+                        if (mysqli_num_rows($subcategory) > 0) {
+                            $result_subcategory = mysqli_fetch_array($subcategory);
+                            do {
+                                echo '  <option value="' . $result_subcategory["subcategory_id"] . '" >' . $result_subcategory["subcategory"] . '</option>';
+                            } while ($result_subcategory = mysqli_fetch_array($subcategory));
+                        }
+                        ?>
+                    </select>
+                </li>
+            </div>
+            <div class="sorting-list">
+                <li class="nazv">
+                    <label>Брэнд</label>
+                </li>
+                <li class="nazv">
+                    <select name="form_brand" id="type" size="1">
+                        <option label=" "></option>
+                        <?php
+                        $subcategory = mysqli_query($link, 'SELECT * FROM brand');
+                        if (mysqli_num_rows($subcategory) > 0) {
+                            $result_subcategory = mysqli_fetch_array($subcategory);
+                            do {
+                                echo '  <option value="' . $result_subcategory["brand_id"] . '" >' . $result_subcategory["brand"] . '</option>';
+                            } while ($result_subcategory = mysqli_fetch_array($subcategory));
+                        }
+                        ?>
+                    </select>
+                </li>
+            </div>
+            <div class="diapazon">
+                <p>Выберите диапазон цен</p>
+                <div class="slider">
+
+                    <div class="bar" data-start="100" data-end="100000">
+                        <div class="lp" data-pos="0.1"></div>
+                        <div class="rp" data-pos="1"></div>
+                    </div>
+                </div>
+            </div>
         </ul>
+
 
 
         <div class="container text-white ">
@@ -223,7 +295,7 @@ switch ($sorting) {
             ';
         }
         ?>
-        
+
     </div>
 
     <?php include("header_footer/footer.php") ?>

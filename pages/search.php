@@ -3,6 +3,7 @@ include("db_connect.php");
 session_start();
 include("reg_aunt/functions.php");
 include("reg_aunt/auth_cooke.php");
+include("group_numerals.php");
 
 $search = clear_string($_GET['q']); //подключаем функцию очистки строк
 $search  = mb_strtolower($search, 'UTF-8'); //Приведение строки к нижнему регистру
@@ -49,90 +50,220 @@ switch ($sorting) {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
 
-    <link rel="stylesheet" type="text/css" href="../style/search/search.css">
+    <link rel="stylesheet" type="text/css" href="../style/product_list/product_list.css">
 
 </head>
 
-<body id="particles-js">
 
-    <?php include("header_footer/header.php");
 
-    $num = 5; //сколько выводить товаров
-    $page = (int) $_GET['page']; //значение страници              
+<body>
+    <div class="fon">
+        <?php include("header_footer/header.php") ?>
 
-    $count = mysqli_query($link, "SELECT COUNT(*) FROM products WHERE title LIKE '%$search%' AND visible = '1'");
-    $temp = mysqli_fetch_array($count);
+        <div class="containerglavn">
+            <div class="blockglavn">
+                <div class="SPASE_ELECTRONICS"> SPASE ELECTRONICS</div>
+                <div class="inetshop"> Поиск товаров</div>
+                <div class="join"> Приятных покупок!</div>
+            </div>
+        </div>
+        <div class="block-basket">
+            <p id="block-basket"> <a class="nav-link" href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/pages/cart.php?action=oneclick"></a></p>
+        </div>
 
-    if ($temp[0] > 0) {
-        $tempcount = $temp[0];
-
-        // находим общее число страниц 
-        $total = (($tempcount - 1) / $num) + 1;
-        $total =  intval($total);
-        $page = intval($page);
-
-        if (empty($page) or $page < 0) {
-            $page = 1;
-        }
-        if ($page > $total) {
-            $page = $total;
-        }
-        // вычисляем с какого номера начинать следует выводить товар
-        $start = $page * $num - $num;
-        $qury_start_num = " LIMIT $start, $num";
-    }
-
-    if (mb_strlen($search, 'utf-8') >= 2 && mb_strlen($search, 'utf-8') < 64) {
-
-        if ($temp[0] > 0) { ?>
-            <ul id="options-list">
+        <ul id="options-list">
+            <div class="sorting-list">
                 Сортировать:
-                <li> <a id="select-sort"><?php echo $sort_name; ?></a>
+                <li><a id="select-sort"><?php echo $sort_name; ?></a>
                     <ul id="sorting-list">
-                        <li><a href="search.php?q=<?php echo $search ?> &sort=id-ASC">без сортировки</a></li>
-                        <li><a href="search.php?q=<?php echo $search ?>  &sort=price-desc">Цена (по убыванию)</a></li>
-                        <li><a href="search.php?q=<?php echo $search ?>  &sort=price-asc">Цена (по возрастанию)</a></li>
-                        <li><a href="search.php?q=<?php echo $search ?>  &sort=title">от А до Я</a></li>
+                        <li><a href="product_list.php?sort=id-ASC">без сортировки</a></li>
+                        <li><a href="product_list.php?sort=price-desc">Цена (по убыванию)</a></li>
+                        <li><a href="product_list.php?sort=price-asc">Цена (по возрастанию)</a></li>
+                        <li><a href="product_list.php?sort=title">от А до Я</a></li>
                     </ul>
                 </li>
-            </ul>
+            </div>
 
-            <?php $result = mysqli_query($link, "SELECT * FROM products WHERE title LIKE '%$search%' AND visible='1' ORDER BY $sorting $qury_start_num "); ?>
 
-            <div class="container_cards container-fluid">
-                <ul class="cards">
+            <div class="sorting-list">
+                <li class="nazv">
+                    <label>Категория</label>
+                </li>
+                <li class="nazv">
+                    <select id="form_category" name="form_category" size="1">
+                        <option label=" "></option>
+                        <?php
+                        $category = mysqli_query($link, "SELECT * FROM category");
+                        if (mysqli_num_rows($category) > 0) {
+                            $result_category = mysqli_fetch_array($category);
+                            do {
+                                echo '  <option value="' . $result_category["category_id"] . '" >' . $result_category["category"] . '</option>';
+                            } while ($result_category = mysqli_fetch_array($category));
+                        }
+                        ?>
+                    </select>
+                </li>
+            </div>
+            <div class="sorting-list">
+                <li class="nazv">
+                    <label>Подкатегория</label>
+                </li>
+                <li class="nazv">
+                    <select name="form_subcategory" id="type" size="1">
+                        <option label=" "></option>
+                        <?php
+                        $subcategory = mysqli_query($link, 'SELECT * FROM subcategory WHERE category_id = "" ');
+                        if (mysqli_num_rows($subcategory) > 0) {
+                            $result_subcategory = mysqli_fetch_array($subcategory);
+                            do {
+                                echo '  <option value="' . $result_subcategory["subcategory_id"] . '" >' . $result_subcategory["subcategory"] . '</option>';
+                            } while ($result_subcategory = mysqli_fetch_array($subcategory));
+                        }
+                        ?>
+                    </select>
+                </li>
+            </div>
+            <div class="sorting-list">
+                <li class="nazv">
+                    <label>Брэнд</label>
+                </li>
+                <li class="nazv">
+                    <select name="form_brand" id="type" size="1">
+                        <option label=" "></option>
+                        <?php
+                        $subcategory = mysqli_query($link, 'SELECT * FROM brand');
+                        if (mysqli_num_rows($subcategory) > 0) {
+                            $result_subcategory = mysqli_fetch_array($subcategory);
+                            do {
+                                echo '  <option value="' . $result_subcategory["brand_id"] . '" >' . $result_subcategory["brand"] . '</option>';
+                            } while ($result_subcategory = mysqli_fetch_array($subcategory));
+                        }
+                        ?>
+                    </select>
+                </li>
+            </div>
+            <div class="diapazon">
+                <p>Выберите диапазон цен</p>
+                <div class="slider">
 
-            <?php
-            if (mysqli_num_rows($result) > 0) {
-                $row = mysqli_fetch_array($result);
-                do {
-                    if ($row["image"] != "" && file_exists("../assets/products/" . $row["image"])) {
-                        $img_path = '../assets/products/' . $row["image"]; //фото есть 
-                    } else {
-                        $img_path = "../assets/products/no_photo.jpg"; //фото нету
-                    }
-                    echo ('
+                    <div class="bar" data-start="100" data-end="100000">
+                        <div class="lp" data-pos="0.1"></div>
+                        <div class="rp" data-pos="1"></div>
+                    </div>
+                </div>
+            </div>
+        </ul>
 
-                                                        <li>
-                                                            <div class = "card_image">
-                                                                <img src="' . $img_path . '" /> 
-                                                            </div>
-                                                            <div>' . $row["title"] . ' </div>
-                                                            <div>' . $row["price"] . '₽ </div>
-                                                        </li>
-                                            
-                                                        ');
-                } while ($row = mysqli_fetch_array($result));
-            }
-        } else {
-            echo "<p>Ничего не найдено!</p>";
-        }
-    } else {
-        echo "<p>Поисковое значение должно быть от 2 до 64 символов!</p>";
-    }
-            ?>
 
-                </ul>
+        <div class="container text-white ">
+
+            <div class="row justify-content-center">
+
+                <div class="col-xl-auto col-lg-auto col-md-3 col-auto">
+
+                    <ul class="cards">
+                        <?php
+                        $num = 16; //вывод товара 
+                        $page = (int) $_GET['page']; //значение страници              
+
+                        $count = mysqli_query($link, "SELECT COUNT(*) FROM products WHERE title LIKE '%$search%' AND visible = '1'");
+                        $temp = mysqli_fetch_array($count);
+
+                        if ($temp[0] > 0) {
+                            $tempcount = $temp[0];
+
+                            // находим общее число страниц 
+                            $total = (($tempcount - 1) / $num) + 1;
+                            $total =  intval($total);
+                            $page = intval($page);
+
+                            if (empty($page) or $page < 0) {
+                                $page = 1;
+                            }
+                            if ($page > $total) {
+                                $page = $total;
+                            }
+                            // вычисляем с какого номера начинать следует выводить товар
+                            $start = $page * $num - $num;
+                            $qury_start_num = " LIMIT $start, $num";
+                        }
+
+                        if (mb_strlen($search, 'utf-8') >= 2 && mb_strlen($search, 'utf-8') < 64) {
+
+                            if ($temp[0] > 0) { ?>
+
+
+                                <?php $result = mysqli_query($link, "SELECT * FROM products WHERE title LIKE '%$search%' AND visible='1' ORDER BY $sorting $qury_start_num "); ?>
+
+                                <div class="container_cards container-fluid">
+                                    <ul class="cards">
+
+                                        <?php
+                                        if (mysqli_num_rows($result) > 0) {
+                                            $row = mysqli_fetch_array($result);
+                                            do {
+                                                if ($row["image"] != "" && file_exists("../assets/products/" . $row["image"])) {
+                                                    $img_path = '../assets/products/' . $row["image"]; //фото есть 
+                                                } else {
+                                                    $img_path = "../assets/products/no_photo.jpg"; //фото нету
+                                                }
+
+                                                $query_reviews = mysqli_query($link, "SELECT * FROM reviews_products WHERE products_id='{$row['id']}' AND moderat='1'");
+                                                $row_reviews = mysqli_fetch_array($query_reviews);
+                                                $rating = round($row_reviews['rating'] / $query_reviews);
+                                                $a = mysqli_num_rows($query_reviews);
+
+                                                echo (' 
+                            <li>
+
+                                <div class="count_otzv">
+                                    <div class="count"> <img src="../assets/64875.png" />' . $row["count"] . ' </div>
+                                </div>
+
+                                <a href="/pages/content.php?id=' . $row["id"] . '">
+                                    <div class = "blockimage">
+                                        <div class = "card_image"> <img src="' . $img_path . '" /> </div>
+                                        </div>
+                                        <div class="down_card">
+                                        <div class="tow_title"> <a>' . $row["title"] . '</a> </div> 
+                            ');
+                                        ?>
+
+                                                <div class="rating">
+                                                    <div class="rating-mini">
+                                                        <span class="<?php if ($rating >= 1) echo 'active'; ?>"></span>
+                                                        <span class="<?php if ($rating >= 2) echo 'active'; ?>"></span>
+                                                        <span class="<?php if ($rating >= 3) echo 'active'; ?>"></span>
+                                                        <span class="<?php if ($rating >= 4) echo 'active'; ?>"></span>
+                                                        <span class="<?php if ($rating >= 5) echo 'active'; ?>"></span>
+                                                    </div>
+                                    <?php
+                                                echo ('  
+                                        <div class="otzv"> <img src="../assets/sms.png" />' .  $a . ' </div>
+                                    </div>
+                     
+                                </a>
+
+                                <div class="card_price">
+                                    <div class="price">' . group_numerals($row["price"]) . '₽ </div>
+                                    <div class="add-card"  tid="' . $row["id"] . '" > <img src="../assets/_9610-12+.png" /></div>
+                                </div>
+                            </li>
+                        ');
+                                            } while ($row = mysqli_fetch_array($result));
+                                        }
+                                    } else {
+                                        echo "<p>Ничего не найдено!</p>";
+                                    }
+                                } else {
+                                    echo "<p>Поисковое значение должно быть от 2 до 64 символов!</p>";
+                                }
+                                    ?>
+
+                                    </ul>
+
+                                </div>
+                </div>
             </div>
 
             <?php
@@ -184,18 +315,20 @@ switch ($sorting) {
             }
             ?>
 
-            <?php include("header_footer/footer.php") ?>
+        </div>
 
-            <a href="#" class="scrollup">Наверх</a>
+        <?php include("header_footer/footer.php") ?>
+    </div>
 
-            <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
-            <script defer type="text/javascript" src="../javascript/cart.js"></script>
-            <script defer type="text/javascript" src="javascript/scrollup.js"></script>
-            <script defer type="text/javascript" src="../javascript/product_list.js"></script>
-            <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
+    <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
+    <script defer type="text/javascript" src="../javascript/cart.js"></script>
+    <script defer type="text/javascript" src="../javascript/product_list.js"></script>
+    <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
 
-            <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
-            <script defer src="../bootstrap/js/bootstrap.min.js"></script>
+    <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
+    <script defer src="../bootstrap/js/bootstrap.min.js"></script>
+    <script defer type="text/javascript" src="../javascript/scrollup.js"></script>
+    <a href="#" class="scrollup">Наверх</a>
 
 </body>
 
