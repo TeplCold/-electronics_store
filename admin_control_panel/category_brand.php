@@ -150,7 +150,7 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
 
                     <li>
                         <label>Подкатегория</label>
-                    <li> <select name="subcategory" id="subcategory" size="1"></select>
+                    <li> <select name="cat_subcategory" id="cat_subcategory" size="1">
                             <?php
                             $result = mysqli_query($link, "SELECT * FROM subcategory ORDER BY subcategory DESC");
                             if (mysqli_num_rows($result) > 0) {

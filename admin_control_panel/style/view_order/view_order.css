@@ -1,0 +1,57 @@
+.block_cuntent {
+    background: rgb(22, 22, 22);
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    padding: 0px !important;
+    overflow: hidden;
+}
+
+#block-parameters {
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 25px;
+}
+
+
+.blockdadanom {
+    display: flex;
+    position: relative;
+    border-bottom: 1px solid white;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.order-datetime {
+    position: absolute;
+    right: 0;
+}
+
+TABLE,
+TH,
+TD {
+    border: 1px solid white;
+    text-align: justify;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+
+.view-order-link {
+    margin-bottom: 25px;
+    margin-top: -10px;
+    font-size: 20px;
+}
+
+.index_count {
+    width: 35px;
+    text-align: center;
+}
+
+#info-order {
+    font-size: 20px;
+    margin-top: 15px;
+}
