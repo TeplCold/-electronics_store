@@ -215,20 +215,20 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
                         <input type="file" name="upload_image" />
                     </div>
 
-                    <h3 class="h3click">Краткое описание товара</h3>
+                    <p class="h3click">Краткое описание товара</p>
                     <div class="div-editor1">
                         <textarea id="editor1" name="txt1" cols="100" rows="10"></textarea>
 
 
                     </div>
 
-                    <h3 class="h3click">Описание товара</h3>
+                    <p class="h3click">Описание товара</p>
                     <div class="div-editor2">
                         <textarea defer id="editor2" name="txt2" cols="100" rows="10"></textarea>
 
                     </div>
 
-                    <h3 class="h3click">Характеристики</h3>
+                    <p class="h3click">Характеристики</p>
                     <div class="div-editor4">
                         <textarea id="editor4" name="txt4" cols="100" rows="10"></textarea>
 
