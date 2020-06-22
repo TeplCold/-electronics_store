@@ -1,9 +1,11 @@
+<link rel="stylesheet" type="text/css" href="../style/profile/profile.css">
 <?php session_start();
+include("db_connect.php");
+include("reg_aunt/functions.php");
 
 if ($_SESSION['auth'] == 'yes_auth') //выводим эту страницу только когда пользователь зарегистрирован
 {
-    include("db_connect.php");
-    include("reg_aunt/functions.php");
+
 
     if ($_POST["save_submit"]) {
 
@@ -116,67 +118,76 @@ if ($_SESSION['auth'] == 'yes_auth') //выводим эту страницу т
 
     <body id="particles-js">
 
-        <?php include("header_footer/header.php") ?>
-        Изменения профиля
-        <?php
+        <div class="fon">
+            <?php include("header_footer/header.php") ?>
 
-        if ($_SESSION['msg']) {
-            echo $_SESSION['msg'];
-            unset($_SESSION['msg']);
-        }
+            <div class="containerglavn">
+                <div class="blockglavn">
+                    <div class="SPASE_ELECTRONICS"> SPASE ELECTRONICS</div>
+                    <div class="inetshop"> Профиль</div>
+                </div>
+            </div>
+            <?php
 
-        ?>
-        <form method="post">
+            if ($_SESSION['msg']) {
+                echo $_SESSION['msg'];
+                unset($_SESSION['msg']);
+            }
 
-            <ul id="info-profile">
+            ?>
+            <div class="container content">
+                <form method="post">
 
-                <li>
-                    <label for="info_surname">Фамилия</label>
-                    <input type="text" name="info_surname" id="info_surname" value="<?php echo $_SESSION['auth_surname']; ?>" />
-                </li>
+                    <ul id="info-profile">
 
-                <li>
-                    <label for="info_name">Имя</label>
-                    <input type="text" name="info_name" id="info_name" value="<?php echo $_SESSION['auth_name']; ?>" />
-                </li>
+                        <li class="info-profile">
+                            <div><label for="info_surname">Фамилия</label></div>
+                            <div><input type="text" name="info_surname" id="info_surname" placeholder="Фамилия" value="<?php echo $_SESSION['auth_surname']; ?>" /></div>
+                        </li>
 
-                <li>
-                    <label for="info_patronymic">Отчество</label>
-                    <input type="text" name="info_patronymic" id="info_patronymic" value="<?php echo $_SESSION['auth_patronymic']; ?>" />
-                </li>
+                        <li class="info-profile">
+                            <div><label for="info_name">Имя</label></div>
+                            <div> <input type="text" name="info_name" id="info_name" value="<?php echo $_SESSION['auth_name']; ?>" /></div>
+                        </li>
 
-                <li>
-                    <label for="info_email">E-mail</label>
-                    <input type="text" name="info_email" id="info_email" value="<?php echo $_SESSION['auth_email']; ?>" />
-                </li>
+                        <li class="info-profile">
+                            <div><label for="info_patronymic">Отчество</label></div>
+                            <div><input type="text" name="info_patronymic" id="info_patronymic" value="<?php echo $_SESSION['auth_patronymic']; ?>" /></div>
+                        </li>
 
-                <li>
-                    <label for="info_new_pass">Новый пароль</label>
-                    <input type="text" name="info_new_pass" id="info_new_pass" value="" />
-                    <span id="genpass2">Сгенерировать</span>
-                </li>
+                        <li class="info-profile">
+                            <div> <label for="info_email">E-mail</label></div>
+                            <div> <input type="text" name="info_email" id="info_email" value="<?php echo $_SESSION['auth_email']; ?>" /></div>
+                        </li>
 
-                <li>
-                    <label for="info_pass">Введите текущий пароль для подтверждения</label>
-                    <input type="text" name="info_pass" id="info_pass" value="" />
-                </li>
+                        <li class="info-profile">
+                            <div><label for="info_new_pass">Новый пароль</label></div>
+                            <div> <input type="text" name="info_new_pass" id="info_new_pass" value="" /> <span id="genpass2">Сгенерировать</span></div>
 
-            </ul>
+                        </li>
 
-            <p><input type="submit" id="form_submit" name="save_submit" value="Сохранить" /></p>
+                        <li class="info-profile">
+                            <div> <label for="info_pass">Введите текущий пароль для подтверждения</label></div>
+                            <div><input type="text" name="info_pass" id="info_pass" value="" />
+                                <input type="submit" class="info_pass" id="form_submit" name="save_submit" value="Сохранить" />
+                            </div>
+                        </li>
 
-        </form>
+                    </ul>
 
-        <?php include("header_footer/footer.php") ?>
 
-        <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
-        <script defer type="text/javascript" src="../javascript/cart.js"></script>
-        <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
-        <!--подключение генерации пароля -->
-        <script defer type="text/javascript" src="../javascript/reg_aunt/genpass.js"></script>
+                </form>
+            </div>
+            <?php include("header_footer/footer.php") ?>
 
-        <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
-        <script defer src="../bootstrap/js/bootstrap.min.js"></script>
+            <script defer type="text/javascript" src="../javascript/jquery-3.4.1.js"></script>
+            <script defer type="text/javascript" src="../javascript/cart.js"></script>
+            <script defer type="text/javascript" src="../javascript/header_footer.js"></script>
+            <!--подключение генерации пароля -->
+            <script defer type="text/javascript" src="../javascript/reg_aunt/genpass.js"></script>
+
+            <script defer type="text/javascript" src="../javascript/jquery-3.5.1.js"> </script>
+            <script defer src="../bootstrap/js/bootstrap.min.js"></script>
 
     </body>
 

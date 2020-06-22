@@ -1,0 +1,68 @@
+body {
+    color: rgb(255, 255, 255);
+}
+
+.fon {
+    background-color: rgb(0, 0, 0, 0.3);
+
+    overflow: hidden;
+}
+
+.containerglavn {
+    background: url("../../assets/Vadim_Sadovski_digital_art_space_space_art_500px_astronaut-1179267.jpg");
+    background-size: cover;
+    height: auto;
+    position: relative;
+
+}
+
+.blockglavn {
+    background: rgb(0, 0, 0, 0.4);
+    min-height: 250px;
+}
+
+.SPASE_ELECTRONICS {
+    font-family: "Regular";
+    font-size: 65px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    padding-top: 35px;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+}
+
+.inetshop {
+    font-family: "Underdog", cursive;
+    font-size: 55px;
+    color: white;
+    text-align: center;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
+}
+
+.content {
+    background: rgb(17, 17, 17);
+    color: white;
+    padding-left: 20px !important;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    padding-top: 35px;
+    padding-bottom: 20px;
+}
+
+.info-profile input {
+    width: 250px;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+.info-profile {
+    display: block;
+}
+
+.info_pass {
+    border: none !important;
+    background: none !important;
+    width: 90px !important;
+    margin-left: -6px !important;
+}
