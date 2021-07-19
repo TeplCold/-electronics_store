@@ -9,37 +9,39 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
 
         $error = array();
         // проверка полей
-        if (!$_POST["form_title"]) {
-            $error[] = "Укажите название товара";
-        }
+
 
         if (!$_POST["form_price"]) {
             $error[] = "Укажите цену";
         }
 
-        if (!$_POST["form_category"]) {
-            $error[] = "Укажите категорию";
-        } else {
-            $result = mysqli_query($link, "SELECT * FROM category WHERE category_id='{$_POST["form_category"]}'");
-            $row = mysqli_fetch_array($result);
-            $selectcategory = $row["category_id"];
+        if (!$_POST["form_title"]) {
+            $error[] = "Укажите название товара";
         }
 
-        if (!$_POST["form_subcategory"]) {
-            $error[] = "Укажите подкатегорию";
-        } else {
-            $result = mysqli_query($link, "SELECT * FROM subcategory WHERE subcategory_id='{$_POST["form_subcategory"]}'");
-            $row = mysqli_fetch_array($result);
-            $selectsubcategory = $row["subcategory_id"];
-        }
+        // if (!$_POST["form_category"]) {
+        //     $error[] = "Укажите категорию";
+        // } else {
+        //     $result = mysqli_query($link, "SELECT * FROM category WHERE category_id='{$_POST["form_category"]}'");
+        //     $row = mysqli_fetch_array($result);
+        //     $selectcategory = $row["category_id"];
+        // }
 
-        if (!$_POST["form_brand"]) {
-            $error[] = "Укажите брэнд";
-        } else {
-            $result = mysqli_query($link, "SELECT * FROM brand WHERE brand_id='{$_POST["form_brand"]}'");
-            $row = mysqli_fetch_array($result);
-            $selectsubcategory = $row["brand"];
-        }
+        // if (!$_POST["form_subcategory"]) {
+        //     $error[] = "Укажите подкатегорию";
+        // } else {
+        //     $result = mysqli_query($link, "SELECT * FROM subcategory WHERE subcategory_id='{$_POST["form_subcategory"]}'");
+        //     $row = mysqli_fetch_array($result);
+        //     $selectsubcategory = $row["subcategory_id"];
+        // }
+
+        // if (!$_POST["form_brand"]) {
+        //     $error[] = "Укажите брэнд";
+        // } else {
+        //     $result = mysqli_query($link, "SELECT * FROM brand WHERE brand_id='{$_POST["form_brand"]}'");
+        //     $row = mysqli_fetch_array($result);
+        //     $selectsubcategory = $row["brand"];
+        // }
 
         // Проверка чекбоксов
         if ($_POST["chk_visible"]) {
@@ -64,6 +66,7 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
                 '" . $chk_visible . "',       
                 '" . $selectsubcategory . "'             
             )");
+
 
             $_SESSION['message'] = "<p id='form-success'>Товар успешно добавлен!</p>";
             $id = mysqli_insert_id($link);
@@ -177,15 +180,11 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
                         </li>
                         <li class="nazv">
                             <select name="form_subcategory" id="type" size="1">
-                                <?php
-                                $subcategory = mysqli_query($link, 'SELECT * FROM subcategory WHERE category_id = "" ');
-                                if (mysqli_num_rows($subcategory) > 0) {
-                                    $result_subcategory = mysqli_fetch_array($subcategory);
-                                    do {
-                                        echo '  <option value="' . $result_subcategory["subcategory_id"] . '" >' . $result_subcategory["subcategory"] . '</option>';
-                                    } while ($result_subcategory = mysqli_fetch_array($subcategory));
-                                }
-                                ?>
+
+                                <option value="1">Телевизоры</option>
+
+
+                             
                             </select>
                         </li>
 
@@ -258,14 +257,14 @@ if ($_SESSION['auth_login'] == 'admin') { //выводим эту страниц
                         <label>Обзор</label>
                     </li>
                     <li class="nazv">
-                        <input type="text" name="form_title" />
+                        <input type="text" name="form_titles" />
                     </li>
 
                     <li class="nazv">
                         <label>Название обзора</label>
                     </li>
                     <li class="nazv">
-                        <input type="text" name="form_title" />
+                        <input type="text" name="form_titless" />
                     </li>
 
                     <h3 class="h3title">Настройки товара</h3>
